@@ -9,17 +9,25 @@ import SwiftUI
 
 struct SplashView3: View {
     @State private var isActive = false
-    
-    let randomGukbaps = Gukbaps.allCases.shuffled().prefix(5)
-    // MARK: 추가할 문장이나 수정해야 할 사항들 자유롭게 작성해주세요.
-    let randomText = [
-        "다양하고 나만 모르는 국밥집 찾을땐?",
-        "뜨뜻하고 든든한 국밥 알아볼땐?",
-        "서울 부산 유명, 숨겨진 국밥집 다 먹어보자",
-        "탄,단,지 영양소 풍부한 국밥 찾을땐?"
-        
-    ].shuffled()
-    
+
+    let foodImages = [
+    "BHJGukbap",
+    "KNMGukbap",
+    "MudfishGukbap",
+    "NJGukbap",
+    "OysterGukbap",
+    "PigGukbap",
+    "PYOBGukbap",
+    "SDGukbap",
+    "SGRGukbap",
+    "SJGukbap",
+    "SMRGukbap",
+    "SRGGukbap",
+    "SRTGukbap"
+    ]
+    var randomImages: [String] {
+           Array(foodImages.shuffled())
+       }
     var body: some View {
         HStack{
             if isActive{
@@ -30,35 +38,35 @@ struct SplashView3: View {
                         .ignoresSafeArea(.all)
                     Group{
                         
-                        Image(randomGukbaps[0].imageName)
+                        Image(randomImages[0])
                             .resizable()
                             .frame(width:UIScreen.main.bounds.width * 0.23 ,height:UIScreen.main.bounds.height * 0.1)
                             .rotationEffect(Angle(degrees: -45))
                             .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 5)
                             .offset(x:-130, y: -155)
                         
-                        Image(randomGukbaps[1].imageName)
+                        Image(randomImages[1])
                             .resizable()
                             .frame(width:UIScreen.main.bounds.width * 0.23 ,height:UIScreen.main.bounds.height * 0.1)
                             .rotationEffect(Angle(degrees: 0))
                             .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 5)
                             .offset(x:145, y: -100)
                         
-                        Image(randomGukbaps[2].imageName)
+                        Image(randomImages[2])
                             .resizable()
                             .frame(width:UIScreen.main.bounds.width * 0.2 ,height:UIScreen.main.bounds.height * 0.08)
                             .rotationEffect(Angle(degrees: -45))
                             .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 5)
                             .offset(x:-10, y: 150)
                         
-                        Image(randomGukbaps[3].imageName)
+                        Image(randomImages[3])
                             .resizable()
                             .frame(width:UIScreen.main.bounds.width * 0.23 ,height:UIScreen.main.bounds.height * 0.1)
                             .rotationEffect(Angle(degrees: 0))
                             .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 5)
                             .offset(x:145, y: 110)
                         
-                        Image(randomGukbaps[4].imageName)
+                        Image(randomImages[4])
                             .resizable()
                             .frame(width:UIScreen.main.bounds.width * 0.23 ,height:UIScreen.main.bounds.height * 0.1)
                             .rotationEffect(Angle(degrees: 0))
@@ -69,7 +77,7 @@ struct SplashView3: View {
                         Spacer()
                         VStack{
                             
-                            Text(randomText[0])
+                            Text("뜨뜻하고 든든한 국밥 알아볼땐? ")
                                 .font(.title3)
                             Text("국밥부장관")
                                 .font(.system(size: UIScreen.main.bounds.maxY * 0.055))
@@ -79,6 +87,7 @@ struct SplashView3: View {
 
                            
                             Spacer()
+             
                                 VStack{
                                     Text("국밥부장관")
                                     Text("Goodvibe")
@@ -86,9 +95,11 @@ struct SplashView3: View {
                                 .font(.title3)
                                 .foregroundColor(.white)
                             .opacity(0.5)
+                            
                         }
                     }
                 .onAppear{
+                    print("\(randomImages)")
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
                         self.isActive = true
                     }
@@ -96,7 +107,9 @@ struct SplashView3: View {
             }
         }
       
-    }
+     
+        }
+    
 }
 
 struct SplashView3_Previews: PreviewProvider {

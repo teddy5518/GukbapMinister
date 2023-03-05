@@ -15,6 +15,7 @@ struct MainTabView: View {
     @State private var showModal: Bool = false
     
     var body: some View {
+        
             TabView(selection: $tabSelection) {
                 MapView(mapViewModel: MapViewModel(storeLocations: storesViewModel.stores))
                     .tabItem {
@@ -102,6 +103,7 @@ struct MainTabView: View {
         
     }
 }
+
 
 //struct MainTabView_Previews: PreviewProvider {
 //    static var previews: some View {

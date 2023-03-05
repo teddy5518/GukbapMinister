@@ -33,12 +33,12 @@ struct CustomRefreshSpinner: View {
         VStack {
               Image(randomImages[currentIndex])
                   .resizable()
-                  .frame(width: 70, height: 70)
+                  .frame(width: 40, height: 40)
                   .rotationEffect(.degrees(rotation))
           }
           .onAppear {
-              Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
-                  withAnimation(Animation.linear(duration: 0.5)) {
+              Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { _ in
+                  withAnimation(Animation.linear(duration: 0.3)) {
                       currentIndex = (currentIndex + 1) % randomImages.count
                       rotation += 120
                   }

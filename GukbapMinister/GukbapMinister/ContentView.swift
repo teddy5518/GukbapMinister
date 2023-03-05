@@ -23,9 +23,11 @@ struct ContentView: View {
            case 1:
                SplashView2()
 
-               
            case 2:
               SplashView3()
+               
+           case 3:
+              SplashView4()
                   
                
            default :
