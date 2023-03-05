@@ -25,6 +25,7 @@ struct CategoryFilteringView: View {
             .padding(.horizontal, 30)
             .padding(.bottom, 12)
             
+            // 버튼 위치를 설정
             VStack(alignment: .center){
                 placeButtonsInAlignment(0,2)
                 placeButtonsInAlignment(3,4)
@@ -87,9 +88,8 @@ extension CategoryFilteringView {
                     Text("확인")
                 }
             }
+            
             Divider()
-            
-            
         }
     }
 }

@@ -35,25 +35,31 @@ struct MapView: View {
                     VStack {
                         SearchBarButton()
                         mapFilter
-                            .offset(x: width * 0.05 - 29)
+                            .offset(x: width * 0.0005)
                         Spacer()
                     }
                     
                     StoreReportButton()
-                        .offset(x: width * 0.5 - 35 - 12)
-
-                }
-                .onTapGesture {
-                    if isShowingSelectedStore {
-                        isShowingSelectedStore = false
-                    }
-                }
-                .overlay(alignment: .bottom) {
-                    if let selectedStore = mapViewModel.selectedStore {
-                        StoreModalView(store: selectedStore)
+                        .offset(x: width * 0.5 - 47)
+                    
+                    VStack {
+                        if isShowingSelectedStore {
+                            Button {
+                                isShowingSelectedStore.toggle()
+                            } label: {
+                                Spacer()
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            }
+                        } else {
+                            Spacer()
+                        }
+                        
+                        StoreModalView(store: mapViewModel.selectedStore ?? .test)
                             .padding(25)
                             .offset(y: isShowingSelectedStore ? 0 : 400)
-                            .animation(.easeInOut, value: isShowingSelectedStore)
+                        // animation issue로 인한 주석 처리
+                        // .animation(.easeInOut, value: isShowingSelectedStore)
+                            .transition(.slide)
                     }
                 }
             }
@@ -66,6 +72,4 @@ struct MapView: View {
             }
         }
     }
-    
-    
 }
