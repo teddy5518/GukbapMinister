@@ -50,24 +50,24 @@ struct MyPageView: View {
                                         .font(.title3)
                                     
                     
-                                    switch userViewModel.loginState{
-                                    case .kakaoLogin :
+                                    switch userViewModel.loginPlatform{
+                                    case "kakaoLogin" :
                                         Image("KakaoLogin")
                                             .resizable()
                                             .frame(width: UIScreen.main.bounds.width * 0.052, height: UIScreen.main.bounds.height * 0.025)
                                     
-                                    case .googleLogin :
+                                    case "googleLogin" :
                                         Image("GoogleLogin")
                                             .resizable()
                                             .frame(width: UIScreen.main.bounds.width * 0.052, height: UIScreen.main.bounds.height * 0.025)
 
-                                    case .appleLogin :
+                                    case "appleLogin" :
                                         Image("AppleLogin")
                                             .resizable()
                                             .frame(width: UIScreen.main.bounds.width * 0.052, height: UIScreen.main.bounds.height * 0.025)
 
-                                    case .logout : Text("")
-                                        
+                                    default:
+                                        Text("")
                                     }
                                     
                                     Spacer()
