@@ -31,7 +31,6 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate {
         if let annotation = annotation as? StoreAnnotation {
             annotationView = setUpStoreAnnotationView(for: annotation, on: mapView)
         }
-        
         return annotationView
     }
     
@@ -43,13 +42,13 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate {
         mapViewController.isSelected = true
     }
     
-    // 마커를 클릭해제 했을 때 동작하는 함수
-    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        guard let _ = view.annotation as? StoreAnnotation else { return }
-        print(#function, "마커 deselect")
-        mapViewController.selectedStoreAnnotation = .init(storeId: "", title: "", subtitle: "", foodType: [], coordinate: .init())
-        mapViewController.isSelected = false
-    }
+//    // 마커를 클릭해제 했을 때 동작하는 함수 (없이도 클릭해제가 됨)
+//    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+//        guard let _ = view.annotation as? StoreAnnotation else { return }
+//        print(#function, "마커 deselect")
+//        mapViewController.selectedStoreAnnotation = .init(storeId: "", title: "", subtitle: "", foodType: [], coordinate: .init())
+//        mapViewController.isSelected = false
+//    }
     
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
         print(#function, "\(views)")
@@ -76,15 +75,19 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate {
             markerText.frame.size = CGSize(width: max(adjustedSize.width, fixedWidth), height: adjustedSize.height)
             markerText.backgroundColor = .defaultBackGroundColor
             markerText.textColor = .defaultLabelColor
-            markerText.layer.cornerRadius = 20
-            markerText.textContainerInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+            // cornerRadius가 textfield의 높이에 절반이 되면서 반지름이 되어 capsule 형태가 됨
+            markerText.layer.cornerRadius = adjustedSize.height / 2
+            markerText.textContainerInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
             markerText.text = ("\(String(describing: annotation.title ?? ""))")
             markerText.font = .boldSystemFont(ofSize: 12)
             markerText.textAlignment = .center
-            markerText.translatesAutoresizingMaskIntoConstraints = true
             markerText.isScrollEnabled = false
+            // markerText가 임의로 수정되는 것을 방지
             markerText.isEditable = false
             markerText.sizeToFit()
+            //            수정 중으로 인한 주석 처리
+            //            AutoresizinMask는 superview가 변함에 따라 subview의 크기를 어떻게 할지 설정
+            //            markerText.translatesAutoresizingMaskIntoConstraints = true
             
             annotationView?.image = markerImage
             annotationView?.addSubview(markerText)
@@ -106,7 +109,7 @@ struct MapUIView: UIViewRepresentable {
     // Description - Replace the body with a make UIView(context:) method that creates and return an empty MKMapView
     func makeUIView(context: Context) -> MKMapView {
         let maps = MKMapView(frame: UIScreen.main.bounds)
-        
+
         // 맵이 처음 보이는 지역을 서울로 설정
         maps.visibleMapRect = .seoul
         
@@ -125,11 +128,10 @@ struct MapUIView: UIViewRepresentable {
         let trackingButton = MKUserTrackingButton(mapView: maps)
         trackingButton.layer.backgroundColor = UIColor(white: 5, alpha: 0.8).cgColor
         trackingButton.frame.size = CGSize(width: 42, height: 42)
-        trackingButton.frame.origin = CGPoint(x: maps.frame.width - trackingButton.frame.width - 25, y: maps.frame.height * 0.55)
+        trackingButton.frame.origin = CGPoint(x: maps.frame.width - trackingButton.frame.width - 16.5, y: maps.frame.height * 0.55)
         trackingButton.layer.cornerRadius = 7
         
         maps.addSubview(trackingButton)
-        
         // 맵이 보이는 범위를 한국으로 제한하기
         maps.cameraBoundary = MKMapView.CameraBoundary(mapRect: .korea)
         
