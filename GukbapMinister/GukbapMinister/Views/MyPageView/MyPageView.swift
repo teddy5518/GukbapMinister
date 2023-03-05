@@ -29,17 +29,13 @@ struct MyPageView: View {
             // 로그아웃 상태가 아니면(로그인상태이면) mypageView 띄우기
             if userViewModel.isLoggedIn != false {
             VStack(alignment: .leading){
-           
+
+
                 
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(.gray.opacity(0.1))
-                    .frame(width: UIScreen.main.bounds.width - 30, height: 110)
-                    .cornerRadius(20)
-                    .overlay{
                         HStack(alignment: .center){
                             
                             Circle()
-                                .fill(.gray.opacity(0.2))
+                                .fill(.gray.opacity(0.1))
                                 .frame(width: 75, height: 75)
                                 .overlay{
                                     Image("Ddukbaegi.fill")
@@ -76,7 +72,7 @@ struct MyPageView: View {
                                     
                                     Spacer()
                                     
-                                    Text("\(userViewModel.userInfo.userGrade)님")
+                                    Text("\(userViewModel.userInfo.userGrade)")
                                         .font(.body)
                                         .padding(.trailing, 20)
                                 }
@@ -91,8 +87,15 @@ struct MyPageView: View {
                             }
                             
                         }
-                    }
+                        .overlay(
+                        RoundedRectangle(cornerRadius: 6)
+                            .stroke(Color.gray.opacity(0.3),lineWidth: 1)
+                        
+                            .frame(width: Screen.maxWidth * 0.9217, height: Screen.maxHeight * 0.1355)
+                        )
+               
                     .padding()
+                    .padding(.vertical)
                 
                 
 //                VStack {
@@ -188,10 +191,6 @@ struct MyPageView: View {
             .navigationTitle("마이페이지")
             .navigationBarTitleDisplayMode(.inline)
 
-                Spacer()
-                Text("\(userViewModel.userInfo.userGrade)")
-                Text("\(userViewModel.userInfo.userEmail)")
-                Text("\(userViewModel.userInfo.id)")
             } else {
                 goLoginView()
                     .environmentObject(userViewModel)

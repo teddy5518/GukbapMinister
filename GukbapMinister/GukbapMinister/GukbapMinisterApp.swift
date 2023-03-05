@@ -47,8 +47,8 @@ struct GukbapMinisterApp: App {
     WindowGroup {
 
               NavigationView{
-//              ContentView(selectedViewIndex: $selectedViewIndex)
-SplashView4()
+              ContentView(selectedViewIndex: $selectedViewIndex)
+
                       .onAppear {
                   GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
                       // Check if `user` exists; otherwise, do something with `error`

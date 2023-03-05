@@ -41,7 +41,6 @@ struct SplashView2: View {
                         }
                         .font(.title3)
                         .foregroundColor(.white)
-                        .opacity(0.5)
 
                     
                     }//VStack

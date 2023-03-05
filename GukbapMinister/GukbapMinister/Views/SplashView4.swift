@@ -49,7 +49,7 @@ struct SplashView4: View {
                             .padding(.leading,30)
                         Image(randomGukbaps[0].imageName)
                             .resizable()
-                            .frame(width:UIScreen.main.bounds.width * 0.8 ,height:UIScreen.main.bounds.height * 0.4)
+                            .frame(width:UIScreen.main.bounds.width * 0.85 ,height:UIScreen.main.bounds.height * 0.4)
                             .rotationEffect(Angle(degrees: -0))
                          //   .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 5)
                             .offset(x:0, y: 0)
