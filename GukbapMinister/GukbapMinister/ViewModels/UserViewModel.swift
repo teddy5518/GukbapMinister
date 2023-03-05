@@ -34,7 +34,7 @@ class UserViewModel: ObservableObject {
     
     // MARK: - 프로퍼티
     let database = Firestore.firestore() // FireStore 참조 객체
-    var currentUser = Auth.auth().currentUser
+    let currentUser = Auth.auth().currentUser
     
     // MARK: - @Published 변수
     @Published var loginState: LoginState = .logout // 로그인 상태 변수
@@ -194,15 +194,10 @@ class UserViewModel: ObservableObject {
                     if let error = error {
                         print("\(error) : \(#function)")
                         // 계정 생성이 실패한경우 계정이 있다고 가정하고 로그인 진행
-                        Auth.auth().signIn(withEmail: (kuser?.kakaoAccount?.email ?? ""), password: "\(String(describing: kuser?.id))", completion: nil)
-
-                        guard let uid = Auth.auth().currentUser?.uid else { return }// 사용자 uid
-                        print("if uid : \(uid)")
-                        guard let kuser = kuser else { return } // 사용자 옵셔널 바인딩,
-                        let email = kuser.kakaoAccount?.email // 사용자 이메일
-                        let name = kuser.kakaoAccount?.profile?.nickname // 사용자 닉네임
-                        self.insertUserInFireStore(uid: uid ?? "", userEmail: email!, userName: name!)
-                        self.fetchUserInfo(uid: uid)
+                        Auth.auth().signIn(withEmail: (kuser?.kakaoAccount?.email ?? ""), password: "\(String(describing: kuser?.id))", completion: { userResult, error in
+                            print("asdfasdfsdf : \(userResult?.user.uid)")
+                            self.fetchUserInfo(uid: userResult?.user.uid ?? "")
+                        })
                     } else {
                         guard let uid = Auth.auth().currentUser?.uid else { return }// 사용자 uid
                         print("else uid : \(uid)")
