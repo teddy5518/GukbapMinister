@@ -66,8 +66,10 @@ struct MyPageView: View {
                                             .resizable()
                                             .frame(width: UIScreen.main.bounds.width * 0.052, height: UIScreen.main.bounds.height * 0.025)
 
+
                                     default:
                                         Text("")
+
                                     }
                                     
                                     Spacer()
