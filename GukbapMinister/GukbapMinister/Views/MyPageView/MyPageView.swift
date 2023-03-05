@@ -217,7 +217,6 @@ struct MyPageView: View {
     }
 }
 
-// >>>>>>>>>>필독<<<<<<<<<< 프리뷰 써야하면 37번째 줄 .overlay부분 주석 시키기!!!!!! 문의->서현
 //struct MyPageView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        MyPageView()

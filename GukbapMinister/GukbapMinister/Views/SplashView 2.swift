@@ -11,8 +11,25 @@ struct SplashView: View {
     
     @State private var isActive = false
 
-    let randomGukbaps = Gukbaps.allCases.shuffled().prefix(5)
-
+    let foodImages = [
+    "BHJGukbap",
+    "KNMGukbap",
+    "MudfishGukbap",
+    "NJGukbap",
+    "OysterGukbap",
+    "PigGukbap",
+    "PYOBGukbap",
+    "SDGukbap",
+    "SGRGukbap",
+    "SJGukbap",
+    "SMRGukbap",
+    "SRGGukbap",
+    "SRTGukbap"
+    ]
+    var randomImages: [String] {
+           Array(foodImages.shuffled())
+       }
+       
 
     var body: some View {
         HStack{
@@ -25,20 +42,19 @@ struct SplashView: View {
                         .edgesIgnoringSafeArea(.all)
                 
                     Group{
-                
-                        Image(randomGukbaps[0].imageName)
+                        Image(randomImages[0])
                             .resizable()
                             .frame(width:UIScreen.main.bounds.width * 0.23 ,height:UIScreen.main.bounds.height * 0.1)
                             .rotationEffect(Angle(degrees: -45))
                             .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 5)
                             .offset(x:-130, y: -155)
-                        Image(randomGukbaps[1].imageName)
+                        Image(randomImages[1])
                             .resizable()
                             .frame(width:UIScreen.main.bounds.width * 0.23 ,height:UIScreen.main.bounds.height * 0.1)
                             .rotationEffect(Angle(degrees: 0))
                             .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 5)
                             .offset(x:145, y: -30)
-                        Image(randomGukbaps[2].imageName)
+                        Image(randomImages[2])
                             .resizable()
                             .frame(width:UIScreen.main.bounds.width * 0.23 ,height:UIScreen.main.bounds.height * 0.1)
                             .rotationEffect(Angle(degrees: -45))
@@ -70,6 +86,7 @@ struct SplashView: View {
                         
                     }
                     .onAppear{
+                        print("\(randomImages)")
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
                             self.isActive = true
                         }

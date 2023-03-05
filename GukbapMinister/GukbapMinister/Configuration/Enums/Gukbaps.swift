@@ -65,4 +65,3 @@ enum Gukbaps: String, CaseIterable {
 
 }
 
-
