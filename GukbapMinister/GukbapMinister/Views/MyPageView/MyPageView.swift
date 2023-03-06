@@ -29,17 +29,13 @@ struct MyPageView: View {
             // 로그아웃 상태가 아니면(로그인상태이면) mypageView 띄우기
             if userViewModel.isLoggedIn != false {
             VStack(alignment: .leading){
-           
+
+
                 
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(.gray.opacity(0.1))
-                    .frame(width: UIScreen.main.bounds.width - 30, height: 110)
-                    .cornerRadius(20)
-                    .overlay{
                         HStack(alignment: .center){
                             
                             Circle()
-                                .fill(.gray.opacity(0.2))
+                                .fill(.gray.opacity(0.1))
                                 .frame(width: 75, height: 75)
                                 .overlay{
                                     Image("Ddukbaegi.fill")
@@ -54,29 +50,31 @@ struct MyPageView: View {
                                         .font(.title3)
                                     
                     
-                                    switch userViewModel.loginState{
-                                    case .kakaoLogin :
+                                    switch userViewModel.loginPlatform{
+                                    case "kakaoLogin" :
                                         Image("KakaoLogin")
                                             .resizable()
                                             .frame(width: UIScreen.main.bounds.width * 0.052, height: UIScreen.main.bounds.height * 0.025)
                                     
-                                    case .googleLogin :
+                                    case "googleLogin" :
                                         Image("GoogleLogin")
                                             .resizable()
                                             .frame(width: UIScreen.main.bounds.width * 0.052, height: UIScreen.main.bounds.height * 0.025)
 
-                                    case .appleLogin :
+                                    case "appleLogin" :
                                         Image("AppleLogin")
                                             .resizable()
                                             .frame(width: UIScreen.main.bounds.width * 0.052, height: UIScreen.main.bounds.height * 0.025)
 
-                                    case .logout : Text("")
-                                        
+
+                                    default:
+                                        Text("")
+
                                     }
                                     
                                     Spacer()
                                     
-                                    Text("\(userViewModel.userInfo.userGrade)님")
+                                    Text("\(userViewModel.userInfo.userGrade)")
                                         .font(.body)
                                         .padding(.trailing, 20)
                                 }
@@ -91,8 +89,15 @@ struct MyPageView: View {
                             }
                             
                         }
-                    }
+                        .overlay(
+                        RoundedRectangle(cornerRadius: 6)
+                            .stroke(Color.gray.opacity(0.3),lineWidth: 1)
+                        
+                            .frame(width: Screen.maxWidth * 0.9217, height: Screen.maxHeight * 0.1355)
+                        )
+               
                     .padding()
+                    .padding(.vertical)
                 
                 
 //                VStack {
@@ -188,10 +193,6 @@ struct MyPageView: View {
             .navigationTitle("마이페이지")
             .navigationBarTitleDisplayMode(.inline)
 
-                Spacer()
-                Text("\(userViewModel.userInfo.userGrade)")
-                Text("\(userViewModel.userInfo.userEmail)")
-                Text("\(userViewModel.userInfo.id)")
             } else {
                 goLoginView()
                     .environmentObject(userViewModel)
@@ -217,7 +218,6 @@ struct MyPageView: View {
     }
 }
 
-// >>>>>>>>>>필독<<<<<<<<<< 프리뷰 써야하면 37번째 줄 .overlay부분 주석 시키기!!!!!! 문의->서현
 //struct MyPageView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        MyPageView()

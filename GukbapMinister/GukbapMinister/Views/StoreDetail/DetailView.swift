@@ -50,12 +50,38 @@ struct DetailView: View {
     var store : Store {
         return detailViewModel.store
     }
-    
+  
     @State var time = Timer.publish(every: 0.1, on: .main, in: .tracking).autoconnect()
+    @State var refresh = Refresh(started: false, released: false)
+    
     var body: some View {
+        
         NavigationStack {
             
             ScrollView(showsIndicators: false) {
+//                GeometryReader{ reader -> AnyView in
+//                    DispatchQueue.main.async {
+//                        if refresh.startOffset == 0{
+//                            refresh.startOffset = reader.frame(in: .global).minY
+//                        }
+//                        refresh.offset = reader.frame(in:.global).minY
+//
+//                        if refresh.offset - refresh.startOffset > 80 && !refresh.started {
+//                            refresh.started = true
+//                        }
+//                    }
+//
+//                    return AnyView(Color.black.frame(width: 0,height:0))
+//                }
+//                .frame(width: 0,height: 0)
+//                ZStack(alignment: Alignment(horizontal: .center, vertical: .top)){
+//                    Image(systemName: "arrow.down")
+//                        .font(.system(size:16,weight: .heavy))
+//                        .foregroundColor(.gray)
+//                        .rotationEffect(.init(degrees:refresh.started ? 180 : 0))
+//                        .offset(y:-25)
+//                        .animation(.easeInOut,value: refresh.started)
+//
                 VStack{
                     //해당 가게 전체 사진
                     StoreImagesTabView(manager: StoreImageManager(store: store), showDetail: $isshowingStoreImageDetail)
@@ -74,11 +100,14 @@ struct DetailView: View {
                     
                     //가게 전체 리뷰 보기
                     storeAllReview
-                    
                 }
+//                }
+//                .offset(y:-10)
             }//ScrollView
             
             .navigationBarBackButtonHidden(true)
+            .navigationBarTitleDisplayMode(.inline)
+
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
@@ -91,27 +120,24 @@ struct DetailView: View {
 
                 ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
-                            Task {
-                               await detailViewModel.handleLikeButton()
-                            }
+                             detailViewModel.handleLikeButton()
                         } label: {
                             Image(systemName: detailViewModel.isLiked ? "heart.fill" : "heart")
                                 .tint(.red)
                         }
                 }
                 
-            }
-            
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
                 ToolbarItem(placement: .principal) {
                     VStack {
                         Text("\(store.storeName)").font(.headline)
                         Text("\(store.storeAddress)").font(.subheadline)
                             .foregroundColor(.secondary)
                     }
+                    
                 }
+                
             }
+           
             //            .navigationTitle(store.storeName)
         }//NavigationStack
         //가게 이미지만 보는 sheet로 이동
@@ -136,14 +162,14 @@ struct DetailView: View {
             storesViewModel.unsubscribeStores()
         }
         .refreshable {
-            
             reviewViewModel.fetchReviews()
             reviewViewModel.fetchAllReviews()
-            
+
             
         }
         .redacted(reason: isLoading ? .placeholder : [])
         .onAppear {
+     
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.isLoading = false
             }
@@ -292,14 +318,18 @@ extension DetailView {
                 
             }label:{
                 HStack{
-                    Text("방문자 리뷰")
+                    Text("방문자리뷰")
                         .foregroundColor(scheme == .light ? .black : .white)
                     Text("\(checkAllReviewCount.count)")
                         .foregroundColor(Color("AccentColor"))
-                    
+                    Spacer()
                     
                     
                 }
+                .font(.title2.bold())
+                .padding(.leading,15)
+                .padding(.top)
+                
                 .background(scheme == .light ? .white : .black)
             }
         }
@@ -390,6 +420,12 @@ extension DetailView {
             }
         }
 
+struct Refresh {
+    var startOffset: CGFloat = 0
+    var offset: CGFloat = 0
+    var started: Bool
+    var released: Bool
+}
 
 
 //struct DetailView_Previews: PreviewProvider {

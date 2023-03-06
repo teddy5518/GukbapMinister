@@ -5,13 +5,13 @@ import CoreLocationUI
 
 struct MapView: View {
     @Environment(\.colorScheme) var scheme
-
+    
     @StateObject var mapViewModel = MapViewModel(storeLocations: [])
     @StateObject var locationManager = LocationManager()
     
     @EnvironmentObject var userViewModel : UserViewModel
     @EnvironmentObject var storesViewModel: StoresViewModel
-
+    
     // 필터 버튼을 눌렀을 때 동작
     @State var isShowingFilterModal: Bool = false
     @State private var isShowingSelectedStore: Bool = false
@@ -26,21 +26,21 @@ struct MapView: View {
                     MapUIView(
                         region: $locationManager.region,
                         storeAnnotations: $mapViewModel.storeLocationAnnotations,
-                        selectedStoreAnnotation:
-                            $mapViewModel.selectedStoreAnnotation,
+                        selectedStoreAnnotation: $mapViewModel.selectedStoreAnnotation,
                         isSelected: $isShowingSelectedStore,
                         filters: $mapViewModel.filteredGukbaps
                     )
                     .ignoresSafeArea(edges: [.top, .horizontal])
                     
-                  VStack {
-                    SearchBarButton()
-                    mapFilter
-                    Spacer()
-                  }
+                    VStack {
+                        SearchBarButton()
+                        mapFilter
+                            .offset(x: width * 0.0005)
+                        Spacer()
+                    }
                     
                     StoreReportButton()
-                        .offset(x: width * 0.5 - 35 - 12)
+                        .offset(x: width * 0.5 - 47)
                     
                     VStack {
                         if isShowingSelectedStore {
@@ -54,16 +54,15 @@ struct MapView: View {
                             Spacer()
                         }
                         
-                        if let selectedStore = mapViewModel.selectedStore {
-                            StoreModalView(store: selectedStore)
-                                .padding(25)
-                                .offset(y: isShowingSelectedStore ? 0 : 400)
-                                .animation(.easeInOut, value: isShowingSelectedStore)
-                        }
+                        StoreModalView(store: mapViewModel.selectedStore ?? .test)
+                            .padding(25)
+                            .offset(y: isShowingSelectedStore ? 0 : 400)
+                        // animation issue로 인한 주석 처리
+                        // .animation(.easeInOut, value: isShowingSelectedStore)
+                            .transition(.slide)
                     }
                 }
             }
-            
         }
         .onAppear {
             Task {
@@ -73,5 +72,4 @@ struct MapView: View {
             }
         }
     }
-    
 }

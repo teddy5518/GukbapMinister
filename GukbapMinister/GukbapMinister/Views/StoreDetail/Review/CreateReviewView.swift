@@ -237,7 +237,6 @@ struct CreateReviewView: View {
                                 }) {
                                     Image(systemName: "xmark")
                                         .foregroundColor(scheme == .light ? .black : .white)
-                                    
                                 }
                             }
                             if trimReviewText.count > 0 &&  isReviewAdded == false {

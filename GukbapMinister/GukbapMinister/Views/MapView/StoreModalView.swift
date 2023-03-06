@@ -84,8 +84,6 @@ extension StoreModalView {
             .frame(width: Screen.searchBarWidth, height: 1)
             .overlay(Color.mainColor.opacity(0.5))
     }
-    
-    
 }
 
 
@@ -117,7 +115,6 @@ struct StoreModalImage: View {
                     .modifier(StoreModalImageModifier())
             }
         }
-
     }
 }
 
@@ -133,4 +130,3 @@ struct StoreModalImageModifier: ViewModifier {
             }
     }
 }
-
