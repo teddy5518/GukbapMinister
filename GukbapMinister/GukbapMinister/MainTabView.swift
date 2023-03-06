@@ -15,6 +15,7 @@ struct MainTabView: View {
     @State private var showModal: Bool = false
     
     var body: some View {
+        
             TabView(selection: $tabSelection) {
                 MapView(mapViewModel: MapViewModel(storeLocations: storesViewModel.stores))
                     .tabItem {
@@ -33,50 +34,11 @@ struct MainTabView: View {
                     .environmentObject(storesViewModel)
                     .environmentObject(userViewModel)
 
-
-    //            if userViewModel.state == .noSigned{
-    //                //                CollectionView()
-    //                NoLoginView()
-    //                    .tabItem {
-    //                        Label("내가 찜한 곳", image: "GBcollectionIcon")
-    //                    }
-    //                    .toolbar(.visible, for: .tabBar)
-    //                    .toolbarBackground(Color.white, for: .tabBar)
-    //                    .tag(2)
-    //                //                    .environmentObject(storesViewModel)
-    //                    .environmentObject(userViewModel)
-    //                    .fullScreenCover(isPresented: $showModal, content: {
-    //                        SignInView2()
-    //                    })
-    //                    .onAppear {
-    //                        DispatchQueue.main.async {
-    //                            self.showModal = true
-    //                        }
-    //                    }
-    //                //                MyPageView()
-    //                NoLoginView2()
-    //                    .tabItem {
-    //                        Label("마이페이지", image: "GBmypageIcon")
-    //                    }
-    //                    .tag(3)
-    //                    .environmentObject(userViewModel)
-    //                    .fullScreenCover(isPresented: $showModal, content: {
-    //                        SignInView2()
-    //                    })
-    //                    .onAppear {
-    //                        DispatchQueue.main.async {
-    //                            self.showModal = true
-    //                        }
-    //                    }
-    //            }else{
                     CollectionView()
                         .tabItem {
                             Label("내가 찜한 곳", image: "GBcollectionIcon")
 
                         }
-
-                        .toolbar(.visible, for: .tabBar)
-                        .toolbarBackground(Color.white, for: .tabBar)
                         .tag(3)
                         .environmentObject(storesViewModel)
                         .environmentObject(userViewModel)
@@ -89,8 +51,6 @@ struct MainTabView: View {
                         .environmentObject(userViewModel)
                         .environmentObject(storesViewModel)
 
-    //            }
-
             }
             .accentColor(.mainColor)
             .onAppear {
@@ -102,6 +62,7 @@ struct MainTabView: View {
         
     }
 }
+
 
 //struct MainTabView_Previews: PreviewProvider {
 //    static var previews: some View {

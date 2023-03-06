@@ -34,7 +34,7 @@ struct GukbapMinisterApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var userViewModel = UserViewModel()
-    @State private var selectedViewIndex = Int.random(in: 0...2)
+    @State private var selectedViewIndex = Int.random(in: 0...3)
   // register app delegate for Firebase setup
     init(){
         let kakaoAppKey = Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] ?? ""
@@ -47,8 +47,7 @@ struct GukbapMinisterApp: App {
     WindowGroup {
 
               NavigationView{
-                  ContentView(selectedViewIndex: $selectedViewIndex)
-                //  MainTabView()
+              ContentView(selectedViewIndex: $selectedViewIndex)
                       .onAppear {
                   GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
                       // Check if `user` exists; otherwise, do something with `error`
