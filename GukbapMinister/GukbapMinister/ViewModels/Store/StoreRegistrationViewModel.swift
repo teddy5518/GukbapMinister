@@ -140,8 +140,18 @@ final class StoreRegistrationViewModel: ObservableObject {
                 }
             }
         }
-        
     }
+    
+     func updateFoodType(gukBap: String) {
+        if storeRegistration.foodType.contains(gukBap) {
+            if let index = storeRegistration.foodType.firstIndex(of: gukBap) {
+                storeRegistration.foodType.remove(at: index)
+            }
+        } else {
+            storeRegistration.foodType.append(gukBap)
+        }
+    }
+    
     // MARK: - Storage에서 이미지 다운로드
 //    func fetchImages(storeId: String, imageName: String) {
 //        let ref = storage.reference().child("storeImages/\(storeId)/\(imageName)")

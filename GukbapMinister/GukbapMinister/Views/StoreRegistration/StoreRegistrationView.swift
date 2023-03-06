@@ -19,14 +19,13 @@ enum ManagementAction {
 
 
 struct StoreRegistrationView: View {
-//    @Binding var isOn: Bool
-    
     @ObservedObject var viewModel: StoreRegistrationViewModel = StoreRegistrationViewModel()
+    @Environment(\.dismiss) private var dismiss
     
     @State private var menuCount: Int = 1
     @State private var menuName: String = ""
     @State private var menuPrice: String = ""
-    
+    @State private var didTap: [Bool] = Array(repeating: false, count: Gukbaps.allCases.count)
 
     
     
@@ -70,6 +69,33 @@ struct StoreRegistrationView: View {
                 Text("좌표(임시)")
                     .font(.headline)
             }
+            
+            Section {
+                Text("국밥 종류")
+                    .font(.headline)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(Array(Gukbaps.allCases.enumerated()), id: \.offset) { index, gukbap in
+                            Button {
+                                didTap[index].toggle()
+                                viewModel.updateFoodType(gukBap: gukbap.rawValue)
+                            } label: {
+                                HStack{
+                                    gukbap.image
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 20, height: 20)
+                                    Text(gukbap.rawValue)
+                                }
+                                .categoryCapsule(isChanged: didTap[index])
+                            }
+                        }
+                    }
+                    .padding(.vertical, 5)
+                }
+
+            }
+            
             
             Section {
                 storeImageUpload
@@ -151,14 +177,27 @@ struct StoreRegistrationView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("등록") {
                     viewModel.handleDoneTapped()
-//                    isOn.toggle()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        dismiss()
+                    }
                 }
+                .disabled(!isRegistrationCompleted)
             }
         }
         
         
     }
+    private var isRegistrationCompleted: Bool {
+        let registration = viewModel.storeRegistration
+        return !(registration.storeName.isEmpty ||
+                 registration.storeAddress.isEmpty ||
+                 registration.foodType.isEmpty ||
+                 registration.description.isEmpty
+        )
+    }
 }
+
+
 
 
 extension StoreRegistrationView {
