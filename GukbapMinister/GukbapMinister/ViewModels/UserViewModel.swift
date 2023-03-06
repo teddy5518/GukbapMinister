@@ -369,7 +369,7 @@ extension UserViewModel: ASAuthorizationControllerDelegate {
         //Firebase 작업
         Auth.auth().signIn(with: credential) { (authResult, error) in
             if let error {
-                print(error.localizedDescription)
+                print(#function, error.localizedDescription)
                 return
             }
             
