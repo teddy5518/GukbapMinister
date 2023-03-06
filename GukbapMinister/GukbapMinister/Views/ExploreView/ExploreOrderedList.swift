@@ -66,7 +66,7 @@ struct ListCell : View {
             } label: {
                 HStack{
                     HStack(alignment: .top) {
-                        StoreImageThumbnail(manager: StoreImageManager(store: store),width: 90, height: 90, cornerRadius: 6)
+                        StoreImageThumbnail(store: store, width: 90, height: 90, cornerRadius: 6)
                         
                         VStack(alignment: .leading, spacing: 1) {
                             HStack{

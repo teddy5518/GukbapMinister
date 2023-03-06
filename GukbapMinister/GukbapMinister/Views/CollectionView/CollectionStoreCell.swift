@@ -24,7 +24,7 @@ struct CollectionStoreCell: View {
                 DetailView(detailViewModel: DetailViewModel(store: viewModel.store))
             } label: {
                 HStack(alignment: .top) {
-                    StoreImageThumbnail(manager: StoreImageManager(store: viewModel.store), width: 120, height: 120, cornerRadius: 6, mode: .tab)
+                    StoreImageThumbnail(store: viewModel.store, width: 120, height: 120, cornerRadius: 6, mode: .tab)
                     VStack(alignment: .leading, spacing: 0) {
                         HStack{
                             Text(viewModel.store.storeName)

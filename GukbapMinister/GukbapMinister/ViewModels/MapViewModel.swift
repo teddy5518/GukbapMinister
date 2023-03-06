@@ -26,6 +26,7 @@ class MapViewModel : ObservableObject {
             selectedStore = storeLocations.first { store in
                 store.id == newVal.storeId
             }
+            print(selectedStore?.storeName ?? "")
         }
     }
     // 국밥카테고리

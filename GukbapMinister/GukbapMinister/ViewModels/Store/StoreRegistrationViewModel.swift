@@ -66,7 +66,7 @@ final class StoreRegistrationViewModel: ObservableObject {
         }
     }
     
-    private func makeImageName() -> [String] {
+    private func makeImageName() {
         var imgNameList: [String] = []
         // iterate over images
         for img in convertedImages {
@@ -74,14 +74,14 @@ final class StoreRegistrationViewModel: ObservableObject {
             imgNameList.append(imgName)
             uploadImage(image: img, name: (store.storeName + "/" + imgName))
         }
-        return imgNameList
+ 
     }
     
     
     private func addStoreInfo() {
         do {
             self.convertToUIImages()
-            self.store.storeImages = makeImageName()
+            makeImageName()
             //위도 경도값을 형변환해서 넣어주기
             self.store.coordinate = GeoPoint(latitude: Double(self.latitude) ?? 0.0, longitude: Double(self.longitude) ?? 0.0)
             

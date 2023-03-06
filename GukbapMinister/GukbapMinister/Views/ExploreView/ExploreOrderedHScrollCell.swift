@@ -49,7 +49,7 @@ struct ExploreOrderedHScrollCell: View {
                     .padding(.top, 3)
                     .padding(.leading, 3)
 
-                    StoreImageThumbnail(manager: StoreImageManager(store: store), width: 190, height: 190, cornerRadius: 10, mode: .random)
+                    StoreImageThumbnail(store: store, width: 190, height: 190, cornerRadius: 10, mode: .random)
                 }
                 
                 

@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+
 import Kingfisher
+import FirebaseStorage
 
 enum ImageThumbnailMode {
     case random, first, multiple, tab
@@ -14,9 +16,12 @@ enum ImageThumbnailMode {
 
 ///이미지 썸네일
 struct StoreImageThumbnail: View {
-    @StateObject var manager = StoreImageManager(store: .test)
     @State private var tabSelection: Int = 0
+    @State private var imageURLs: [URL] = []
     
+    private let storage = Storage.storage()
+    
+    var store: Store
     var width: CGFloat
     var height: CGFloat
     var cornerRadius: CGFloat
@@ -24,7 +29,7 @@ struct StoreImageThumbnail: View {
     
     var body: some View {
         VStack {
-            if !manager.imageURLs.isEmpty {
+            if !imageURLs.isEmpty {
                 switch mode {
                 case .random: random // 랜덤으로 이미지를 보여줌
                 case .first: first // 첫번째 url 이미지를 보여줌(랜덤이 될 가능성이 있음)
@@ -32,7 +37,7 @@ struct StoreImageThumbnail: View {
                 case .tab: tab //여러장의 이미지를 탭뷰로 보여줌(순서는 생성될때마다 랜덤)
                 }
             } else {
-                Gukbaps(rawValue: manager.store.foodType.first ?? "순대국밥")?.placeholder
+                Gukbaps(rawValue: store.foodType.first ?? "순대국밥")?.placeholder
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: width, height: height)
@@ -43,35 +48,38 @@ struct StoreImageThumbnail: View {
             RoundedRectangle(cornerRadius: cornerRadius)
                 .stroke(.black.opacity(0.2))
         }
+        .onAppear {
+            getImageURLs(store)
+        }
     }
     
-    var random: some View {
+    private var random: some View {
         VStack {
-            if let url = manager.imageURLs.shuffled().first {
+            if let url = imageURLs.shuffled().first {
                 getImage(url)
             }
         }
     }
-    var first: some View {
+    private var first: some View {
         VStack {
-            if let url = manager.imageURLs.first {
+            if let url = imageURLs.first {
                 getImage(url)
             }
         }
     }
-    var multiple: some View {
+    private var multiple: some View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: [GridItem(.flexible())]) {
-                ForEach(manager.imageURLs, id: \.self) { url in
+                ForEach(imageURLs, id: \.self) { url in
                     getImage(url)
                 }
             }
         }
     }
     
-    var tab: some View {
+    private var tab: some View {
         TabView {
-            ForEach(manager.imageURLs, id: \.self) { url in
+            ForEach(imageURLs, id: \.self) { url in
                 VStack {
                     getImage(url)
                         .overlay {
@@ -86,10 +94,10 @@ struct StoreImageThumbnail: View {
     }
     
     @ViewBuilder
-    func getImage(_ url: URL) -> some View {
+    private func getImage(_ url: URL) -> some View {
         KFImage(url)
             .placeholder {
-                if let gukbap = manager.store.foodType.first {
+                if let gukbap = store.foodType.first {
                     Gukbaps(rawValue: gukbap)?.placeholder
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -106,6 +114,26 @@ struct StoreImageThumbnail: View {
             .frame(width: width, height: height)
             .cornerRadius(cornerRadius)
             
+    }
+    
+    private func getImageURLs(_ store: Store) {
+        storage.reference().child("storeImages/\(store.storeName)").listAll { result, error in
+            if let error {
+                print(error.localizedDescription)
+            }
+            if let result {
+                for ref in result.items {
+                    ref.downloadURL { url, error in
+                        if let error {
+                            print( error.localizedDescription)
+                        }
+                        if let url {
+                            imageURLs.append(url)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
