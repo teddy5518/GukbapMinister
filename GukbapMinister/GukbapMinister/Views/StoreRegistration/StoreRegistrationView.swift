@@ -19,7 +19,7 @@ enum ManagementAction {
 
 
 struct StoreRegistrationView: View {
-    @Binding var isOn: Bool
+//    @Binding var isOn: Bool
     
     @ObservedObject var viewModel: StoreRegistrationViewModel = StoreRegistrationViewModel()
     
@@ -48,8 +48,8 @@ struct StoreRegistrationView: View {
     var body: some View {
         Form {
             Section {
-                TextField("상호명을 입력해 주세요", text: $viewModel.store.storeName)
-                TextField("주소를 입력해 주세요", text: $viewModel.store.storeAddress)
+                TextField("상호명을 입력해 주세요", text: $viewModel.storeRegistration.storeName)
+                TextField("주소를 입력해 주세요", text: $viewModel.storeRegistration.storeAddress)
             } header: {
                 Text("국밥집 정보")
                     .font(.headline)
@@ -99,13 +99,13 @@ struct StoreRegistrationView: View {
                 HStack {
                     Spacer()
                     Button {
-                        viewModel.store.menu[menuName] =  menuPrice + "원"
+                        viewModel.storeRegistration.menu[menuName] =  menuPrice + "원"
                         menuName = ""
                         menuPrice = ""
                     } label: {
                         HStack {
                             Image(systemName: "plus.circle")
-                            Text("메뉴 추가하기")
+                            Text("메뉴 등록하기")
                         }
                     }
                     .disabled(menuName.isEmpty || menuPrice.isEmpty)
@@ -117,14 +117,14 @@ struct StoreRegistrationView: View {
             }
             
             Section {
-                ForEach(viewModel.store.menu.sorted(by: >), id: \.key) { menu, price in
+                ForEach(viewModel.storeRegistration.menu.sorted(by: >), id: \.key) { menu, price in
                     HStack {
                         Text(menu)
                         Spacer()
                         Text(price)
                         Spacer()
                         Button {
-                            viewModel.store.menu.removeValue(forKey: menu)
+                            viewModel.storeRegistration.menu.removeValue(forKey: menu)
                         } label: {
                             Image(systemName: "x.circle.fill")
                                 .foregroundColor(.black)
@@ -134,7 +134,7 @@ struct StoreRegistrationView: View {
             }
             
             Section {
-                TextField("국밥집 설명 입력하기", text: $viewModel.store.description)
+                TextField("국밥집 설명 입력하기", text: $viewModel.storeRegistration.description)
             } header: {
                 Text("국밥집 설명")
                     .font(.headline)
@@ -142,16 +142,16 @@ struct StoreRegistrationView: View {
             
         }
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button("취소") {
-                    isOn.toggle()
-                }
-            }
+//            ToolbarItem(placement: .navigationBarLeading) {
+//                Button("취소") {
+//                    isOn.toggle()
+//                }
+//            }
             
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("등록") {
                     viewModel.handleDoneTapped()
-                    isOn.toggle()
+//                    isOn.toggle()
                 }
             }
         }
@@ -293,6 +293,6 @@ extension StoreRegistrationView {
 
 struct StoreRegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        StoreRegistrationView(isOn: .constant(true) ,viewModel: StoreRegistrationViewModel())
+        StoreRegistrationView(viewModel: StoreRegistrationViewModel())
     }
 }

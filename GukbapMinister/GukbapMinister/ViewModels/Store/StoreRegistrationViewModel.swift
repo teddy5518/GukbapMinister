@@ -15,7 +15,7 @@ import FirebaseFirestore
 import FirebaseStorage
 
 final class StoreRegistrationViewModel: ObservableObject {
-    @Published var store: Store
+    @Published var storeRegistration: StoreRegistration
     @Published var latitude: String = ""
     @Published var longitude: String = ""
     
@@ -33,20 +33,17 @@ final class StoreRegistrationViewModel: ObservableObject {
     private var storage = Storage.storage()
     
     
-    init(store: Store = Store(storeName: "",
+    init(storeRegistration: StoreRegistration = StoreRegistration(storeName: "",
                               storeAddress: "",
                               coordinate: GeoPoint(latitude: 0, longitude: 0),
-                              storeImages: [],
                               menu: [:],
                               description: "",
                               countingStar: 0.0,
-                              foodType: ["순대국밥"],
-                              likes: 0,
-                              hits: 0
+                              foodType: ["순대국밥"]
     )) {
 
-        self.store = store
-        self.$store
+        self.storeRegistration = storeRegistration
+        self.$storeRegistration
             .dropFirst()
             .sink { [weak self] store in
                 self?.modified = true
@@ -66,39 +63,36 @@ final class StoreRegistrationViewModel: ObservableObject {
         }
     }
     
-    private func makeImageName() -> [String] {
-        var imgNameList: [String] = []
+    private func makeImageName() {
         // iterate over images
         for img in convertedImages {
             let imgName = UUID().uuidString
-            imgNameList.append(imgName)
-            uploadImage(image: img, name: (store.storeName + "/" + imgName))
+            uploadImage(image: img, name: (storeRegistration.storeName + "/" + imgName))
         }
-        return imgNameList
     }
     
     
     private func addStoreInfo() {
         do {
             self.convertToUIImages()
-            self.store.storeImages = makeImageName()
+            makeImageName()
             //위도 경도값을 형변환해서 넣어주기
-            self.store.coordinate = GeoPoint(latitude: Double(self.latitude) ?? 0.0, longitude: Double(self.longitude) ?? 0.0)
+            self.storeRegistration.coordinate = GeoPoint(latitude: Double(self.latitude) ?? 0.0, longitude: Double(self.longitude) ?? 0.0)
             
-            let _ = try database.collection("Store")
-                .addDocument(from: self.store)
+            let _ = try database.collection("StoreRegistration")
+                .addDocument(from: self.storeRegistration)
         }
         catch {
             print(error)
         }
     }
     
-    private func updateStoreInfo(_ store: Store) {
-        if let documentId = store.id {
+    private func updateStoreInfo(_ storeRegistration: StoreRegistration) {
+        if let documentId = storeRegistration.id {
             do {
-                try database.collection("Store")
+                try database.collection("StoreRegistration")
                     .document(documentId)
-                    .setData(from: store)
+                    .setData(from: storeRegistration)
             }
             catch {
                 print(error)
@@ -108,8 +102,8 @@ final class StoreRegistrationViewModel: ObservableObject {
     
     
     private func removeStoreInfo() {
-        if let documentId = self.store.id {
-            database.collection("Store").document(documentId).delete { error in
+        if let documentId = self.storeRegistration.id {
+            database.collection("StoreRegistration").document(documentId).delete { error in
                 if let error = error {
                     print(error.localizedDescription)
                 }
@@ -119,8 +113,8 @@ final class StoreRegistrationViewModel: ObservableObject {
     
     
     private func updateOrAddStoreInfo() {
-        if let _ = store.id {
-            self.updateStoreInfo(self.store)
+        if let _ = storeRegistration.id {
+            self.updateStoreInfo(self.storeRegistration)
         }
         else {
             addStoreInfo()
@@ -128,7 +122,7 @@ final class StoreRegistrationViewModel: ObservableObject {
     }
     
     private func uploadImage(image: UIImage, name: String) {
-        let storageRef = storage.reference().child("storeImages/\(name)")
+        let storageRef = storage.reference().child("storeRegistrationImages/\(name)")
         let data = image.jpegData(compressionQuality: 0.1)
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpg"
@@ -164,16 +158,16 @@ final class StoreRegistrationViewModel: ObservableObject {
 //        }
 //    }
     
-    func fetchImages(storeId: String, imageName: String) async throws -> UIImage {
-        let ref = storage.reference().child("storeImages/\(storeId)/\(imageName)")
-
-        let data = try await ref.data(maxSize: 1 * 1024 * 1024)
-        let image = UIImage(data: data)
-        
-        self.storeImages[imageName] = image
-        
-        return image!
-    }
+//    func fetchImages(storeId: String, imageName: String) async throws -> UIImage {
+//        let ref = storage.reference().child("storeImages/\(storeId)/\(imageName)")
+//
+//        let data = try await ref.data(maxSize: 1 * 1024 * 1024)
+//        let image = UIImage(data: data)
+//
+//        self.storeImages[imageName] = image
+//
+//        return image!
+//    }
 
         // MARK: - UI 핸들러
     
