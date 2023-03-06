@@ -11,9 +11,6 @@ struct LocationBasedServicePolicyView: View {
     var body: some View {
         ScrollView {
             VStack  {
-                Text("위치정보 이용약관")
-                    .font(.title3)
-                    .padding(.bottom)
                 LazyVStack {
                     Text("""
                          제 1장. 총 칙
@@ -199,7 +196,8 @@ struct LocationBasedServicePolicyView: View {
                     """)
                 }
                 .font(.caption)
-                
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("위치정보 이용약관")
                 
             }
         }

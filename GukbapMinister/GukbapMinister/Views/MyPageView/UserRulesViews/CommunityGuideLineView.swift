@@ -11,9 +11,6 @@ struct CommunityGuideLineView: View {
     var body: some View {
         ScrollView {
             VStack  {
-                Text("커뮤니티 가이드라인")
-                    .font(.title3)
-                    .padding(.bottom)
                 LazyVStack {
                     Text("다양한 사용자가 사용하는 앱인만큼 여러분이 어떠한 불편함도 없이 유용하고 믿을 만한 정보를 얻을 수 있도록 국밥부 장관 커뮤니티의 간단한 가이드라인을 안내 드리겠습니다.")
 
@@ -139,7 +136,8 @@ struct CommunityGuideLineView: View {
                     
                 }
                 .font(.caption)
-
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("커뮤니티 가이드라인")
                 
                 
                 

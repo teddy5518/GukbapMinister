@@ -11,9 +11,7 @@ struct ServiceTermsView: View {
     var body: some View {
         ScrollView {
             VStack  {
-                Text("국밥부장관 이용약관")
-                    .font(.title3)
-                    .padding(.bottom)
+           
                 LazyVStack {
               
                     Text("""
@@ -143,6 +141,8 @@ struct ServiceTermsView: View {
                 
                 
             }
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("국밥부장관 이용약관")
         }
         .padding(10)
         

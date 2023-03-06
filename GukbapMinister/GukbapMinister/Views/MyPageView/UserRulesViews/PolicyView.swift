@@ -12,58 +12,69 @@ struct PolicyView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                List {
-                    Section(content: {
+            VStack(alignment: .center) {
+
+                    List {
+                        
                         NavigationLink {
                             ServiceTermsView()
                         } label: {
                             Text("서비스 이용약관")
                         }
-                    })
-                    
-                    Section(content: {
+                        .listRowSeparator(.hidden)
+
+                        
+                        
                         NavigationLink {
                             PrivacyPolicyView()
                         } label: {
                             Text("개인정보 처리 방침")
                         }
-                    })
-                    
-                    Section(content: {
+                        .listRowSeparator(.hidden)
+
+                        
+                        
                         NavigationLink {
                             LocationBasedServicePolicyView()
                         } label: {
                             Text("위치기반 서비스 이용약관")
                         }
-                    })
-                    
-                    Section(content: {
+                        .listRowSeparator(.hidden)
+
+                        
+                        
                         NavigationLink {
                             CommunityGuideLineView()
                         } label: {
                             Text("커뮤니티 가이드라인")
                         }
-                    })
-                    
-                    Section(content: {
+                        .listRowSeparator(.hidden)
+
+                        
+                        
                         NavigationLink {
                             OpenSourceView()
                         } label: {
                             Text("오픈소스")
                         }
-                    })
+                        .listRowSeparator(.hidden)
+
+                        
+                        Text("버전 정보 1.0.0")
+                            .fontWeight(.semibold)
+                            .listRowSeparator(.hidden)
+
+                        
+                    }
+                    .listStyle(.plain)
                     
-                    Text("버전 정보 1.0.0")
-                    
+
                 }
-                
-                
-            }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("앱 정보")
         }
-        
+    
+
         
     }
 }
