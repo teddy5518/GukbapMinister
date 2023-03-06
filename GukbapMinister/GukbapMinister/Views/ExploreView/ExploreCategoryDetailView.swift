@@ -25,7 +25,7 @@ struct ExploreCategoryDetailView: View {
                         NavigationLink {
                             DetailView(detailViewModel: DetailViewModel(store: store))
                         } label: {
-                            StoreGridItem(manager: StoreImageManager(store: store), width: gridSize, imageSize: imageSize)
+                            StoreGridItem(store: store, width: gridSize, imageSize: imageSize)
                         }
                     }
                 }
@@ -40,8 +40,8 @@ struct ExploreCategoryDetailView: View {
 
 struct StoreGridItem: View{
     @Environment(\.colorScheme) var scheme
-    @StateObject var manager = StoreImageManager(store: .test)
     
+    var store : Store
     var width: CGFloat
     var imageSize: CGFloat
     
@@ -49,34 +49,11 @@ struct StoreGridItem: View{
         
         VStack{
             VStack{
-                if let url = manager.imageURLs.first {
-                    KFImage(url)
-                        .placeholder {
-                            if let gukbap = manager.store.foodType.first {
-                                Gukbaps(rawValue: gukbap)?.placeholder
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: imageSize, height: imageSize)
-                                    .cornerRadius(10)
-                            }
-                        }
-                        .cacheMemoryOnly()
-                        .fade(duration: 0.25)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: imageSize, height: imageSize)
-                        .cornerRadius(10)
-                } else {
-                    Gukbaps(rawValue: "순대국밥")?.placeholder
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: imageSize, height: imageSize)
-                        .cornerRadius(10)
-                }
+                StoreImageThumbnail(manager:StoreImageManager(store: store), width: imageSize, height: imageSize, cornerRadius: 10)
                 
                 VStack{
                     HStack {
-                        Text("\(manager.store.storeName)")
+                        Text("\(store.storeName)")
                             .fontWeight(.bold)
                             .font(.callout)
                             .lineLimit(1)
@@ -86,7 +63,7 @@ struct StoreGridItem: View{
                     
 
                     HStack {
-                        Text("\(manager.store.storeAddress)")
+                        Text("\(store.storeAddress)")
                             .font(.caption2)
                             .lineLimit(1)
                             .foregroundColor(scheme == .light ? .gray : .white)
@@ -96,7 +73,7 @@ struct StoreGridItem: View{
                     
 
                     HStack{
-                        Text("\(manager.store.description)")
+                        Text("\(store.description)")
                             .font(.caption)
                             .lineLimit(1)
                             .multilineTextAlignment(.leading)

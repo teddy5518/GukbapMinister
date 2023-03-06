@@ -24,6 +24,7 @@ enum Gukbaps: String, CaseIterable {
     case 시레기국밥
     case 육개장
     case 곰탕
+    case 추어탕
     
     
     var imageName: String {
@@ -40,8 +41,9 @@ enum Gukbaps: String, CaseIterable {
         case .설렁탕: return "SRTGukbap"
         case .평양온반: return "PYOBGukbap"
         case .시레기국밥: return "SRGGukbap"
-        case .육개장: return "SMRGukbap" // 변경예정
-        case .곰탕: return "SMRGukbap" // 변경예정
+        case .육개장: return "YGGukbap"
+        case .곰탕: return "GTGukbap"
+        case .추어탕: return "MudfishGukbap"
         }
     }
     
