@@ -49,7 +49,7 @@ struct StoreGridItem: View{
         
         VStack{
             VStack{
-                StoreImageThumbnail(manager:StoreImageManager(store: store), width: imageSize, height: imageSize, cornerRadius: 10)
+                StoreImageThumbnail(store: store, width: imageSize, height: imageSize, cornerRadius: 10)
                 
                 VStack{
                     HStack {

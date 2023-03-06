@@ -19,7 +19,14 @@ struct StoreModalView: View {
                     .padding(.top, 10)
                 
                 HStack(alignment: .top) {
-                    StoreModalImage(manager: StoreImageManager(store: store ?? .test))
+                    if let store {
+                        NavigationLink {
+                            DetailView(detailViewModel: DetailViewModel(store: store))
+                        } label: {
+                            StoreImageThumbnail(store: store, width: 90, height: 90, cornerRadius: 6)
+                        }
+//                        StoreModalImage(manager: StoreImageManager(store: store))
+                    }
                     VStack(alignment: .leading){
                         Menu {
                             Button {
