@@ -6,14 +6,19 @@
 //
 
 import Foundation
+import UIKit
+import CryptoKit
+import SwiftUI
+import AuthenticationServices
+
 import Firebase
 import FirebaseAuth
-import GoogleSignIn
 import FirebaseFirestore
-import UIKit
-import SwiftUI
+import GoogleSignIn
+
 import KakaoSDKAuth
 import KakaoSDKUser
+
 
 // MARK: - 주의사항
 // 카카오로그인 진행시 로그인이 안될 때 카카오디벨로퍼 -> 플랫폼 -> 번들아이디 수정
@@ -30,28 +35,33 @@ enum LoginState {
 }
 
 // MARK: -
-class UserViewModel: ObservableObject {
+class UserViewModel: NSObject, ObservableObject {
     
     // MARK: - 프로퍼티
     let database = Firestore.firestore() // FireStore 참조 객체
     let currentUser = Auth.auth().currentUser
     
+    var currentNonce: String? = nil
+    var window: UIWindow? = nil
+    
     // MARK: - @Published 변수
     @Published var loginState: LoginState = .logout // 로그인 상태 변수
     @Published var userInfo: User = User() // User 객체
-    
     
     // MARK: - 자동로그인을 위한 UserDefaults 변수
     @AppStorage("isLoggedIn") var isLoggedIn: Bool = UserDefaults.standard.bool(forKey: "isLoggedIn")
     @AppStorage("loginPlatform") var loginPlatform: String = (UserDefaults.standard.string(forKey: "loginPlatform") ?? "")
     
-    init() {
-        print("\(self.isLoggedIn)")
-        print("\(self.loginPlatform)")
+    
+    override init() {
+        super.init()
         if self.isLoggedIn && currentUser != nil {
             self.fetchUserInfo(uid: self.currentUser?.uid ?? "")
         }
+
     }
+    
+    
     
     // MARK: 사용자 정보 가져오기
     func fetchUserInfo(uid: String) {
@@ -129,7 +139,7 @@ class UserViewModel: ObservableObject {
                     // 로그인 성공시 유저정보 FireStore에 저장
                     self.insertUserInFireStore(uid: uid, userEmail: user.profile?.email ?? "", userName: user.profile?.name ?? "")
                     self.fetchUserInfo(uid: uid)
-                    print("로그인 후 : currentUser - \(self.currentUser)")
+                    //                    print("로그인 후 : currentUser - \(self.currentUser)")
                 }
                 // 구글로그인 상태로 전환
                 self.loginState = .googleLogin
@@ -195,7 +205,7 @@ class UserViewModel: ObservableObject {
                         print("\(error) : \(#function)")
                         // 계정 생성이 실패한경우 계정이 있다고 가정하고 로그인 진행
                         Auth.auth().signIn(withEmail: (kuser?.kakaoAccount?.email ?? ""), password: "\(String(describing: kuser?.id))", completion: { userResult, error in
-                            print("asdfasdfsdf : \(userResult?.user.uid)")
+                            print("asdfasdfsdf : \(String(describing: userResult?.user.uid))")
                             self.fetchUserInfo(uid: userResult?.user.uid ?? "")
                         })
                     } else {
@@ -205,7 +215,7 @@ class UserViewModel: ObservableObject {
                         let email = kuser.kakaoAccount?.email // 사용자 이메일
                         let name = kuser.kakaoAccount?.profile?.nickname // 사용자 닉네임
                         // 로그인 성공시 FireStore User 컬렉션에 저장
-                        self.insertUserInFireStore(uid: uid ?? "", userEmail: email!, userName: name!)
+                        self.insertUserInFireStore(uid: uid , userEmail: email!, userName: name!)
                         self.fetchUserInfo(uid: uid)
                     }
                 }
@@ -228,28 +238,29 @@ class UserViewModel: ObservableObject {
                 self.loginState = .logout // 로그아웃 상태로 전환
                 print("\(#function) - 구글 로그아웃 성공")
                 print("\(self.isLoggedIn)")
-                print("로그아웃 후 : currentUser - \(self.currentUser)")
+                
+                //                print("로그아웃 후 : currentUser - \(String(describing: self.currentUser))")
             } catch let signOutError as NSError {
-              print("Error signing out: %@", signOutError)
+                print("Error signing out: %@", signOutError)
             }
-//            GIDSignIn.sharedInstance.signOut() // 구글 로그아웃
-//            do {
-//                UserDefaults.standard.set(false, forKey: "isLoggedIn")
-//                UserDefaults.standard.set("noLoginPlatform", forKey: "loginPlatform")
-//                try Auth.auth().signOut() // FirebaseAuth 로그아웃
-//                self.loginState = .logout // 로그아웃 상태로 전환
-//                print("\(#function) - 구글 로그아웃 성공")
-//                print("\(self.isLoggedIn)")
-//            } catch {
-//                print("\(error.localizedDescription)")
-//            }
+            //            GIDSignIn.sharedInstance.signOut() // 구글 로그아웃
+            //            do {
+            //                UserDefaults.standard.set(false, forKey: "isLoggedIn")
+            //                UserDefaults.standard.set("noLoginPlatform", forKey: "loginPlatform")
+            //                try Auth.auth().signOut() // FirebaseAuth 로그아웃
+            //                self.loginState = .logout // 로그아웃 상태로 전환
+            //                print("\(#function) - 구글 로그아웃 성공")
+            //                print("\(self.isLoggedIn)")
+            //            } catch {
+            //                print("\(error.localizedDescription)")
+            //            }
             
         case "kakaoLogin": // 카카오로그인일때
-//            UserApi.shared.unlink { error in
-//                if let error = error {
-//                    print(error.localizedDescription)
-//                }
-//            }
+            //            UserApi.shared.unlink { error in
+            //                if let error = error {
+            //                    print(error.localizedDescription)
+            //                }
+            //            }
             UserApi.shared.logout {(error) in
                 if let error = error {
                     print(error)
@@ -272,3 +283,114 @@ class UserViewModel: ObservableObject {
     }
 }
 
+extension UserViewModel {
+    func startAppleLogin() {
+        let nonce = randomNonceString()
+        currentNonce = nonce
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        request.nonce = sha256(nonce)
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+    
+    private func sha256(_ input: String) -> String {
+        let inputData = Data(input.utf8)
+        let hashedData = SHA256.hash(data: inputData)
+        let hashString = hashedData.compactMap {
+            return String(format: "%02x", $0)
+        }.joined()
+        
+        return hashString
+    }
+    
+    // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
+    private func randomNonceString(length: Int = 32) -> String {
+        precondition(length > 0)
+        let charset: Array<Character> =
+        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        var result = ""
+        var remainingLength = length
+        
+        while remainingLength > 0 {
+            let randoms: [UInt8] = (0 ..< 16).map { _ in
+                var random: UInt8 = 0
+                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+                if errorCode != errSecSuccess {
+                    fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
+                }
+                return random
+            }
+            
+            randoms.forEach { random in
+                if remainingLength == 0 {
+                    return
+                }
+                
+                if random < charset.count {
+                    result.append(charset[Int(random)])
+                    remainingLength -= 1
+                }
+            }
+        }
+        
+        return result
+    }
+}
+
+extension UserViewModel: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
+        print("여기 호출됩니다!")
+        
+      if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+        guard let nonce = currentNonce else {
+          fatalError("Invalid state: A login callback was received, but no login request was sent.")
+        }
+        guard let appleIDToken = appleIDCredential.identityToken else {
+          print("Unable to fetch identity token")
+          return
+        }
+        guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+          print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
+          return
+        }
+
+        // Initialize a Firebase credential.
+        let credential = OAuthProvider.credential(withProviderID: "apple.com",
+            idToken: idTokenString,
+            rawNonce: nonce)
+
+        //Firebase 작업
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+            if let error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            guard let user = authResult?.user else { return }
+            
+            // 로그인 성공시 유저정보 FireStore에 저장
+            self.insertUserInFireStore(uid: user.uid, userEmail: user.providerData.first?.email ?? "", userName: user.providerData.first?.displayName ?? "")
+            self.fetchUserInfo(uid: user.uid)
+            self.loginState = .appleLogin
+            
+            // UserDefaults에 키-값 쌍 저장
+            UserDefaults.standard.set(true, forKey: "isLoggedIn")
+            UserDefaults.standard.set("appleLogin", forKey: "loginPlatform")
+        }
+      }
+    }
+}
+
+extension UserViewModel:
+    ASAuthorizationControllerPresentationContextProviding {
+      public func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+          window!
+      }
+}
