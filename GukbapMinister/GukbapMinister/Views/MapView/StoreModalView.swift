@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct StoreModalView: View {
-    var store: Store
+    var store: Store?
     
     var body: some View {
         NavigationStack {
@@ -19,19 +19,19 @@ struct StoreModalView: View {
                     .padding(.top, 10)
                 
                 HStack(alignment: .top) {
-                    StoreModalImage(manager: StoreImageManager(store: store))
+                    StoreModalImage(manager: StoreImageManager(store: store ?? .test))
                     VStack(alignment: .leading){
                         Menu {
                             Button {
                                 let pasteboard = UIPasteboard.general
-                                pasteboard.string = store.storeAddress
+                                pasteboard.string = store?.storeAddress
                             } label: {
                                 Label("이 주소 복사하기", systemImage: "doc.on.clipboard")
                             }
-                            Text(store.storeAddress)
+                            Text(store?.storeAddress ?? "")
                         } label: {
                             HStack {
-                                Text(store.storeAddress)
+                                Text(store?.storeAddress ?? "")
                                     .padding(.leading, 5)
                                     .lineLimit(1)
                                     .fixedSize(horizontal: false, vertical: true)
@@ -44,7 +44,7 @@ struct StoreModalView: View {
                         .frame(height: 20)
                         .padding(.top, 10)
                         Spacer()
-                        GgakdugiRatingShort(rate: store.countingStar, size: 20)
+                        GgakdugiRatingShort(rate: store?.countingStar ?? 0.0, size: 20)
                             .padding(.leading, 5)
                             .padding(.bottom, 10)
                     }
@@ -70,8 +70,8 @@ struct StoreModalView: View {
 extension StoreModalView {
     var storeTitle: some View {
         HStack {
-            NavigationLink(destination: DetailView(detailViewModel: DetailViewModel(store: store))) {
-                Text(store.storeName)
+            NavigationLink(destination: DetailView(detailViewModel: DetailViewModel(store: store ?? .test))) {
+                Text(store?.storeName ?? "")
                     .font(.title3)
                     .bold()
             }
