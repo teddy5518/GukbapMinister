@@ -51,7 +51,7 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate {
 //    }
     
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
-        print(#function, "\(views)")
+//        print(#function, "\(views)")
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
