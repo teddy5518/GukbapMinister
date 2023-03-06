@@ -277,8 +277,21 @@ class UserViewModel: NSObject, ObservableObject {
                     }
                 }
             }
-            // case "appleLogin": // 애플로그인일때
-        default: return
+             case "appleLogin": // 애플로그인일때
+            do {
+                UserDefaults.standard.set(false, forKey: "isLoggedIn")
+                UserDefaults.standard.set("noLoginPlatform", forKey: "loginPlatform")
+                try Auth.auth().signOut()
+                self.loginState = .logout // 로그아웃 상태로 전환
+                print("\(#function) - 애플 로그아웃 성공")
+                print("\(self.isLoggedIn)")
+                
+                //                print("로그아웃 후 : currentUser - \(String(describing: self.currentUser))")
+            } catch let signOutError as NSError {
+                print("Error signing out: %@", signOutError)
+            }
+            
+            default: return
         }
     }
 }
@@ -373,10 +386,16 @@ extension UserViewModel: ASAuthorizationControllerDelegate {
                 return
             }
             
+            var fullName: String?
+            if let familyName = appleIDCredential.fullName?.familyName, let givenName = appleIDCredential.fullName?.givenName{
+                fullName = familyName + givenName
+            }
+            
             guard let user = authResult?.user else { return }
             
+            
             // 로그인 성공시 유저정보 FireStore에 저장
-            self.insertUserInFireStore(uid: user.uid, userEmail: user.providerData.first?.email ?? "", userName: user.providerData.first?.displayName ?? "")
+            self.insertUserInFireStore(uid: user.uid, userEmail: user.providerData.first?.email ?? "", userName: fullName ?? "임시닉네임")
             self.fetchUserInfo(uid: user.uid)
             self.loginState = .appleLogin
             
