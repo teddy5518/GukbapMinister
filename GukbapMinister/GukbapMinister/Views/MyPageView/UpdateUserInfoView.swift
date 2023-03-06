@@ -19,40 +19,44 @@ struct UpdateUserInfoView: View {
         NavigationStack {
             VStack {
                 List {
-                    Section(content: {
                         NavigationLink {
                             EditNicknameView()
 //                                .environmentObject(userViewModel)
                         } label: {
                             Text("\(userViewModel.userInfo.userNickname)")
                         }
-                    })
+                        .listRowSeparator(.hidden)
+
                     
-//
-                    Section(content: {
+
+                
                         NavigationLink {
                             EditGukbapView()
                         } label: {
                             Text("선호하는 국밥")
                         }
-                    })
+                        .listRowSeparator(.hidden)
+
                     
-                    Section(content: {
+                   
                         NavigationLink {
                             EditPreferenceAreaView()
                         } label: {
                             Text("선호하는 지역")
                         }
-                    })
+                        .listRowSeparator(.hidden)
+
                     
-                    Section(content: {
+                   
                         NavigationLink {
                             DeleteAccountView()
                         } label: {
                             Text("더보기")
                         }
-                    })
+                        .listRowSeparator(.hidden)
+
                 }
+                .listStyle(.plain)
                 
            
             }

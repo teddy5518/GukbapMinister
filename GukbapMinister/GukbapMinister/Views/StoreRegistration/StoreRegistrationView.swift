@@ -19,14 +19,13 @@ enum ManagementAction {
 
 
 struct StoreRegistrationView: View {
-    @Binding var isOn: Bool
-    
     @ObservedObject var viewModel: StoreRegistrationViewModel = StoreRegistrationViewModel()
+    @Environment(\.dismiss) private var dismiss
     
     @State private var menuCount: Int = 1
     @State private var menuName: String = ""
     @State private var menuPrice: String = ""
-    
+    @State private var didTap: [Bool] = Array(repeating: false, count: Gukbaps.allCases.count)
 
     
     
@@ -48,8 +47,8 @@ struct StoreRegistrationView: View {
     var body: some View {
         Form {
             Section {
-                TextField("상호명을 입력해 주세요", text: $viewModel.store.storeName)
-                TextField("주소를 입력해 주세요", text: $viewModel.store.storeAddress)
+                TextField("상호명을 입력해 주세요", text: $viewModel.storeRegistration.storeName)
+                TextField("주소를 입력해 주세요", text: $viewModel.storeRegistration.storeAddress)
             } header: {
                 Text("국밥집 정보")
                     .font(.headline)
@@ -70,6 +69,33 @@ struct StoreRegistrationView: View {
                 Text("좌표(임시)")
                     .font(.headline)
             }
+            
+            Section {
+                Text("국밥 종류")
+                    .font(.headline)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(Array(Gukbaps.allCases.enumerated()), id: \.offset) { index, gukbap in
+                            Button {
+                                didTap[index].toggle()
+                                viewModel.updateFoodType(gukBap: gukbap.rawValue)
+                            } label: {
+                                HStack{
+                                    gukbap.image
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 20, height: 20)
+                                    Text(gukbap.rawValue)
+                                }
+                                .categoryCapsule(isChanged: didTap[index])
+                            }
+                        }
+                    }
+                    .padding(.vertical, 5)
+                }
+
+            }
+            
             
             Section {
                 storeImageUpload
@@ -99,13 +125,13 @@ struct StoreRegistrationView: View {
                 HStack {
                     Spacer()
                     Button {
-                        viewModel.store.menu[menuName] =  menuPrice + "원"
+                        viewModel.storeRegistration.menu[menuName] =  menuPrice + "원"
                         menuName = ""
                         menuPrice = ""
                     } label: {
                         HStack {
                             Image(systemName: "plus.circle")
-                            Text("메뉴 추가하기")
+                            Text("메뉴 등록하기")
                         }
                     }
                     .disabled(menuName.isEmpty || menuPrice.isEmpty)
@@ -117,14 +143,14 @@ struct StoreRegistrationView: View {
             }
             
             Section {
-                ForEach(viewModel.store.menu.sorted(by: >), id: \.key) { menu, price in
+                ForEach(viewModel.storeRegistration.menu.sorted(by: >), id: \.key) { menu, price in
                     HStack {
                         Text(menu)
                         Spacer()
                         Text(price)
                         Spacer()
                         Button {
-                            viewModel.store.menu.removeValue(forKey: menu)
+                            viewModel.storeRegistration.menu.removeValue(forKey: menu)
                         } label: {
                             Image(systemName: "x.circle.fill")
                                 .foregroundColor(.black)
@@ -134,7 +160,7 @@ struct StoreRegistrationView: View {
             }
             
             Section {
-                TextField("국밥집 설명 입력하기", text: $viewModel.store.description)
+                TextField("국밥집 설명 입력하기", text: $viewModel.storeRegistration.description)
             } header: {
                 Text("국밥집 설명")
                     .font(.headline)
@@ -142,23 +168,36 @@ struct StoreRegistrationView: View {
             
         }
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button("취소") {
-                    isOn.toggle()
-                }
-            }
+//            ToolbarItem(placement: .navigationBarLeading) {
+//                Button("취소") {
+//                    isOn.toggle()
+//                }
+//            }
             
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("등록") {
                     viewModel.handleDoneTapped()
-                    isOn.toggle()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        dismiss()
+                    }
                 }
+                .disabled(!isRegistrationCompleted)
             }
         }
         
         
     }
+    private var isRegistrationCompleted: Bool {
+        let registration = viewModel.storeRegistration
+        return !(registration.storeName.isEmpty ||
+                 registration.storeAddress.isEmpty ||
+                 registration.foodType.isEmpty ||
+                 registration.description.isEmpty
+        )
+    }
 }
+
+
 
 
 extension StoreRegistrationView {
@@ -293,6 +332,6 @@ extension StoreRegistrationView {
 
 struct StoreRegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        StoreRegistrationView(isOn: .constant(true) ,viewModel: StoreRegistrationViewModel())
+        StoreRegistrationView(viewModel: StoreRegistrationViewModel())
     }
 }
