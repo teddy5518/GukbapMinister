@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		032C5E0729B5BE3400B9ADC8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 032C5E0629B5BE3400B9ADC8 /* GoogleService-Info.plist */; };
 		0392B3722987807B00C510E5 /* MapUIViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0392B3712987807B00C510E5 /* MapUIViewRepresentable.swift */; };
 		0392B374298782E800C510E5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0392B373298782E800C510E5 /* LocationManager.swift */; };
 		03EE6A9E297791BF005616B3 /* StoreModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EE6A9D297791BF005616B3 /* StoreModalView.swift */; };
@@ -54,12 +53,10 @@
 		5B2C173029B30044003091A9 /* StoreImageThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C172F29B30044003091A9 /* StoreImageThumbnail.swift */; };
 		5B2C173229B58262003091A9 /* EX+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C173129B58262003091A9 /* EX+UIImage.swift */; };
 		5B2C173929B5A483003091A9 /* WindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C173829B5A483003091A9 /* WindowKey.swift */; };
-		5B2C173B29B5BB35003091A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C173A29B5BB35003091A9 /* GoogleService-Info.plist */; };
 		5B2E2E722994D2D800A7B94F /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2E2E712994D2D800A7B94F /* GifImage.swift */; };
 		5B2E2E742994D5A700A7B94F /* Ddukbaegi.boiling.Intro.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5B2E2E732994D5A700A7B94F /* Ddukbaegi.boiling.Intro.gif */; };
 		5B31DBBB297A23A100EA0036 /* StoreRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B31DBBA297A23A100EA0036 /* StoreRegistrationViewModel.swift */; };
 		5B31DBC0297A315000EA0036 /* StoreRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B31DBBF297A315000EA0036 /* StoreRegistrationView.swift */; };
-		5B54A35329B18E3700D90E94 /* StoreImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54A35229B18E3700D90E94 /* StoreImageManager.swift */; };
 		5B54A35629B1B0F500D90E94 /* CollectionLikedStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54A35529B1B0F500D90E94 /* CollectionLikedStoreManager.swift */; };
 		5B54A35829B1BA3C00D90E94 /* CollectionLikedStores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54A35729B1BA3C00D90E94 /* CollectionLikedStores.swift */; };
 		5B54A35A29B1BBDA00D90E94 /* CollectionStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54A35929B1BBDA00D90E94 /* CollectionStoreCell.swift */; };
@@ -119,7 +116,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		032C5E0629B5BE3400B9ADC8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0392B3712987807B00C510E5 /* MapUIViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUIViewRepresentable.swift; sourceTree = "<group>"; };
 		0392B373298782E800C510E5 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		03EE6A9D297791BF005616B3 /* StoreModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModalView.swift; sourceTree = "<group>"; };
@@ -164,12 +160,10 @@
 		5B2C173129B58262003091A9 /* EX+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EX+UIImage.swift"; sourceTree = "<group>"; };
 		5B2C173529B5A103003091A9 /* GukbapMinister.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GukbapMinister.entitlements; sourceTree = "<group>"; };
 		5B2C173829B5A483003091A9 /* WindowKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowKey.swift; sourceTree = "<group>"; };
-		5B2C173A29B5BB35003091A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B2E2E712994D2D800A7B94F /* GifImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
 		5B2E2E732994D5A700A7B94F /* Ddukbaegi.boiling.Intro.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Ddukbaegi.boiling.Intro.gif; sourceTree = "<group>"; };
 		5B31DBBA297A23A100EA0036 /* StoreRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRegistrationViewModel.swift; sourceTree = "<group>"; };
 		5B31DBBF297A315000EA0036 /* StoreRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRegistrationView.swift; sourceTree = "<group>"; };
-		5B54A35229B18E3700D90E94 /* StoreImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreImageManager.swift; sourceTree = "<group>"; };
 		5B54A35529B1B0F500D90E94 /* CollectionLikedStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionLikedStoreManager.swift; sourceTree = "<group>"; };
 		5B54A35729B1BA3C00D90E94 /* CollectionLikedStores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionLikedStores.swift; sourceTree = "<group>"; };
 		5B54A35929B1BBDA00D90E94 /* CollectionStoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionStoreCell.swift; sourceTree = "<group>"; };
@@ -335,7 +329,6 @@
 				5B0058452990B7BB00564930 /* StoreReportViewModel.swift */,
 				5BDB9ADE29757AED00BFD5D9 /* StoresViewModel.swift */,
 				5B54A35D29B1D6F800D90E94 /* DetailViewModel.swift */,
-				5B54A35229B18E3700D90E94 /* StoreImageManager.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -784,7 +777,6 @@
 				045BD7F629B3264A004F4835 /* SplashView2.swift in Sources */,
 				5B31DBC0297A315000EA0036 /* StoreRegistrationView.swift in Sources */,
 				5B2C173929B5A483003091A9 /* WindowKey.swift in Sources */,
-				5B54A35329B18E3700D90E94 /* StoreImageManager.swift in Sources */,
 				6348D75F2994B0EF00148552 /* OnboardingView2.swift in Sources */,
 				63D25830299A188600370202 /* ServiceTermsView.swift in Sources */,
 				5BA2DB3D298CD57200A33EAB /* Gukbaps.swift in Sources */,

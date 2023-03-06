@@ -12,6 +12,7 @@ enum ExploreOrderingMode {
 }
 struct ExploreOrderedHScroll: View {
     @Environment(\.colorScheme) var scheme
+    @EnvironmentObject var storesViewModel: StoresViewModel
     @ObservedObject var exploreViewModel: ExploreViewModel
     
     var mode: ExploreOrderingMode
@@ -31,6 +32,7 @@ struct ExploreOrderedHScroll: View {
                 
                 NavigationLink{
                   ExploreOrderedList(exploreViewModel: exploreViewModel, mode: mode)
+                        .environmentObject(storesViewModel)
                 } label:{
                     Text("더보기 >")
                         .font(.caption)
@@ -61,6 +63,7 @@ struct ExploreOrderedHScroll: View {
                            DetailView(detailViewModel: DetailViewModel(store: store))
                         } label:{
                            ExploreOrderedHScrollCell(exploreViewModel: exploreViewModel, store: store, mode: mode)
+                                .environmentObject(storesViewModel)
                         }
                         .simultaneousGesture(TapGesture().onEnded{
                             if mode == .hits {

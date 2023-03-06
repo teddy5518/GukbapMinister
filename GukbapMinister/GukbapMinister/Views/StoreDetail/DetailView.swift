@@ -84,7 +84,7 @@ struct DetailView: View {
 //
                 VStack{
                     //해당 가게 전체 사진
-                    StoreImagesTabView(manager: StoreImageManager(store: store), showDetail: $isshowingStoreImageDetail)
+                    StoreImagesTabView(showDetail: $isshowingStoreImageDetail, store: store)
                     
                     //가게 국밥종류, 별점
                     storeFoodTypeAndRate
@@ -142,7 +142,7 @@ struct DetailView: View {
         }//NavigationStack
         //가게 이미지만 보는 sheet로 이동
         .fullScreenCover(isPresented: $isshowingStoreImageDetail){
-            StoreImageDetailView(manager: StoreImageManager(store: store), isshowingStoreImageDetail: $isshowingStoreImageDetail)
+            StoreImageDetailView(isshowingStoreImageDetail: $isshowingStoreImageDetail, store: store)
         }
         //리뷰 작성하는 sheet로 이동
         .fullScreenCover(isPresented: $showingCreateRewviewSheet) {

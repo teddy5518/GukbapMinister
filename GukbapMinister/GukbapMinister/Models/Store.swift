@@ -28,7 +28,7 @@ struct Store: Codable, Hashable, Identifiable {
     var storeName: String
     var storeAddress: String
     var coordinate: GeoPoint
-    var storeImages: [String]
+    var storeImages: [String] //스토리지의 이미지 url
     var menu: [String : String]
     var description: String
     var countingStar: Double

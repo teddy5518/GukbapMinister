@@ -10,6 +10,7 @@ import Kingfisher
 
 struct ExploreOrderedHScrollCell: View {
     @Environment(\.colorScheme) var scheme
+    @EnvironmentObject var storesViewModel: StoresViewModel
     @ObservedObject var exploreViewModel: ExploreViewModel
     var store : Store
     var mode: ExploreOrderingMode
@@ -49,7 +50,7 @@ struct ExploreOrderedHScrollCell: View {
                     .padding(.top, 3)
                     .padding(.leading, 3)
 
-                    StoreImageThumbnail(store: store, width: 190, height: 190, cornerRadius: 10, mode: .random)
+                    StoreImageThumbnail(store: store, size: 190, cornerRadius: 10, mode: .random)
                 }
                 
                 

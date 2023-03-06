@@ -33,6 +33,7 @@ struct CollectionRandomStores: View {
             
             ForEach(stores.shuffled().prefix(5), id: \.self){ store in
                 CollectionStoreCell(viewModel: DetailViewModel(store: store))
+                    .environmentObject(storesViewModel)
             }
         }
         
