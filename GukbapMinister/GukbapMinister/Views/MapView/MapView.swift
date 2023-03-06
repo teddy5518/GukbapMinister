@@ -61,12 +61,14 @@ struct MapView: View {
                         }
                         // Version 2: 모달이 올라온 채로 변형
 //                         Spacer()
+
                         StoreModalView(store: mapViewModel.selectedStore)
                             .padding(25)
                             .offset(y: isShowingSelectedStore ? 0 : 400)
                         // animation issue로 인한 주석 처리
                         // .animation(.easeInOut, value: isShowingSelectedStore)
                             .transition(.slide)
+
                     }
                 }
             }

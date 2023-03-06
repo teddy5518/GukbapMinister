@@ -52,7 +52,9 @@
 		5B18D9A229B08C190079628D /* StoreImagesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18D9A129B08C190079628D /* StoreImagesTabView.swift */; };
 		5B24E179299380FC00F746A0 /* ExploreCategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B24E178299380FC00F746A0 /* ExploreCategoryDetailView.swift */; };
 		5B2C173029B30044003091A9 /* StoreImageThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C172F29B30044003091A9 /* StoreImageThumbnail.swift */; };
-		5B2C173229B58262003091A9 /* EX + UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C173129B58262003091A9 /* EX + UIImage.swift */; };
+		5B2C173229B58262003091A9 /* EX+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C173129B58262003091A9 /* EX+UIImage.swift */; };
+		5B2C173929B5A483003091A9 /* WindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C173829B5A483003091A9 /* WindowKey.swift */; };
+		5B2C173B29B5BB35003091A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C173A29B5BB35003091A9 /* GoogleService-Info.plist */; };
 		5B2E2E722994D2D800A7B94F /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2E2E712994D2D800A7B94F /* GifImage.swift */; };
 		5B2E2E742994D5A700A7B94F /* Ddukbaegi.boiling.Intro.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5B2E2E732994D5A700A7B94F /* Ddukbaegi.boiling.Intro.gif */; };
 		5B31DBBB297A23A100EA0036 /* StoreRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B31DBBA297A23A100EA0036 /* StoreRegistrationViewModel.swift */; };
@@ -95,9 +97,10 @@
 		6348D75F2994B0EF00148552 /* OnboardingView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6348D75E2994B0EF00148552 /* OnboardingView2.swift */; };
 		6348D7612994B15500148552 /* OnboardingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6348D7602994B15500148552 /* OnboardingTabView.swift */; };
 		6348D7632994BF0F00148552 /* OnboardingView3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6348D7622994BF0F00148552 /* OnboardingView3.swift */; };
-		6349D4EE29B2DFD0009E4A05 /* StoreRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6349D4ED29B2DFD0009E4A05 /* StoreRegisterView.swift */; };
 		6352AE4729B1D82000813233 /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352AE4629B1D82000813233 /* Notice.swift */; };
 		6399503829A7301900A05F9F /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6399503729A7301900A05F9F /* DeleteAccountView.swift */; };
+		639E2B6729B5BDC100F984DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 639E2B6629B5BDC100F984DD /* GoogleService-Info.plist */; };
+		639E2B6A29B5C59300F984DD /* StoreRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E2B6929B5C59300F984DD /* StoreRegistration.swift */; };
 		63D2582C299A060100370202 /* NoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D2582B299A060100370202 /* NoticeView.swift */; };
 		63D2582E299A0D9800370202 /* PolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D2582D299A0D9800370202 /* PolicyView.swift */; };
 		63D25830299A188600370202 /* ServiceTermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D2582F299A188600370202 /* ServiceTermsView.swift */; };
@@ -158,7 +161,10 @@
 		5B18D9A129B08C190079628D /* StoreImagesTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreImagesTabView.swift; sourceTree = "<group>"; };
 		5B24E178299380FC00F746A0 /* ExploreCategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCategoryDetailView.swift; sourceTree = "<group>"; };
 		5B2C172F29B30044003091A9 /* StoreImageThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreImageThumbnail.swift; sourceTree = "<group>"; };
-		5B2C173129B58262003091A9 /* EX + UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EX + UIImage.swift"; sourceTree = "<group>"; };
+		5B2C173129B58262003091A9 /* EX+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EX+UIImage.swift"; sourceTree = "<group>"; };
+		5B2C173529B5A103003091A9 /* GukbapMinister.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GukbapMinister.entitlements; sourceTree = "<group>"; };
+		5B2C173829B5A483003091A9 /* WindowKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowKey.swift; sourceTree = "<group>"; };
+		5B2C173A29B5BB35003091A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B2E2E712994D2D800A7B94F /* GifImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
 		5B2E2E732994D5A700A7B94F /* Ddukbaegi.boiling.Intro.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Ddukbaegi.boiling.Intro.gif; sourceTree = "<group>"; };
 		5B31DBBA297A23A100EA0036 /* StoreRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRegistrationViewModel.swift; sourceTree = "<group>"; };
@@ -199,9 +205,10 @@
 		6348D75E2994B0EF00148552 /* OnboardingView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView2.swift; sourceTree = "<group>"; };
 		6348D7602994B15500148552 /* OnboardingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTabView.swift; sourceTree = "<group>"; };
 		6348D7622994BF0F00148552 /* OnboardingView3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView3.swift; sourceTree = "<group>"; };
-		6349D4ED29B2DFD0009E4A05 /* StoreRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRegisterView.swift; sourceTree = "<group>"; };
 		6352AE4629B1D82000813233 /* Notice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notice.swift; sourceTree = "<group>"; };
 		6399503729A7301900A05F9F /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
+		639E2B6629B5BDC100F984DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		639E2B6929B5C59300F984DD /* StoreRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRegistration.swift; sourceTree = "<group>"; };
 		63D2582B299A060100370202 /* NoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeView.swift; sourceTree = "<group>"; };
 		63D2582D299A0D9800370202 /* PolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyView.swift; sourceTree = "<group>"; };
 		63D2582F299A188600370202 /* ServiceTermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTermsView.swift; sourceTree = "<group>"; };
@@ -316,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				5B2E2E712994D2D800A7B94F /* GifImage.swift */,
+				5B2C173829B5A483003091A9 /* WindowKey.swift */,
 			);
 			path = ETC.;
 			sourceTree = "<group>";
@@ -410,7 +418,7 @@
 				5BB236D1298A639D00CBC816 /* Ex+Color.swift */,
 				041FE9722988DCDE00BE32E7 /* Ex+View.swift */,
 				14D937A429B1D906008C0E1D /* Ex+UIColor.swift */,
-				5B2C173129B58262003091A9 /* EX + UIImage.swift */,
+				5B2C173129B58262003091A9 /* EX+UIImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -418,7 +426,7 @@
 		5BDB9AA32975751C00BFD5D9 = {
 			isa = PBXGroup;
 			children = (
-				032C5E0629B5BE3400B9ADC8 /* GoogleService-Info.plist */,
+				639E2B6629B5BDC100F984DD /* GoogleService-Info.plist */,
 				5BDB9AAE2975751C00BFD5D9 /* GukbapMinister */,
 				5BDB9AAD2975751C00BFD5D9 /* Products */,
 				030B4B53299A191500866586 /* Frameworks */,
@@ -436,6 +444,7 @@
 		5BDB9AAE2975751C00BFD5D9 /* GukbapMinister */ = {
 			isa = PBXGroup;
 			children = (
+				5B2C173529B5A103003091A9 /* GukbapMinister.entitlements */,
 				5B18D99529B02E1F0079628D /* Config.xcconfig */,
 				5B2E2E732994D5A700A7B94F /* Ddukbaegi.boiling.Intro.gif */,
 				5B6536C02999C8E000EA8FE5 /* Ddukbaegi.boiling.gif */,
@@ -501,6 +510,7 @@
 				5B0058412990B6E700564930 /* StoreReport.swift */,
 				5BDB9ADA29757A8300BFD5D9 /* Review.swift */,
 				6352AE4629B1D82000813233 /* Notice.swift */,
+				639E2B6929B5C59300F984DD /* StoreRegistration.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -563,7 +573,6 @@
 			children = (
 				63D2582A299A038B00370202 /* UserRulesViews */,
 				5BDB9ACF2975790400BFD5D9 /* MyPageView.swift */,
-				6349D4ED29B2DFD0009E4A05 /* StoreRegisterView.swift */,
 				63D2582B299A060100370202 /* NoticeView.swift */,
 				AD07DFC8298A5E50005DBA8D /* MyReviewView.swift */,
 				14A1879C298A601E00B4FE7F /* UpdateUserInfoView.swift */,
@@ -687,7 +696,7 @@
 			files = (
 				5B6536C12999C8E000EA8FE5 /* Ddukbaegi.boiling.gif in Resources */,
 				5BDB9AB72975751F00BFD5D9 /* Preview Assets.xcassets in Resources */,
-				032C5E0729B5BE3400B9ADC8 /* GoogleService-Info.plist in Resources */,
+				639E2B6729B5BDC100F984DD /* GoogleService-Info.plist in Resources */,
 				5BDB9AB42975751F00BFD5D9 /* Assets.xcassets in Resources */,
 				5B2E2E742994D5A700A7B94F /* Ddukbaegi.boiling.Intro.gif in Resources */,
 			);
@@ -721,6 +730,7 @@
 				5BB236D5298B6B6C00CBC816 /* SearchBarButton.swift in Sources */,
 				0400A09429935BE200727132 /* ReviewReportViewModel.swift in Sources */,
 				5B0058442990B78C00564930 /* StoreReportView.swift in Sources */,
+				639E2B6A29B5C59300F984DD /* StoreRegistration.swift in Sources */,
 				1406FCC929AC93C0006A67FE /* goLoginView.swift in Sources */,
 				6348D7612994B15500148552 /* OnboardingTabView.swift in Sources */,
 				AD16F7B6298796F400733B85 /* CollectionViewModel.swift in Sources */,
@@ -749,7 +759,7 @@
 				63FCF534297677E0001712CA /* MainTabView.swift in Sources */,
 				5BDB9AD729757A3B00BFD5D9 /* User.swift in Sources */,
 				6348D75D2994AE0900148552 /* OnboardingView1.swift in Sources */,
-				5B2C173229B58262003091A9 /* EX + UIImage.swift in Sources */,
+				5B2C173229B58262003091A9 /* EX+UIImage.swift in Sources */,
 				03EE6A9E297791BF005616B3 /* StoreModalView.swift in Sources */,
 				5B54A35A29B1BBDA00D90E94 /* CollectionStoreCell.swift in Sources */,
 				AD05311D2976902000594238 /* CategoryFilteringView.swift in Sources */,
@@ -757,7 +767,6 @@
 				6352AE4729B1D82000813233 /* Notice.swift in Sources */,
 				63D25836299A1AB400370202 /* CommunityGuideLineView.swift in Sources */,
 				5BB236D2298A639D00CBC816 /* Ex+Color.swift in Sources */,
-				6349D4EE29B2DFD0009E4A05 /* StoreRegisterView.swift in Sources */,
 				5B2C173029B30044003091A9 /* StoreImageThumbnail.swift in Sources */,
 				5B01F2E32976840800ACB32F /* DetailView.swift in Sources */,
 				5BDB9AC02975760300BFD5D9 /* ExploreView.swift in Sources */,
@@ -774,6 +783,7 @@
 				148CD4FB298CD317006078C7 /* EditGukbapView.swift in Sources */,
 				045BD7F629B3264A004F4835 /* SplashView2.swift in Sources */,
 				5B31DBC0297A315000EA0036 /* StoreRegistrationView.swift in Sources */,
+				5B2C173929B5A483003091A9 /* WindowKey.swift in Sources */,
 				5B54A35329B18E3700D90E94 /* StoreImageManager.swift in Sources */,
 				6348D75F2994B0EF00148552 /* OnboardingView2.swift in Sources */,
 				63D25830299A188600370202 /* ServiceTermsView.swift in Sources */,
@@ -920,6 +930,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GukbapMinister/GukbapMinister.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GukbapMinister/Preview Content\"";
@@ -959,6 +970,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GukbapMinister/GukbapMinister.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GukbapMinister/Preview Content\"";
