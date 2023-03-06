@@ -13,7 +13,7 @@ struct MyPageView: View {
     @EnvironmentObject var storesViewModel: StoresViewModel
     @StateObject private var reviewViewModel = ReviewViewModel()
 
-    @State private var isSheetPresented: Bool = false
+//    @State private var isSheetPresented: Bool = false
     @State private var isUpdateUserInfoPresented: Bool = false
     @State private var isMyReviewPresented: Bool = false
     
@@ -142,7 +142,8 @@ struct MyPageView: View {
                         
                         // 서포터즈에게만 열리고(국밥부차관), 나머지 사람들한테는 클릭했을 때 서포터즈에 지원하세요라는 홍보 문구, 위도 경도 임시 부분을 geocoding (주소만입력하면 자동으로 위도경도 기입), Store컬렉션으로 바로 들어가는데 Store_Temp 만들어서 관리자앱에서 관리할 수 있게.
                         NavigationLink {
-                            //  if 유저등급 == 국밥부차관등급 { StoreRegisterView  열림}
+                            StoreRegistrationView()
+                            //  if 유저등급 == 국밥부차관등급 { StoreRegistrationView  열림}
                             // else  {국밥부 차관에 지원하세요  alert (확인버튼만 우선 구현)}
                         } label: {
                             HStack {
@@ -206,12 +207,12 @@ struct MyPageView: View {
         .overlay(content: {
 //            LoadingView(show: $userVM.isLoading)
         })
-        .sheet(isPresented: $isSheetPresented) {
-            NavigationStack {
-                StoreRegistrationView(isOn: $isSheetPresented)
-            }
-            .tint(.mainColor)
-        }
+//        .sheet(isPresented: $isSheetPresented) {
+//            NavigationStack {
+//                StoreRegistrationView(isOn: $isSheetPresented)
+//            }
+//            .tint(.mainColor)
+//        }
         .tint(.mainColor)
         
         
