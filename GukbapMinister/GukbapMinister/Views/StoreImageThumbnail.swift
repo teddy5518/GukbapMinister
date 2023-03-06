@@ -75,7 +75,7 @@ struct StoreImageThumbnail: View {
                 VStack {
                     getImage(url)
                         .overlay {
-                            LinearGradient(colors: [.black.opacity(0.3), .clear], startPoint: UnitPoint(x: 0.5, y: 1), endPoint: UnitPoint(x: 0.5, y: 0))
+                            LinearGradient(colors: [.black.opacity(0.2), .clear], startPoint: UnitPoint(x: 0.5, y: 1), endPoint: UnitPoint(x: 0.5, y: 0))
                             .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
                         }
                 }
@@ -97,7 +97,7 @@ struct StoreImageThumbnail: View {
                         .cornerRadius(cornerRadius)
                 }
             }
-            .setProcessor(DownsamplingImageProcessor(size: CGSize(width: width * 2, height: height * 2)))//이미지 사이즈의 2배정도로 다운샘플링
+            .setProcessor(DownsamplingImageProcessor(size: CGSize(width: width * 1.8, height: height * 1.8)))//이미지 사이즈의 2배정도로 다운샘플링
             .loadDiskFileSynchronously()
             .cacheMemoryOnly()
             .fade(duration: 0.5)
@@ -105,6 +105,7 @@ struct StoreImageThumbnail: View {
             .aspectRatio(contentMode: .fill)
             .frame(width: width, height: height)
             .cornerRadius(cornerRadius)
+            
     }
 }
 

@@ -34,50 +34,11 @@ struct MainTabView: View {
                     .environmentObject(storesViewModel)
                     .environmentObject(userViewModel)
 
-
-    //            if userViewModel.state == .noSigned{
-    //                //                CollectionView()
-    //                NoLoginView()
-    //                    .tabItem {
-    //                        Label("내가 찜한 곳", image: "GBcollectionIcon")
-    //                    }
-    //                    .toolbar(.visible, for: .tabBar)
-    //                    .toolbarBackground(Color.white, for: .tabBar)
-    //                    .tag(2)
-    //                //                    .environmentObject(storesViewModel)
-    //                    .environmentObject(userViewModel)
-    //                    .fullScreenCover(isPresented: $showModal, content: {
-    //                        SignInView2()
-    //                    })
-    //                    .onAppear {
-    //                        DispatchQueue.main.async {
-    //                            self.showModal = true
-    //                        }
-    //                    }
-    //                //                MyPageView()
-    //                NoLoginView2()
-    //                    .tabItem {
-    //                        Label("마이페이지", image: "GBmypageIcon")
-    //                    }
-    //                    .tag(3)
-    //                    .environmentObject(userViewModel)
-    //                    .fullScreenCover(isPresented: $showModal, content: {
-    //                        SignInView2()
-    //                    })
-    //                    .onAppear {
-    //                        DispatchQueue.main.async {
-    //                            self.showModal = true
-    //                        }
-    //                    }
-    //            }else{
                     CollectionView()
                         .tabItem {
                             Label("내가 찜한 곳", image: "GBcollectionIcon")
 
                         }
-
-                        .toolbar(.visible, for: .tabBar)
-                        .toolbarBackground(Color.white, for: .tabBar)
                         .tag(3)
                         .environmentObject(storesViewModel)
                         .environmentObject(userViewModel)
@@ -89,8 +50,6 @@ struct MainTabView: View {
                         .tag(4)
                         .environmentObject(userViewModel)
                         .environmentObject(storesViewModel)
-
-    //            }
 
             }
             .accentColor(.mainColor)

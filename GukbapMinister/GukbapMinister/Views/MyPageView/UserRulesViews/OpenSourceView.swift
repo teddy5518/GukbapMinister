@@ -9,7 +9,22 @@ import SwiftUI
 
 struct OpenSourceView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            VStack  {
+                LazyVStack {
+                    Text("오픈소스")
+                    
+                }
+                .font(.caption)
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("오픈소스")
+                
+                
+                
+            }
+        }
+        .padding(10)
+        
     }
 }
 

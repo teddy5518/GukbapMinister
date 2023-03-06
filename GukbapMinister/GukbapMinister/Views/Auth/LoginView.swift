@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct LoginView: View {
-    
+    @Environment(\.window) var window: UIWindow?
     @EnvironmentObject var userViewModel: UserViewModel
+    
     
     var body: some View {
         VStack {
             Divider()
             Button {
-                userViewModel.logoutByPlatform()
+//                userViewModel.signInDidAppleAuth()
+                appleLogin()
             } label: {
                 Text("애플로 로그인")
                     .fontWeight(.semibold)
@@ -74,6 +76,14 @@ struct LoginView: View {
             
 
         }
+    }
+    
+    
+    func appleLogin() {
+        if let window {
+            userViewModel.window = window
+        }
+        userViewModel.startAppleLogin()
     }
 }
 
