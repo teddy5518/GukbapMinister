@@ -31,6 +31,7 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate {
         if let annotation = annotation as? StoreAnnotation {
             annotationView = setUpStoreAnnotationView(for: annotation, on: mapView)
         }
+        
         return annotationView
     }
     
@@ -42,16 +43,16 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate {
         mapViewController.isSelected = true
     }
     
-//    // 마커를 클릭해제 했을 때 동작하는 함수 (없이도 클릭해제가 됨)
-//    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-//        guard let _ = view.annotation as? StoreAnnotation else { return }
-//        print(#function, "마커 deselect")
-//        mapViewController.selectedStoreAnnotation = .init(storeId: "", title: "", subtitle: "", foodType: [], coordinate: .init())
-//        mapViewController.isSelected = false
-//    }
+    // 마커를 클릭 해제 했을 때 동작하는 함수
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        guard let _ = view.annotation as? StoreAnnotation else { return }
+        print(#function, "마커 deselect")
+        mapViewController.selectedStoreAnnotation = .init(storeId: "", title: "", subtitle: "", foodType: [], coordinate: .init())
+        mapViewController.isSelected = false
+    }
     
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
-//        print(#function, "\(views)")
+        //        print(#function, "\(views)")
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
@@ -69,6 +70,7 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate {
                 .uiImage?
                 .resizeImageTo(size: CGSize(width: 60, height: 60))
             
+            // UIimageFrameBorder로 중앙 정렬 가능할까요
             let markerText = UITextView(frame: CGRect(x: -5, y: 55, width: 100, height: 20))
             let fixedWidth = markerText.frame.size.width
             let adjustedSize = markerText.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
@@ -132,6 +134,7 @@ struct MapUIView: UIViewRepresentable {
         trackingButton.layer.cornerRadius = 7
         
         maps.addSubview(trackingButton)
+        
         // 맵이 보이는 범위를 한국으로 제한하기
         maps.cameraBoundary = MKMapView.CameraBoundary(mapRect: .korea)
         
