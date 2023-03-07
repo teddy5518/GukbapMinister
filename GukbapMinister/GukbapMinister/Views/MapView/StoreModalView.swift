@@ -23,9 +23,9 @@ struct StoreModalView: View {
                         NavigationLink {
                             DetailView(detailViewModel: DetailViewModel(store: store))
                         } label: {
-                            StoreImageThumbnail(store: store, width: 90, height: 90, cornerRadius: 6)
+                            StoreImageThumbnail(store: store, size: 90, cornerRadius: 6)
                         }
-//                        StoreModalImage(manager: StoreImageManager(store: store))
+
                     }
                     VStack(alignment: .leading){
                         Menu {
@@ -94,46 +94,3 @@ extension StoreModalView {
 }
 
 
-struct StoreModalImage: View {
-    @StateObject var manager = StoreImageManager(store: .test)
-
-    var body: some View {
-        NavigationLink(destination: DetailView(detailViewModel: DetailViewModel(store: manager.store))) {
-            if let url = manager.imageURLs.first
-            {
-                KFImage(url)
-                    .placeholder {
-                        Gukbaps(rawValue: manager.store.foodType.first ?? "순대국밥")?
-                                .placeholder
-                                .resizable()
-                                .scaledToFit()
-                                .modifier(StoreModalImageModifier())
-                    }
-                    .loadDiskFileSynchronously()
-                    .cacheMemoryOnly() //Sets whether the image should only be cached in memory but not in disk.
-                    .fade(duration: 0.5)
-                    .resizable()
-                    .scaledToFill()
-                    .modifier(StoreModalImageModifier())
-            } else {
-                Gukbaps(rawValue: manager.store.foodType.first ?? "순대국밥")?.placeholder
-                    .resizable()
-                    .scaledToFit()
-                    .modifier(StoreModalImageModifier())
-            }
-        }
-    }
-}
-
-struct StoreModalImageModifier: ViewModifier {
-
-    func body(content: Content) -> some View {
-        content
-            .frame(width: 90, height: 90)
-            .cornerRadius(6)
-            .overlay {
-                RoundedRectangle(cornerRadius: 6)
-                    .stroke(.black.opacity(0.2))
-            }
-    }
-}

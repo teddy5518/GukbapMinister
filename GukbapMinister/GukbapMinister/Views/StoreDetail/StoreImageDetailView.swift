@@ -9,9 +9,9 @@ import SwiftUI
 import Kingfisher
 
 struct StoreImageDetailView: View {
-    @StateObject var manager = StoreImageManager(store: .test)
-
     @Binding var isshowingStoreImageDetail : Bool
+    
+    var store: Store
     
 
     var body: some View {
@@ -22,13 +22,13 @@ struct StoreImageDetailView: View {
                 VStack{
                     TabView {
 
-                        ForEach(manager.imageURLs, id: \.self){ url in
+                        ForEach(store.storeImages, id: \.self){ urlString in
                             Button {
                                 isshowingStoreImageDetail = false
                             } label: {
-                                KFImage(url)
+                                KFImage.url(URL(string: urlString))
                                     .placeholder {
-                                        Gukbaps(rawValue: manager.store.foodType.first ?? "순대국밥")?.placeholder
+                                        Gukbaps(rawValue: store.foodType.first ?? "순대국밥")?.placeholder
                                             .resizable()
                                             .scaledToFill()
                                     }

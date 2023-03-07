@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CollectionLikedStores: View {
     @ObservedObject var collectionViewModel: CollectionViewModel
+    @EnvironmentObject var storesViewModel: StoresViewModel
     var stores: [Store] {
         collectionViewModel.stores
     }
@@ -25,6 +26,7 @@ struct CollectionLikedStores: View {
             
             ForEach(stores, id: \.self) { store in
                 CollectionStoreCell(viewModel: DetailViewModel(store: store))
+                    .environmentObject(storesViewModel)
                 Divider()
             }
         }
