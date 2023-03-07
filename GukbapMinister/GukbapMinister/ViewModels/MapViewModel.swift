@@ -33,13 +33,13 @@ class MapViewModel : ObservableObject {
     @Published var filteredGukbaps: [Gukbaps] = []
     
     
-    init(storeLocations: [Store]) {
+    init(storeLocations: [Store] = []) {
         self.storeLocations = storeLocations
     }
     
     
     func setStoreLocationAnnotations(_ storeLocations: [Store]) {
-        self.storeLocationAnnotations = storeLocations.map { store in
+        storeLocationAnnotations = storeLocations.map { store in
             StoreAnnotation(  storeId: store.id ?? "Not Found",
                               title: store.storeName,
                               subtitle: store.storeAddress,
