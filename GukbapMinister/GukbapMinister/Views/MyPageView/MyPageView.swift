@@ -19,6 +19,8 @@ struct MyPageView: View {
     
     @State private var isShowingNotice: Bool = false
     @State private var isShowingTerms: Bool = false
+    @State var isShowingAlert: Bool = false
+    
     var checkAllMyReviewCount : [Review] {
         reviewViewModel.reviews.filter{
             $0.userId == userViewModel.userInfo.id
@@ -29,9 +31,6 @@ struct MyPageView: View {
             // 로그아웃 상태가 아니면(로그인상태이면) mypageView 띄우기
             if userViewModel.isLoggedIn != false {
             VStack(alignment: .leading){
-
-
-                
                         HStack(alignment: .center){
                             
                             Circle()
@@ -141,9 +140,13 @@ struct MyPageView: View {
 
                         
                         NavigationLink {
-                            StoreRegistrationView()
-                            //  if 유저등급 == 국밥부차관등급 { StoreRegistrationView  열림}
-                            // else  {국밥부 차관에 지원하세요  alert (확인버튼만 우선 구현)}
+                            if userViewModel.userInfo.userGrade != "국밥부 차관" {
+                                Text("국밥부 차관만 등록 할 수 있습니다.\n 지금 국밥부 차관에 지원 하세요!")
+                                
+                            } else {
+                                StoreRegistrationView()
+                            }
+                          
                         } label: {
                             HStack {
                                 Image(systemName: "lock.open.fill")
