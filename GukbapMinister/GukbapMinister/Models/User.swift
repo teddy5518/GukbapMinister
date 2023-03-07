@@ -6,10 +6,10 @@
 //
 
 import Foundation
-
+import FirebaseFirestoreSwift
 
 struct User: Identifiable, Hashable, Codable {
-    var id: String = UUID().uuidString
+    @DocumentID var id: String?
     var userNickname: String = ""
     var userEmail: String =  ""
 //    var preferenceArea: String = ""

@@ -11,17 +11,6 @@ import UIKit
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-//func numberFormatter (countingStar: Double) -> NumberFormatter {
-// var numberFormatter = NumberFormatter()
-// numberFormatter.numberStyle = .decimal
-// numberFormatter.minimumSignificantDigits = 2
-// numberFormatter.maximumSignificantDigits = 2
-//
-//  _ = numberFormatter.string(from: countingStar as NSNumber)
-//
-//  return numberFormatter
-// }
-
 struct Store: Codable, Hashable, Identifiable {
     
     @DocumentID var id: String?

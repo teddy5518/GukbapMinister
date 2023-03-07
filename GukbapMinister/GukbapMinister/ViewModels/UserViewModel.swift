@@ -68,26 +68,9 @@ class UserViewModel: NSObject, ObservableObject {
         let docRef = database.collection("User").document(uid)
         docRef.getDocument { document, error in
             if let document = document, document.exists {
-                let dataDescription = document.data()
-                
-                
-                let email: String = dataDescription?["userEmail"] as? String ?? ""
-                let nickName: String = dataDescription?["userNickname"] as? String ?? ""
-                let userGrade : String = dataDescription?["userGrade"] as? String ?? ""
-                let favoriteStoreId: [String] = dataDescription?["favoriteStoreId"] as? [String] ?? []
-                let reviewCount: Int = dataDescription?["reviewCount"] as? Int ?? 0
-                let storeReportCount: Int = dataDescription?["storeReportCount"] as? Int ?? 0
-                
-                self.userInfo.id = uid
-                self.userInfo.userEmail = email
-                self.userInfo.userNickname = nickName
-                self.userInfo.favoriteStoreId = favoriteStoreId
-                self.userInfo.userGrade = userGrade
-                self.userInfo.reviewCount = reviewCount
-                self.userInfo.storeReportCount = storeReportCount
-                
-                print("\(self.userInfo)")
-                
+                if let data = try? document.data(as: User.self) {
+                    self.userInfo = data
+                }
             } else {
                 print("Document does not exist")
             }

@@ -63,6 +63,8 @@
 		5B54A35E29B1D6F800D90E94 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54A35D29B1D6F800D90E94 /* DetailViewModel.swift */; };
 		5B54A36029B1E73300D90E94 /* CollectionRandomStores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54A35F29B1E73300D90E94 /* CollectionRandomStores.swift */; };
 		5B6536C12999C8E000EA8FE5 /* Ddukbaegi.boiling.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5B6536C02999C8E000EA8FE5 /* Ddukbaegi.boiling.gif */; };
+		5B80750929B78E2500DCE59C /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B80750829B78E2500DCE59C /* MyPageViewModel.swift */; };
+		5B80750B29B7981100DCE59C /* UserInfoUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B80750A29B7981100DCE59C /* UserInfoUpdateManager.swift */; };
 		5B98402A298F90EE003F604B /* SearchBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B984029298F90EE003F604B /* SearchBarModifier.swift */; };
 		5BA2DB3D298CD57200A33EAB /* Gukbaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA2DB3C298CD57200A33EAB /* Gukbaps.swift */; };
 		5BA2DB3F298EA12D00A33EAB /* MapView+MapFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA2DB3E298EA12D00A33EAB /* MapView+MapFilter.swift */; };
@@ -170,6 +172,8 @@
 		5B54A35D29B1D6F800D90E94 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		5B54A35F29B1E73300D90E94 /* CollectionRandomStores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionRandomStores.swift; sourceTree = "<group>"; };
 		5B6536C02999C8E000EA8FE5 /* Ddukbaegi.boiling.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Ddukbaegi.boiling.gif; sourceTree = "<group>"; };
+		5B80750829B78E2500DCE59C /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
+		5B80750A29B7981100DCE59C /* UserInfoUpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoUpdateManager.swift; sourceTree = "<group>"; };
 		5B984029298F90EE003F604B /* SearchBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarModifier.swift; sourceTree = "<group>"; };
 		5BA2DB3C298CD57200A33EAB /* Gukbaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gukbaps.swift; sourceTree = "<group>"; };
 		5BA2DB3E298EA12D00A33EAB /* MapView+MapFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView+MapFilter.swift"; sourceTree = "<group>"; };
@@ -359,6 +363,15 @@
 			path = Explore;
 			sourceTree = "<group>";
 		};
+		5B80750C29B7981800DCE59C /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				5B80750829B78E2500DCE59C /* MyPageViewModel.swift */,
+				5B80750A29B7981100DCE59C /* UserInfoUpdateManager.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
 		5BA829D82992325400B56B13 /* Rating */ = {
 			isa = PBXGroup;
 			children = (
@@ -517,6 +530,7 @@
 				5B54A35429B1B09100D90E94 /* Collection */,
 				AD2A3013297A1BA100086F24 /* MapViewModel.swift */,
 				1406FCCA29AC9481006A67FE /* UserViewModel.swift */,
+				5B80750C29B7981800DCE59C /* MyPage */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -704,6 +718,7 @@
 			files = (
 				14B1A958298F883E003E58FB /* EditPreferenceAreaView.swift in Sources */,
 				5BDB9ABE297575B900BFD5D9 /* MapView.swift in Sources */,
+				5B80750929B78E2500DCE59C /* MyPageViewModel.swift in Sources */,
 				149CBCEF297A273400F298C7 /* SearchView.swift in Sources */,
 				049BF93D2976848D00D2D044 /* CreateReviewView.swift in Sources */,
 				5B138DE02988EB3A004F9187 /* StoreAnnotation.swift in Sources */,
@@ -792,6 +807,7 @@
 				0400A08E2990CC9400727132 /* ReportView.swift in Sources */,
 				5BDB9AD02975790400BFD5D9 /* MyPageView.swift in Sources */,
 				5B2E2E722994D2D800A7B94F /* GifImage.swift in Sources */,
+				5B80750B29B7981100DCE59C /* UserInfoUpdateManager.swift in Sources */,
 				5BA2DB3F298EA12D00A33EAB /* MapView+MapFilter.swift in Sources */,
 				63D25834299A1A6800370202 /* LocationBasedServicePolicyView.swift in Sources */,
 			);
