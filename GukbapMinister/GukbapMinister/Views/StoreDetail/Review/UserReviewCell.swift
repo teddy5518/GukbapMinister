@@ -31,7 +31,8 @@ struct UserReviewCell:  View {
             HStack(spacing: 0){
                 
                 Text("\(review.nickName)")
-                    .foregroundColor(.black)
+                    .foregroundColor(scheme == .light ? .black : .white)
+
                     .fontWeight(.semibold)
                     .padding(.vertical)
                 //                        .padding(.leading)
@@ -42,10 +43,10 @@ struct UserReviewCell:  View {
                         .fontWeight(.medium)
                         .foregroundColor(.secondary)
                 }
-                Text(" 리뷰 \(userViewModel.userInfo.reviewCount)")
-                    .foregroundColor(.secondary)
-                    .font(.caption2)
-                
+//                Text(" 리뷰 \(userViewModel.userInfo.reviewCount)")
+//                    .foregroundColor(.secondary)
+//                    .font(.caption2)
+//
                 if isInMypage {
                     Text("\(review.storeName)")
                         .font(.caption)
@@ -56,6 +57,7 @@ struct UserReviewCell:  View {
                 Spacer()
                 
                 if userViewModel.currentUser?.uid ?? "" == review.userId {
+            
                     Button {
                         isDeleteAlert.toggle()
                         
@@ -63,7 +65,7 @@ struct UserReviewCell:  View {
                         HStack{
                             Text("삭제")
                                 .font(.footnote)
-                                .fontWeight(.thin)
+                                .fontWeight(.regular)
                                 .padding(EdgeInsets(top: 2.5, leading: 6.5, bottom: 2.5, trailing: 6.5))
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 20)
@@ -167,7 +169,7 @@ struct UserReviewCell:  View {
             
             HStack{
                 Text("\(review.reviewText)")
-                    .foregroundColor(.black)
+                    .foregroundColor(scheme == .light ? .black : .white)
                     .font(.body)
                     .padding()
                 Spacer()
