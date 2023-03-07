@@ -8,20 +8,23 @@
 import SwiftUI
 
 struct SplashView: View {
-    
+    @Environment(\.colorScheme) var scheme
+
     @State private var isActive = false
 
-    let randomGukbaps = Gukbaps.allCases.shuffled().prefix(5)
 
 
     var body: some View {
+
         HStack{
             if isActive{
                 MainTabView()
             }else{
                 ZStack{
+                    let randomGukbaps = Gukbaps.allCases.shuffled().prefix(5)
 
-                    Color("AccentColor")
+                    let customColor = scheme == .light ? Color("AccentColor") : Color.black
+                    customColor
                         .edgesIgnoringSafeArea(.all)
                 
                     Group{
@@ -57,7 +60,7 @@ struct SplashView: View {
                             Text("찾아라")
                         }
                         .font(.system(size: UIScreen.main.bounds.maxY * 0.07))
-                        .foregroundColor(.white)
+                        .foregroundColor(scheme == .light ? .black : .white)
                         Spacer()
          
                             VStack{
@@ -65,7 +68,7 @@ struct SplashView: View {
                                 Text("Goodvibe")
                             }
                             .font(.title3)
-                            .foregroundColor(.white)
+                            .foregroundColor(scheme == .light ? .black : .white)
                         .opacity(0.5)
                         
                     }

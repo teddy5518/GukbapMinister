@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct SplashView3: View {
+    @Environment(\.colorScheme) var scheme
+
     @State private var isActive = false
     
-    let randomGukbaps = Gukbaps.allCases.shuffled().prefix(5)
     // MARK: 추가할 문장이나 수정해야 할 사항들 자유롭게 작성해주세요.
     let randomText = [
         "다양하고 나만 모르는 국밥집 찾을땐?",
@@ -21,13 +22,16 @@ struct SplashView3: View {
     ].shuffled()
     
     var body: some View {
+        let randomGukbaps = Gukbaps.allCases.shuffled().prefix(5)
+
         HStack{
             if isActive{
                 MainTabView()
             }else{
                 ZStack{
-                    Color("AccentColor")
-                        .ignoresSafeArea(.all)
+                    let customColor = scheme == .light ? Color("AccentColor") : Color.black
+                    customColor
+                        .edgesIgnoringSafeArea(.all)
                     Group{
                         
                         Image(randomGukbaps[0].imageName)
@@ -71,11 +75,15 @@ struct SplashView3: View {
                             
                             Text(randomText[0])
                                 .font(.title3)
+
                             Text("국밥부장관")
                                 .font(.system(size: UIScreen.main.bounds.maxY * 0.055))
+
                                 .fontWeight(.medium)
 
-                        }.foregroundColor(.white)
+                        }
+                        .foregroundColor(scheme == .light ? .black : .white)
+
 
                            
                             Spacer()
@@ -84,7 +92,7 @@ struct SplashView3: View {
                                     Text("Goodvibe")
                                 }
                                 .font(.title3)
-                                .foregroundColor(.white)
+                                .foregroundColor(scheme == .light ? .black : .white)
                             .opacity(0.5)
                         }
                     }
