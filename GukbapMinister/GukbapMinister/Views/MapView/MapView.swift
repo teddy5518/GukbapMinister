@@ -6,7 +6,7 @@ import CoreLocationUI
 struct MapView: View {
     @Environment(\.colorScheme) var scheme
     
-    @StateObject var mapViewModel = MapViewModel(storeLocations: [])
+    @StateObject var mapViewModel = MapViewModel()
     @StateObject var locationManager = LocationManager()
     
     @EnvironmentObject var userViewModel: UserViewModel
@@ -54,8 +54,6 @@ struct MapView: View {
                                 Spacer()
                                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                             }
-                            
-                           
                         } else {
                             Spacer()
                         }
@@ -76,7 +74,9 @@ struct MapView: View {
         .onAppear {
             Task {
                 DispatchQueue.main.asyncAfter(deadline:.now() + 0.5) {
-                    mapViewModel.storeLocations = storesViewModel.stores
+                    if mapViewModel.storeLocations.isEmpty {
+                        mapViewModel.storeLocations += storesViewModel.stores
+                    }
                 }
             }
         }
