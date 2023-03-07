@@ -35,6 +35,7 @@
 		14A1879D298A601E00B4FE7F /* UpdateUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A1879C298A601E00B4FE7F /* UpdateUserInfoView.swift */; };
 		14B1A958298F883E003E58FB /* EditPreferenceAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1A957298F883E003E58FB /* EditPreferenceAreaView.swift */; };
 		14D937A529B1D906008C0E1D /* Ex+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D937A429B1D906008C0E1D /* Ex+UIColor.swift */; };
+		14E698A429B70B49005FB613 /* AnimationLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E698A329B70B49005FB613 /* AnimationLoginView.swift */; };
 		5B0058422990B6E700564930 /* StoreReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0058412990B6E700564930 /* StoreReport.swift */; };
 		5B0058442990B78C00564930 /* StoreReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0058432990B78C00564930 /* StoreReportView.swift */; };
 		5B0058462990B7BB00564930 /* StoreReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0058452990B7BB00564930 /* StoreReportViewModel.swift */; };
@@ -98,6 +99,7 @@
 		6399503829A7301900A05F9F /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6399503729A7301900A05F9F /* DeleteAccountView.swift */; };
 		639E2B6729B5BDC100F984DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 639E2B6629B5BDC100F984DD /* GoogleService-Info.plist */; };
 		639E2B6A29B5C59300F984DD /* StoreRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E2B6929B5C59300F984DD /* StoreRegistration.swift */; };
+		63BA5CB929B6D3AC00AB4733 /* NoticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA5CB829B6D3AC00AB4733 /* NoticeViewModel.swift */; };
 		63D2582C299A060100370202 /* NoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D2582B299A060100370202 /* NoticeView.swift */; };
 		63D2582E299A0D9800370202 /* PolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D2582D299A0D9800370202 /* PolicyView.swift */; };
 		63D25830299A188600370202 /* ServiceTermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D2582F299A188600370202 /* ServiceTermsView.swift */; };
@@ -140,6 +142,7 @@
 		14A1879C298A601E00B4FE7F /* UpdateUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoView.swift; sourceTree = "<group>"; };
 		14B1A957298F883E003E58FB /* EditPreferenceAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPreferenceAreaView.swift; sourceTree = "<group>"; };
 		14D937A429B1D906008C0E1D /* Ex+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+UIColor.swift"; sourceTree = "<group>"; };
+		14E698A329B70B49005FB613 /* AnimationLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationLoginView.swift; sourceTree = "<group>"; };
 		5B0058412990B6E700564930 /* StoreReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReport.swift; sourceTree = "<group>"; };
 		5B0058432990B78C00564930 /* StoreReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReportView.swift; sourceTree = "<group>"; };
 		5B0058452990B7BB00564930 /* StoreReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReportViewModel.swift; sourceTree = "<group>"; };
@@ -203,6 +206,7 @@
 		6399503729A7301900A05F9F /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
 		639E2B6629B5BDC100F984DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		639E2B6929B5C59300F984DD /* StoreRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRegistration.swift; sourceTree = "<group>"; };
+		63BA5CB829B6D3AC00AB4733 /* NoticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewModel.swift; sourceTree = "<group>"; };
 		63D2582B299A060100370202 /* NoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeView.swift; sourceTree = "<group>"; };
 		63D2582D299A0D9800370202 /* PolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyView.swift; sourceTree = "<group>"; };
 		63D2582F299A188600370202 /* ServiceTermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTermsView.swift; sourceTree = "<group>"; };
@@ -490,6 +494,7 @@
 			children = (
 				1406FCC729AC93C0006A67FE /* goLoginView.swift */,
 				1406FCC629AC93BF006A67FE /* LoginView.swift */,
+				14E698A329B70B49005FB613 /* AnimationLoginView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -517,6 +522,7 @@
 				5B54A35429B1B09100D90E94 /* Collection */,
 				AD2A3013297A1BA100086F24 /* MapViewModel.swift */,
 				1406FCCA29AC9481006A67FE /* UserViewModel.swift */,
+				63BA5CB829B6D3AC00AB4733 /* NoticeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -754,6 +760,7 @@
 				6348D75D2994AE0900148552 /* OnboardingView1.swift in Sources */,
 				5B2C173229B58262003091A9 /* EX+UIImage.swift in Sources */,
 				03EE6A9E297791BF005616B3 /* StoreModalView.swift in Sources */,
+				63BA5CB929B6D3AC00AB4733 /* NoticeViewModel.swift in Sources */,
 				5B54A35A29B1BBDA00D90E94 /* CollectionStoreCell.swift in Sources */,
 				AD05311D2976902000594238 /* CategoryFilteringView.swift in Sources */,
 				5B01F2E52976CD1200ACB32F /* CommentUnit.swift in Sources */,
@@ -782,6 +789,7 @@
 				5BA2DB3D298CD57200A33EAB /* Gukbaps.swift in Sources */,
 				5B138DE22988EB66004F9187 /* MKMapRect+Regions.swift in Sources */,
 				5BDB9ADB29757A8300BFD5D9 /* Review.swift in Sources */,
+				14E698A429B70B49005FB613 /* AnimationLoginView.swift in Sources */,
 				63D2582C299A060100370202 /* NoticeView.swift in Sources */,
 				5B31DBBB297A23A100EA0036 /* StoreRegistrationViewModel.swift in Sources */,
 				6399503829A7301900A05F9F /* DeleteAccountView.swift in Sources */,
