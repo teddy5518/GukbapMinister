@@ -8,22 +8,28 @@
 import SwiftUI
 
 struct NoticeView: View {
+    @StateObject var noticeViewModel = NoticeViewModel()
+    
 
-    //관리자앱과 연동 필요
+    @State private var contentsExpanded: Bool = false
+
     
     var body: some View {
         NavigationStack {
-            VStack {
-               
-                   Spacer()
-                    Text("국밥부 장관을 다운받아 주셔서 감사합니다.")
-                       
-                Spacer()
-
-              
+            List (noticeViewModel.notices) { notice in
+                DisclosureGroup(notice.title) {
+                    Text(notice.contents)
+                }
             }
+            
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("공지")
+        }
+        .onAppear {
+            noticeViewModel.subscribeNotices()
+        }
+        .onDisappear {
+            noticeViewModel.unsubscribeNotices()
         }
     }
 }
