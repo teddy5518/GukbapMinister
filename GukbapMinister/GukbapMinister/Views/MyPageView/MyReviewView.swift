@@ -28,8 +28,6 @@ struct MyReviewView: View {
                         if !self.MyReview.isEmpty {
                             ForEach(Array(MyReview.enumerated()), id: \.offset) { index, review in
                                 NavigationLink {
-                                    //내가쓴 리뷰의 상호와 디테일뷰 스토어네임 비교해서 같은조건인것으로 걸러서 보여주기
-                                    //storeName 비교 하여 디테일뷰 가져오기
                                     ForEach(storesViewModel.stores, id: \.self) { store in
                                         if(review.storeName == store.storeName) {
                                             DetailView(detailViewModel: DetailViewModel(store: store))

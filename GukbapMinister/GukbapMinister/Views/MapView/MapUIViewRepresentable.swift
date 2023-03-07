@@ -91,6 +91,8 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate {
             //            AutoresizinMask는 superview가 변함에 따라 subview의 크기를 어떻게 할지 설정
             //            markerText.translatesAutoresizingMaskIntoConstraints = true
             
+//            annotationView?.layer.borderWidth = 1.0
+//            annotationView?.layer.borderColor = UIColor.lightGray.cgColor
             annotationView?.image = markerImage
             annotationView?.addSubview(markerText)
         }
