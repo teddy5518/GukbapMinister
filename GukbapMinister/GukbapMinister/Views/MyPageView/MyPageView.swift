@@ -140,7 +140,6 @@ struct MyPageView: View {
                         .listRowSeparator(.hidden)
 
                         
-                        // 서포터즈에게만 열리고(국밥부차관), 나머지 사람들한테는 클릭했을 때 서포터즈에 지원하세요라는 홍보 문구, 위도 경도 임시 부분을 geocoding (주소만입력하면 자동으로 위도경도 기입), Store컬렉션으로 바로 들어가는데 Store_Temp 만들어서 관리자앱에서 관리할 수 있게.
                         NavigationLink {
                             StoreRegistrationView()
                             //  if 유저등급 == 국밥부차관등급 { StoreRegistrationView  열림}
