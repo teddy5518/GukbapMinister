@@ -10,11 +10,18 @@ import SwiftUI
 struct NoticeView: View {
     @StateObject var noticeViewModel = NoticeViewModel()
     
+
+    @State private var contentsExpanded: Bool = false
+
+    
     var body: some View {
         NavigationStack {
             List (noticeViewModel.notices) { notice in
-                Text(notice.title)
+                DisclosureGroup(notice.title) {
+                    Text(notice.contents)
+                }
             }
+            
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("공지")
         }
