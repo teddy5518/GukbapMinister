@@ -71,6 +71,7 @@ struct ListCell : View {
                         VStack(alignment: .leading, spacing: 1) {
                             HStack{
                                 Text(store.storeName)
+                                    .foregroundColor(scheme == .light ? .black : .white)
                                     .font(.body)
                                     .bold()
                                     .padding(4)
@@ -80,6 +81,7 @@ struct ListCell : View {
                             
                             HStack(alignment: .center){
                                 Text("깍두기 점수")
+                                    .foregroundColor(scheme == .light ? .black : .white)
                                     .bold()
                                     .font(.caption2)
                                 
