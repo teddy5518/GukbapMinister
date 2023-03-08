@@ -31,19 +31,34 @@ struct UpdateUserInfoView: View {
                         }
                         .listRowSeparator(.hidden)
 
+                    //TODO: - 업데이트 이후 지원
                         NavigationLink {
                             EditGukbapView()
                         } label: {
-                            Text("선호하는 국밥 수정하기")
+                            HStack {
+                                Text("선호하는 국밥 수정하기")
+                                Text("추후 업데이트 후 지원예정")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                                
                         }
                         .listRowSeparator(.hidden)
-
+                        .disabled(true)
+                    
+                    //TODO: - 업데이트 이후 지원
                         NavigationLink {
                             EditPreferenceAreaView()
                         } label: {
-                            Text("선호하는 지역 수정하기")
+                            HStack {
+                                Text("선호하는 지역 수정하기")
+                                Text("추후 업데이트 후 지원예정")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
                         }
                         .listRowSeparator(.hidden)
+                        .disabled(true)
 
                         NavigationLink {
                             DeleteAccountView()
