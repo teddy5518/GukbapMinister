@@ -11,7 +11,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 struct Notice: Codable, Hashable, Identifiable {
-    var id: String
+    @DocumentID var id: String?
     var title: String
     var contents: String
 }

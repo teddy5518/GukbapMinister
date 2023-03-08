@@ -35,13 +35,15 @@ struct MyPageView: View {
             $0.userId == userViewModel.userInfo.id
         }
     }
+    
     var body: some View {
         NavigationStack {
             // 로그아웃 상태가 아니면(로그인상태이면) mypageView 띄우기
             if userViewModel.isLoggedIn {
             VStack(alignment: .leading){
+
                     header
-                
+
                     List {
                         NavigationLink {
                             NoticeView()
@@ -72,8 +74,16 @@ struct MyPageView: View {
                         }
                         .listRowSeparator(.hidden)
 
+
+                        
                         NavigationLink {
-                            StoreRegistrationView()
+                            if userViewModel.userInfo.userGrade != "국밥부 차관" {
+                                Text("국밥부 차관만 등록 할 수 있습니다.\n 지금 국밥부 차관에 지원 하세요!")
+                                
+                            } else {
+                                StoreRegistrationView()
+                            }
+                    
                         } label: {
                             Label("새로운 국밥집 등록하기", systemImage: "lock.open.fill")
                         }

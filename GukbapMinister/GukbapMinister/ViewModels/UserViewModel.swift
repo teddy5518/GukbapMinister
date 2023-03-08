@@ -58,7 +58,6 @@ class UserViewModel: NSObject, ObservableObject {
         if self.isLoggedIn && currentUser != nil {
             self.fetchUserInfo(uid: self.currentUser?.uid ?? "")
         }
-
     }
     
     
@@ -343,7 +342,7 @@ extension UserViewModel: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         
         print("여기 호출됩니다!")
-        
+        //애플
       if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
         guard let nonce = currentNonce else {
           fatalError("Invalid state: A login callback was received, but no login request was sent.")

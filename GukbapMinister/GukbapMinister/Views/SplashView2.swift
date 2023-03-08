@@ -8,18 +8,22 @@
 import SwiftUI
 
 struct SplashView2: View {
+    @Environment(\.colorScheme) var scheme
+
     @State private var isActive = false
 
-    let randomGukbaps = Gukbaps.allCases.shuffled().prefix(5)
 
     var body: some View {
+        let randomGukbaps = Gukbaps.allCases.shuffled().prefix(5)
+
         HStack{
             if isActive{
                 MainTabView()
             }else{
                 ZStack {
-                    Color("AccentColor")
-                        .ignoresSafeArea(.all)
+                    let customColor = scheme == .light ? Color("AccentColor") : Color.black
+                    customColor
+                        .edgesIgnoringSafeArea(.all)
                     VStack{
                         Spacer()
                       Image("AppIconNoText")
@@ -29,6 +33,7 @@ struct SplashView2: View {
                         Spacer()
                         VStack{
                             Text("국밥부장관").opacity(0.5)
+
                             HStack{
                                 ForEach(randomGukbaps, id:\.self) { foodimage in
                                     Image(foodimage.imageName)
@@ -40,12 +45,11 @@ struct SplashView2: View {
                          
                         }
                         .font(.title3)
-                        .foregroundColor(.white)
+                        .foregroundColor(scheme == .light ? .black : .white)
 
                     
                     }//VStack
                     .onAppear{
-                        print("\(randomGukbaps)")
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
                             self.isActive = true
                         }
