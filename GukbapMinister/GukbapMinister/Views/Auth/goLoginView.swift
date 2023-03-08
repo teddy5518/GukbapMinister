@@ -27,7 +27,7 @@ struct goLoginView: View {
                 Text("로그인 하러 가기")
                     .fontWeight(.semibold)
                     .foregroundColor(scheme == .light ? .white : .black)
-                    .frame(width: 150, height: 0)
+                    .frame(width: 150, height: 40)
                     .background(Color("MainColorLight"))
                     .cornerRadius(12)
             }

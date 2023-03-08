@@ -125,6 +125,7 @@ struct UserReviewCell:  View {
             let columns = Array(repeating: GridItem(.flexible(),spacing: -8), count: 2)
             LazyVGrid(columns: columns, alignment: .leading, spacing: 4, content: {
                 
+                
                 //                ForEach(Array(review.images!.enumerated()), id: \.offset) { index, imageData in
                 //                    Button(action:{
                 //                        isshowingReviewDetailView.toggle()
@@ -151,7 +152,11 @@ struct UserReviewCell:  View {
                         KFImage(reviewViewModel.reviewImageURLs[imageURL])
                             .placeholder{
                                 ProgressView()
+                                    .frame(width: getWidth(index: index), height: getHeight(index: index))
                             }
+                            .setProcessor(DownsamplingImageProcessor(size: CGSize(width: getWidth(index: index) * 2.0 , height: getHeight(index: index) * 2.0)))
+                            .cacheMemoryOnly()
+                            .fade(duration: 0.25)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: getWidth(index: index), height: getHeight(index: index))
