@@ -952,7 +952,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GukbapMinister/Preview Content\"";
 
+
 				DEVELOPMENT_TEAM = SUDPP9C593;
+
 
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -972,7 +974,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.GoodVibe.GukbapMinister-Service";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.GoodVibe.GukbapMinister-Service1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -993,6 +995,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GukbapMinister/Preview Content\"";
 
+
 				DEVELOPMENT_TEAM = SUDPP9C593;
 
 				ENABLE_PREVIEWS = YES;
@@ -1013,7 +1016,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.GoodVibe.GukbapMinister-Service";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.GoodVibe.GukbapMinister-Service1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
