@@ -9,13 +9,14 @@ import SwiftUI
 import AuthenticationServices
 
 struct LoginView: View {
+    @Environment(\.colorScheme) var scheme
     @Environment(\.window) var window: UIWindow?
     @EnvironmentObject var userViewModel: UserViewModel
     
     
     var body: some View {
         ZStack {
-            Color("AccentColor")
+            Color("MainColorLight")
                 .edgesIgnoringSafeArea(.all)
             
             AnimationLoginView()
