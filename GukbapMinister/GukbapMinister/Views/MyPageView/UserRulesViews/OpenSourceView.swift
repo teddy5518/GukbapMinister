@@ -12,8 +12,9 @@ struct OpenSourceView: View {
         ScrollView {
             VStack  {
                 LazyVStack {
-                    Text("오픈소스")
-                    
+                    Link(destination: URL(string: "https://goodvibeminister.notion.site/6ae08866cd284f8a8a467ffb585cdc1a")!) {
+                        Text("오픈소스")
+                    }
                 }
                 .font(.caption)
                 .navigationBarTitleDisplayMode(.inline)

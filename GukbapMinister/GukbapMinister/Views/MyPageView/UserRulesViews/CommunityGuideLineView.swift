@@ -132,7 +132,7 @@ struct CommunityGuideLineView: View {
                     
            
                  
-               Text("tjr2922@gmail.com")
+               Text("goodvibeminister@gmail.com")
                     
                 }
                 .font(.caption)
