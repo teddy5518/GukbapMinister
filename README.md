@@ -115,14 +115,14 @@
 |:-:|:-:|:-:|
 
 ```
-🗺️ “국밥부장관” 지도를 이용해서 국밥집을 검색할  수 있습니다!
+🗺️ “국밥부장관” 지도를 이용해서 국밥집을 검색할 수 있습니다!
 ```
 
 |<img src="https://user-images.githubusercontent.com/126060711/223663366-085787b4-37e4-4947-a15a-a48cca73085a.png"></img>|<img src="https://user-images.githubusercontent.com/126060711/223664240-0bb7afb2-82a6-4c33-8471-802d629f805c.png"></img>|<img src="https://user-images.githubusercontent.com/126060711/223664128-c9525904-02a8-4bdc-931b-12ecab7f824a.png"></img>|<img src="https://user-images.githubusercontent.com/126060711/223664143-7763f739-974f-40d8-946a-145dd5506a06.png"></img>|
 |:-:|:-:|:-:|:-:|
 
 ```
-🔎 필터와 검색 기능을 통해 취향에 맞게 국밥집을 검색할 수  있습니다!
+🔎 필터와 검색 기능을 통해 취향에 맞게 국밥집을 검색할 수 있습니다!
 ```
 
 |<img src="https://user-images.githubusercontent.com/126060711/223664386-5e0109d1-70ed-4668-a5c3-815a3b423982.png"></img>|<img src="https://user-images.githubusercontent.com/126060711/223664403-5bac5835-187f-48ce-b39f-4c7251db1f4c.png"></img>|
@@ -135,7 +135,7 @@
 |<img src="https://user-images.githubusercontent.com/126060711/223664472-91d059fb-bbd3-4d72-933e-79cf9a3effc1.png"></img>|<img src="https://user-images.githubusercontent.com/126060711/223664500-6b529517-0db5-483e-a87b-229985992264.png"></img>|
 |:-:|:-:|
 ```
-💻 리뷰기능을 통해 방문했던 국밥집에 대해 의견을 나눌 수  있습니다!
+💻 리뷰기능을 통해 방문했던 국밥집에 대해 의견을 나눌 수 있습니다!
 ```
 
 |<img src="https://user-images.githubusercontent.com/126060711/223664556-97421fd7-a04c-4791-adbd-a243d7b570ce.png"></img>|<img src="https://user-images.githubusercontent.com/126060711/223664568-b7b86f11-2180-4ac9-8b8d-e27a8f4d7a4e.png"></img>|
