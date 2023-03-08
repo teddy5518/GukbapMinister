@@ -19,18 +19,15 @@ struct GgakdugiRatingShort: View {
         self.showText = showText
     }
     
-    
-    
     var body: some View {
         Label {
             HStack{
                 if showText {
                     Text("깍두기 점수")
-                        .foregroundColor(scheme == .light ? .black : .white)
+                    .foregroundColor(scheme == .dark ? .white : .accentColor)
                 }
                 Text("\(String(format: "%.1f", rate))")
-                    .foregroundColor(scheme == .light ? .black : .white)
-                
+                .foregroundColor(scheme == .dark ? .white : .accentColor)
             }
             .font(.footnote)
             .bold()

@@ -44,7 +44,7 @@ struct MapView: View {
                     
                     VStack {
                         Spacer()
-
+                        
                         StoreModalView(store: mapViewModel.selectedStore)
                             .padding(25)
                             .offset(y: isShowingSelectedStore ? 0 : 400)

@@ -27,8 +27,8 @@ import KakaoSDKUser
 // 애플로그인
 
 // MARK: - 로그인상태 열거형
-enum LoginState {
-    case googleLogin
+enum LoginState: String {
+    case googleLogin = "googleLogin"
     case kakaoLogin
     case appleLogin
     case logout
@@ -57,6 +57,7 @@ class UserViewModel: NSObject, ObservableObject {
         super.init()
         if self.isLoggedIn && currentUser != nil {
             self.fetchUserInfo(uid: self.currentUser?.uid ?? "")
+            self.loginState = LoginState(rawValue: loginPlatform) ?? .logout
         }
     }
     
@@ -215,7 +216,7 @@ class UserViewModel: NSObject, ObservableObject {
         case "googleLogin": // 구글로그인일때
             do {
                 UserDefaults.standard.set(false, forKey: "isLoggedIn")
-                UserDefaults.standard.set("noLoginPlatform", forKey: "loginPlatform")
+                UserDefaults.standard.set("logout", forKey: "loginPlatform")
                 try Auth.auth().signOut()
                 self.loginState = .logout // 로그아웃 상태로 전환
                 print("\(#function) - 구글 로그아웃 성공")

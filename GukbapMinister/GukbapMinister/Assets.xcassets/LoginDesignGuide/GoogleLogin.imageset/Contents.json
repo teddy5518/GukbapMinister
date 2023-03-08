@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "logo_googleg_color_3x_ios_29dp-transparent.png",
+      "filename" : "GoogleLogin@1x 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "logo_googleg_color_3x_ios_29dp-transparent 1.png",
+      "filename" : "GoogleLogin@2x 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "logo_googleg_color_3x_ios_29dp-transparent 2.png",
+      "filename" : "GoogleLogin@3x 1.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

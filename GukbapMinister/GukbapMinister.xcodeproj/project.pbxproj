@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0378CFD229B8183B00A60426 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0378CFD129B8183B00A60426 /* GoogleService-Info.plist */; };
+		0378CFD629B8185A00A60426 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0378CFD529B8185A00A60426 /* Config.xcconfig */; };
 		0392B3722987807B00C510E5 /* MapUIViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0392B3712987807B00C510E5 /* MapUIViewRepresentable.swift */; };
 		0392B374298782E800C510E5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0392B373298782E800C510E5 /* LocationManager.swift */; };
 		03EE6A9E297791BF005616B3 /* StoreModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EE6A9D297791BF005616B3 /* StoreModalView.swift */; };
@@ -99,7 +101,6 @@
 		6348D7632994BF0F00148552 /* OnboardingView3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6348D7622994BF0F00148552 /* OnboardingView3.swift */; };
 		6352AE4729B1D82000813233 /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352AE4629B1D82000813233 /* Notice.swift */; };
 		6399503829A7301900A05F9F /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6399503729A7301900A05F9F /* DeleteAccountView.swift */; };
-		639E2B6729B5BDC100F984DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 639E2B6629B5BDC100F984DD /* GoogleService-Info.plist */; };
 		639E2B6A29B5C59300F984DD /* StoreRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639E2B6929B5C59300F984DD /* StoreRegistration.swift */; };
 		63BA5CB929B6D3AC00AB4733 /* NoticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA5CB829B6D3AC00AB4733 /* NoticeViewModel.swift */; };
 		63D2582C299A060100370202 /* NoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D2582B299A060100370202 /* NoticeView.swift */; };
@@ -120,6 +121,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0378CFD129B8183B00A60426 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0378CFD529B8185A00A60426 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		0392B3712987807B00C510E5 /* MapUIViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUIViewRepresentable.swift; sourceTree = "<group>"; };
 		0392B373298782E800C510E5 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		03EE6A9D297791BF005616B3 /* StoreModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModalView.swift; sourceTree = "<group>"; };
@@ -154,7 +157,6 @@
 		5B0E6FDC299BE04C00F4C0F6 /* UserReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReviewCell.swift; sourceTree = "<group>"; };
 		5B138DDF2988EB3A004F9187 /* StoreAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreAnnotation.swift; sourceTree = "<group>"; };
 		5B138DE12988EB66004F9187 /* MKMapRect+Regions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapRect+Regions.swift"; sourceTree = "<group>"; };
-		5B18D99529B02E1F0079628D /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		5B18D99729B03CBD0079628D /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
 		5B18D99929B0478F0079628D /* ExploreBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreBanner.swift; sourceTree = "<group>"; };
 		5B18D99B29B06CA90079628D /* ExploreOrderedHScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreOrderedHScroll.swift; sourceTree = "<group>"; };
@@ -208,7 +210,6 @@
 		6348D7622994BF0F00148552 /* OnboardingView3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView3.swift; sourceTree = "<group>"; };
 		6352AE4629B1D82000813233 /* Notice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notice.swift; sourceTree = "<group>"; };
 		6399503729A7301900A05F9F /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
-		639E2B6629B5BDC100F984DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		639E2B6929B5C59300F984DD /* StoreRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRegistration.swift; sourceTree = "<group>"; };
 		63BA5CB829B6D3AC00AB4733 /* NoticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewModel.swift; sourceTree = "<group>"; };
 		63D2582B299A060100370202 /* NoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeView.swift; sourceTree = "<group>"; };
@@ -436,7 +437,7 @@
 		5BDB9AA32975751C00BFD5D9 = {
 			isa = PBXGroup;
 			children = (
-				639E2B6629B5BDC100F984DD /* GoogleService-Info.plist */,
+				0378CFD129B8183B00A60426 /* GoogleService-Info.plist */,
 				5BDB9AAE2975751C00BFD5D9 /* GukbapMinister */,
 				5BDB9AAD2975751C00BFD5D9 /* Products */,
 				030B4B53299A191500866586 /* Frameworks */,
@@ -455,7 +456,7 @@
 			isa = PBXGroup;
 			children = (
 				5B2C173529B5A103003091A9 /* GukbapMinister.entitlements */,
-				5B18D99529B02E1F0079628D /* Config.xcconfig */,
+				0378CFD529B8185A00A60426 /* Config.xcconfig */,
 				5B2E2E732994D5A700A7B94F /* Ddukbaegi.boiling.Intro.gif */,
 				5B6536C02999C8E000EA8FE5 /* Ddukbaegi.boiling.gif */,
 				5BDB9AE4297581C800BFD5D9 /* Info.plist */,
@@ -709,8 +710,9 @@
 			files = (
 				5B6536C12999C8E000EA8FE5 /* Ddukbaegi.boiling.gif in Resources */,
 				5BDB9AB72975751F00BFD5D9 /* Preview Assets.xcassets in Resources */,
-				639E2B6729B5BDC100F984DD /* GoogleService-Info.plist in Resources */,
+				0378CFD229B8183B00A60426 /* GoogleService-Info.plist in Resources */,
 				5BDB9AB42975751F00BFD5D9 /* Assets.xcassets in Resources */,
+				0378CFD629B8185A00A60426 /* Config.xcconfig in Resources */,
 				5B2E2E742994D5A700A7B94F /* Ddukbaegi.boiling.Intro.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -826,7 +828,7 @@
 /* Begin XCBuildConfiguration section */
 		5BDB9AB82975751F00BFD5D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B18D99529B02E1F0079628D /* Config.xcconfig */;
+			baseConfigurationReference = 0378CFD529B8185A00A60426 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -887,7 +889,6 @@
 		};
 		5BDB9AB92975751F00BFD5D9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B18D99529B02E1F0079628D /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -942,7 +943,7 @@
 		};
 		5BDB9ABB2975751F00BFD5D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B18D99529B02E1F0079628D /* Config.xcconfig */;
+			baseConfigurationReference = 0378CFD529B8185A00A60426 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -950,7 +951,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GukbapMinister/Preview Content\"";
-				DEVELOPMENT_TEAM = 4YH8347DW8;
+
+
+				DEVELOPMENT_TEAM = SUDPP9C593;
+
+
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GukbapMinister/Info.plist;
@@ -982,7 +987,6 @@
 		};
 		5BDB9ABC2975751F00BFD5D9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B18D99529B02E1F0079628D /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -990,7 +994,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GukbapMinister/Preview Content\"";
-				DEVELOPMENT_TEAM = 4YH8347DW8;
+
+
+				DEVELOPMENT_TEAM = SUDPP9C593;
+
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GukbapMinister/Info.plist;
