@@ -55,7 +55,14 @@ struct PolicyView: View {
                         NavigationLink {
                             OpenSourceView()
                         } label: {
-                            Text("오픈소스")
+                            Text("오픈소스 라이선스")
+                        }
+                        .listRowSeparator(.hidden)
+                        
+                        NavigationLink {
+                            AppMakersInfoView()
+                        } label: {
+                            Text("국밥부장관을 만든사람들")
                         }
                         .listRowSeparator(.hidden)
 
