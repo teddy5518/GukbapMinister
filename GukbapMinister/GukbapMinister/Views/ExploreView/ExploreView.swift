@@ -29,6 +29,7 @@ struct ExploreView: View {
                     ScrollView{
                         VStack(spacing: 0){
                             ExploreBanner()
+                                .environmentObject(storesViewModel)
                             ExploreCategoryIconsView()
                                 .environmentObject(storesViewModel)
                                 .frame(width: UIScreen.main.bounds.width)
