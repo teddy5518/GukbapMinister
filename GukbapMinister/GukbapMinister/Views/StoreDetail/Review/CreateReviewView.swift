@@ -248,7 +248,7 @@ struct CreateReviewView: View {
                                             let createdAt = Date().timeIntervalSince1970
                                             
                                             let review: Review = Review(id: UUID().uuidString,
-                                                                        userId: userViewModel.userInfo.id,
+                                                                        userId: userViewModel.userInfo.id ?? "",
                                                                         reviewText: reviewText,
                                                                         createdAt: createdAt,
                                                                         nickName: userViewModel.userInfo.userNickname,

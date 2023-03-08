@@ -21,7 +21,7 @@ struct DeleteAccountView: View {
     //                Image(systemName: "xmark.circle")
                     Text("회원탈퇴")
                         .foregroundColor(.red)
-                        .font(.caption)
+//                        .font(.caption)
                 }
                 .alert("회원탈퇴", isPresented: $isShowingAlert) {
                     Button("확인", role: .cancel) {
