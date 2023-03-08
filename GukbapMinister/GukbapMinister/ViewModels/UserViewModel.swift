@@ -106,9 +106,9 @@ class UserViewModel: NSObject, ObservableObject {
         // 구글 로그인 로직 실행
         GIDSignIn.sharedInstance.signIn(
             withPresenting: rootViewController) { signInResult, error in
-                guard let result = signInResult else { return }
+                guard let signInResult = signInResult else { return }
                 
-                let user = result.user // 로그인 한 유저
+                let user = signInResult.user // 로그인 한 유저
                 let idToken = user.idToken?.tokenString // 유저 idToken
                 let accessToken = user.accessToken.tokenString // 유저 accessToken
                 
@@ -119,8 +119,9 @@ class UserViewModel: NSObject, ObservableObject {
                 Auth.auth().signIn(with: credential) { result, error in
                     // 사용자 uid
                     guard let uid = Auth.auth().currentUser?.uid else { return }
+                    guard let user = result?.user else { return }
                     // 로그인 성공시 유저정보 FireStore에 저장
-                    self.insertUserInFireStore(uid: uid, userEmail: user.profile?.email ?? "", userName: user.profile?.name ?? "")
+                    self.insertUserInFireStore(uid: uid, userEmail: user.providerData.first?.email ?? "", userName: user.providerData.first?.displayName ?? "")
                     self.fetchUserInfo(uid: uid)
                     //                    print("로그인 후 : currentUser - \(self.currentUser)")
                 }

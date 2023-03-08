@@ -8,24 +8,47 @@
 import SwiftUI
 
 struct ExploreBanner: View {
-    let bannerIndex : [String] = ["Banner1_N", "Banner2_C" , "Banner3_D" ]
-    let bannerImg : [String : String] = ["Banner1_N" : "농민백암순대", "Banner2_C" : "청진옥", "Banner3_D" : "도야지 면옥"]
-
+    @EnvironmentObject var storesViewModel: StoresViewModel
     
     // 배너 자동 넘기기 기능
     private let numberOfImages = 3
     private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    var stores: [Store] {
+        storesViewModel.stores
+    }
+    
     @State private var currentIndex = 0
     
+    func getDestination(index: Int) -> Store? {
+        var destinationStore: Store?
+        
+        switch index {
+        case 1: destinationStore = stores.first {$0.storeName == "청진옥"}
+        case 2: destinationStore = stores.first {$0.storeName == "농민백암순대"}
+        case 3: destinationStore = stores.first {$0.storeName == "도야지면옥"}
+        default: destinationStore = .test
+        }
+        
+        return destinationStore
+    }
+    
+    
     var body: some View {
+        
+        
         TabView(selection: $currentIndex) {
-            ForEach(Array(bannerIndex.enumerated()), id: \.offset) { index, img in
-                ZStack (alignment: .topLeading) {
-                    Image("\(img)")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 0.75)
+            ForEach(1...3, id: \.self) { index in
+                NavigationLink {
+                    DetailView(detailViewModel: DetailViewModel(store: getDestination(index: index) ?? .test))
+                } label: {
+                    ZStack (alignment: .topLeading) {
+                        Image("Banner\(index)")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 0.75)
+                    }
                 }
+                
             }
         }
         .frame(height: UIScreen.main.bounds.width * 0.75)
