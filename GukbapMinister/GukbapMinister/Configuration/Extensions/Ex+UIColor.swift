@@ -37,4 +37,18 @@ extension UIColor {
             return .black
         }
     }
+    static var trackingButtonBackGroundColor: UIColor {
+        if #available(iOS 13, *) {
+            return UIColor { (traitCollection: UITraitCollection) -> UIColor in
+                // UITraitCollection 의 userInterfaceStyle : 라이트인지 다크인지 알려준다.
+                if traitCollection.userInterfaceStyle == .light {
+                    return .white
+                } else {
+                    return .black
+                }
+            }
+        } else {
+            return .black
+        }
+    }
 }

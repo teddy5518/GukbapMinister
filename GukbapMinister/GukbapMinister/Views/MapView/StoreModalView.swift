@@ -9,6 +9,8 @@ import SwiftUI
 import Kingfisher
 
 struct StoreModalView: View {
+    // 다크 모드 지원
+    @Environment(\.colorScheme) var scheme
     var store: Store?
     
     var body: some View {
@@ -25,7 +27,6 @@ struct StoreModalView: View {
                         } label: {
                             StoreImageThumbnail(store: store, size: 90, cornerRadius: 6)
                         }
-
                     }
                     VStack(alignment: .leading){
                         Menu {
@@ -39,6 +40,8 @@ struct StoreModalView: View {
                         } label: {
                             HStack {
                                 Text(store?.storeAddress ?? "")
+                                    // 다크 모드 지원
+                                    .foregroundColor(scheme == .dark ? .white : .accentColor)
                                     .padding(.leading, 5)
                                     .lineLimit(1)
                                     .fixedSize(horizontal: false, vertical: true)
@@ -62,7 +65,7 @@ struct StoreModalView: View {
         }
         .padding(.horizontal, 15)
         .frame(width: Screen.searchBarWidth, height: 160)
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
+        .background(RoundedRectangle(cornerRadius: 10).fill(scheme == .dark ? .black : Color.white))
         .overlay {
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color.mainColor.opacity(0.5))
@@ -79,6 +82,7 @@ extension StoreModalView {
         HStack {
             NavigationLink(destination: DetailView(detailViewModel: DetailViewModel(store: store ?? .test))) {
                 Text(store?.storeName ?? "")
+                    .foregroundColor(scheme == .dark ? .white : .accentColor)                
                     .font(.title3)
                     .bold()
             }

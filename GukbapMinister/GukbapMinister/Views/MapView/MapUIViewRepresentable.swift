@@ -70,7 +70,6 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate {
                 .uiImage?
                 .resizeImageTo(size: CGSize(width: 60, height: 60))
             
-            // UIimageFrameBorder로 중앙 정렬 가능할까요
             let markerText = UITextView(frame: CGRect(x: -5, y: 55, width: 100, height: 20))
             let fixedWidth = markerText.frame.size.width
             let adjustedSize = markerText.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
@@ -87,12 +86,9 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate {
             // markerText가 임의로 수정되는 것을 방지
             markerText.isEditable = false
             markerText.sizeToFit()
-            //            수정 중으로 인한 주석 처리
-            //            AutoresizinMask는 superview가 변함에 따라 subview의 크기를 어떻게 할지 설정
-            //            markerText.translatesAutoresizingMaskIntoConstraints = true
+            // AutoresizinMask는 superview가 변함에 따라 subview의 크기를 어떻게 할지 설정
+            markerText.translatesAutoresizingMaskIntoConstraints = true
             
-//            annotationView?.layer.borderWidth = 1.0
-//            annotationView?.layer.borderColor = UIColor.lightGray.cgColor
             annotationView?.image = markerImage
             annotationView?.addSubview(markerText)
         }
@@ -113,7 +109,7 @@ struct MapUIView: UIViewRepresentable {
     // Description - Replace the body with a make UIView(context:) method that creates and return an empty MKMapView
     func makeUIView(context: Context) -> MKMapView {
         let maps = MKMapView(frame: UIScreen.main.bounds)
-
+        
         // 맵이 처음 보이는 지역을 서울로 설정
         maps.visibleMapRect = .seoul
         
@@ -125,12 +121,12 @@ struct MapUIView: UIViewRepresentable {
         
         let compassButton = MKCompassButton(mapView: maps)
         compassButton.frame.size = CGSize(width: 48, height: 48)
-        compassButton.frame.origin = CGPoint(x: maps.frame.width - compassButton.frame.width - 14, y: maps.frame.height * 0.24 )
+        compassButton.frame.origin = CGPoint(x: maps.frame.width - compassButton.frame.width - 16.5, y: maps.frame.height * 0.24)
         compassButton.compassVisibility = .adaptive
         maps.addSubview(compassButton)
         
         let trackingButton = MKUserTrackingButton(mapView: maps)
-        trackingButton.layer.backgroundColor = UIColor(white: 5, alpha: 0.8).cgColor
+        trackingButton.backgroundColor = .trackingButtonBackGroundColor
         trackingButton.frame.size = CGSize(width: 42, height: 42)
         trackingButton.frame.origin = CGPoint(x: maps.frame.width - trackingButton.frame.width - 16.5, y: maps.frame.height * 0.55)
         trackingButton.layer.cornerRadius = 7
