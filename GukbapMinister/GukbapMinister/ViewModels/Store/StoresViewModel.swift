@@ -11,12 +11,13 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
+
 // 스토어의 정보를 모두 가져오는 뷰모델
 @MainActor
 final class StoresViewModel: ObservableObject {
     @Published var stores: [Store] = []
     @Published var countRan = 0
-
+    
     private var database = Firestore.firestore()
     private var listenerRegistration: ListenerRegistration?
  
@@ -50,6 +51,7 @@ final class StoresViewModel: ObservableObject {
                 }
         }
     }
+    
 }
 
 

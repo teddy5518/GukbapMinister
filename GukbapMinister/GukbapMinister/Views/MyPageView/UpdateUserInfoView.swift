@@ -6,48 +6,60 @@
 //
 
 import SwiftUI
-import FirebaseAuth
 
 struct UpdateUserInfoView: View {
-    
+    @EnvironmentObject var mypageViewModel: MyPageViewModel
     @EnvironmentObject var userViewModel: UserViewModel
-        
-    let currentUser = Auth.auth().currentUser
+    
+    var user: User {
+        mypageViewModel.user
+    }
     
     var body: some View {
-        
         NavigationStack {
             VStack {
                 List {
                         NavigationLink {
-                            EditNicknameView()
-//                                .environmentObject(userViewModel)
+                            EditNicknameView(manager: UserInfoUpdateManager(user: user))
                         } label: {
-                            Text("\(userViewModel.userInfo.userNickname)")
+                            HStack(alignment: .bottom) {
+                                Text("닉네임 수정하기")
+                                Text("현재 닉네임: \(user.userNickname)")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
                         }
                         .listRowSeparator(.hidden)
 
-                    
-
-                
+                    //TODO: - 업데이트 이후 지원
                         NavigationLink {
                             EditGukbapView()
                         } label: {
-                            Text("선호하는 국밥")
+                            HStack {
+                                Text("선호하는 국밥 수정하기")
+                                Text("추후 업데이트 후 지원예정")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                                
                         }
                         .listRowSeparator(.hidden)
-
+                        .disabled(true)
                     
-                   
+                    //TODO: - 업데이트 이후 지원
                         NavigationLink {
                             EditPreferenceAreaView()
                         } label: {
-                            Text("선호하는 지역")
+                            HStack {
+                                Text("선호하는 지역 수정하기")
+                                Text("추후 업데이트 후 지원예정")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
                         }
                         .listRowSeparator(.hidden)
+                        .disabled(true)
 
-                    
-                   
                         NavigationLink {
                             DeleteAccountView()
                         } label: {
@@ -63,14 +75,7 @@ struct UpdateUserInfoView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("회원정보 수정")
         }
-        .onAppear {
-//            userViewModel.fetchUpdateUserInfo()
-        }
+
     }
 }
 
-//struct UpdateUserInfoView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        UpdateUserInfoView()
-//    }
-//}

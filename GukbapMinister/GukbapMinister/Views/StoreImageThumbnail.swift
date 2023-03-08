@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+
 import Kingfisher
+import FirebaseStorage
 
 enum ImageThumbnailMode {
     case random, first, multiple, tab
@@ -14,17 +16,16 @@ enum ImageThumbnailMode {
 
 ///이미지 썸네일
 struct StoreImageThumbnail: View {
-    @StateObject var manager = StoreImageManager(store: .test)
-    @State private var tabSelection: Int = 0
-    
-    var width: CGFloat
-    var height: CGFloat
+
+    var store: Store
+    var size: CGFloat
     var cornerRadius: CGFloat
     var mode: ImageThumbnailMode = .random
     
+    
     var body: some View {
         VStack {
-            if !manager.imageURLs.isEmpty {
+            if !store.storeImages.isEmpty {
                 switch mode {
                 case .random: random // 랜덤으로 이미지를 보여줌
                 case .first: first // 첫번째 url 이미지를 보여줌(랜덤이 될 가능성이 있음)
@@ -32,10 +33,10 @@ struct StoreImageThumbnail: View {
                 case .tab: tab //여러장의 이미지를 탭뷰로 보여줌(순서는 생성될때마다 랜덤)
                 }
             } else {
-                Gukbaps(rawValue: manager.store.foodType.first ?? "순대국밥")?.placeholder
+                Gukbaps(rawValue: store.foodType.first ?? "순대국밥")?.placeholder
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: width, height: height)
+                    .aspectRatio(1, contentMode: .fit)
+                    .frame(width: size)
                     .cornerRadius(cornerRadius)
             }
         }
@@ -43,37 +44,38 @@ struct StoreImageThumbnail: View {
             RoundedRectangle(cornerRadius: cornerRadius)
                 .stroke(.black.opacity(0.2))
         }
+
     }
     
-    var random: some View {
+    private var random: some View {
         VStack {
-            if let url = manager.imageURLs.shuffled().first {
-                getImage(url)
+            if let urlString = store.storeImages.shuffled().first {
+                getImage(urlString)
             }
         }
     }
-    var first: some View {
+    private var first: some View {
         VStack {
-            if let url = manager.imageURLs.first {
-                getImage(url)
+            if let urlString = store.storeImages.first {
+                getImage(urlString)
             }
         }
     }
-    var multiple: some View {
+    private var multiple: some View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: [GridItem(.flexible())]) {
-                ForEach(manager.imageURLs, id: \.self) { url in
-                    getImage(url)
+                ForEach(store.storeImages, id: \.self) { urlString in
+                    getImage(urlString)
                 }
             }
         }
     }
     
-    var tab: some View {
+    private var tab: some View {
         TabView {
-            ForEach(manager.imageURLs, id: \.self) { url in
+            ForEach(store.storeImages, id: \.self) { urlString in
                 VStack {
-                    getImage(url)
+                    getImage(urlString)
                         .overlay {
                             LinearGradient(colors: [.black.opacity(0.2), .clear], startPoint: UnitPoint(x: 0.5, y: 1), endPoint: UnitPoint(x: 0.5, y: 0))
                             .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
@@ -82,31 +84,32 @@ struct StoreImageThumbnail: View {
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .automatic))
-        .frame(width: width, height: height)
+        .frame(width: size, height: size)
     }
     
     @ViewBuilder
-    func getImage(_ url: URL) -> some View {
-        KFImage(url)
+    private func getImage(_ urlString: String) -> some View {
+        KFImage.url(URL(string: urlString))
+            .resizable()
             .placeholder {
-                if let gukbap = manager.store.foodType.first {
+                if let gukbap = store.foodType.first {
                     Gukbaps(rawValue: gukbap)?.placeholder
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: width, height: height)
+                        .aspectRatio(1, contentMode: .fit)
+                        .frame(width: size)
                         .cornerRadius(cornerRadius)
                 }
             }
-            .setProcessor(DownsamplingImageProcessor(size: CGSize(width: width * 1.8, height: height * 1.8)))//이미지 사이즈의 2배정도로 다운샘플링
+            .setProcessor(DownsamplingImageProcessor(size: CGSize(width: size * 2.0, height: size * 2.0)))//이미지 사이즈의 1.8배정도로 다운샘플링 -> 너무 흐려서 1.5로 수정함 
             .loadDiskFileSynchronously()
             .cacheMemoryOnly()
-            .fade(duration: 0.5)
-            .resizable()
+            .fade(duration: 1)
+            .cancelOnDisappear(true)
             .aspectRatio(contentMode: .fill)
-            .frame(width: width, height: height)
+            .frame(width: size, height: size)
             .cornerRadius(cornerRadius)
-            
     }
+    
 }
 
 

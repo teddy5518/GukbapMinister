@@ -29,7 +29,9 @@ struct ExploreView: View {
                     ScrollView{
                         VStack(spacing: 0){
                             ExploreBanner()
+                                .environmentObject(storesViewModel)
                             ExploreCategoryIconsView()
+                                .environmentObject(storesViewModel)
                                 .frame(width: UIScreen.main.bounds.width)
                         }
                         .foregroundColor(.black)
@@ -38,8 +40,10 @@ struct ExploreView: View {
                         VStack{
                             // 조회수 순 정렬 뷰
                             ExploreOrderedHScroll(exploreViewModel: exploreViewModel, mode: .hits)
+                                .environmentObject(storesViewModel)
                             // 깍두기 점수 순 정렬 뷰
                             ExploreOrderedHScroll(exploreViewModel: exploreViewModel, mode: .star)
+                                .environmentObject(storesViewModel)
                         }//VStack
                     } //ScrollView
                 } //VStack

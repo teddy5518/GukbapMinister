@@ -31,7 +31,8 @@ struct UserReviewCell:  View {
             HStack(spacing: 0){
                 
                 Text("\(review.nickName)")
-                    .foregroundColor(.black)
+                    .foregroundColor(scheme == .light ? .black : .white)
+
                     .fontWeight(.semibold)
                     .padding(.vertical)
                 //                        .padding(.leading)
@@ -42,10 +43,10 @@ struct UserReviewCell:  View {
                         .fontWeight(.medium)
                         .foregroundColor(.secondary)
                 }
-                Text(" 리뷰 \(userViewModel.userInfo.reviewCount)")
-                    .foregroundColor(.secondary)
-                    .font(.caption2)
-                
+//                Text(" 리뷰 \(userViewModel.userInfo.reviewCount)")
+//                    .foregroundColor(.secondary)
+//                    .font(.caption2)
+//
                 if isInMypage {
                     Text("\(review.storeName)")
                         .font(.caption)
@@ -56,6 +57,7 @@ struct UserReviewCell:  View {
                 Spacer()
                 
                 if userViewModel.currentUser?.uid ?? "" == review.userId {
+            
                     Button {
                         isDeleteAlert.toggle()
                         
@@ -63,7 +65,7 @@ struct UserReviewCell:  View {
                         HStack{
                             Text("삭제")
                                 .font(.footnote)
-                                .fontWeight(.thin)
+                                .fontWeight(.regular)
                                 .padding(EdgeInsets(top: 2.5, leading: 6.5, bottom: 2.5, trailing: 6.5))
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 20)
@@ -123,6 +125,7 @@ struct UserReviewCell:  View {
             let columns = Array(repeating: GridItem(.flexible(),spacing: -8), count: 2)
             LazyVGrid(columns: columns, alignment: .leading, spacing: 4, content: {
                 
+                
                 //                ForEach(Array(review.images!.enumerated()), id: \.offset) { index, imageData in
                 //                    Button(action:{
                 //                        isshowingReviewDetailView.toggle()
@@ -149,7 +152,11 @@ struct UserReviewCell:  View {
                         KFImage(reviewViewModel.reviewImageURLs[imageURL])
                             .placeholder{
                                 ProgressView()
+                                    .frame(width: getWidth(index: index), height: getHeight(index: index))
                             }
+                            .setProcessor(DownsamplingImageProcessor(size: CGSize(width: getWidth(index: index) * 2.0 , height: getHeight(index: index) * 2.0)))
+                            .cacheMemoryOnly()
+                            .fade(duration: 0.25)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: getWidth(index: index), height: getHeight(index: index))
@@ -167,7 +174,7 @@ struct UserReviewCell:  View {
             
             HStack{
                 Text("\(review.reviewText)")
-                    .foregroundColor(.black)
+                    .foregroundColor(scheme == .light ? .black : .white)
                     .font(.body)
                     .padding()
                 Spacer()

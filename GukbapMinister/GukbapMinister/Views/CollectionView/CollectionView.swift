@@ -28,6 +28,7 @@ struct CollectionView: View {
                         // 내가 찜한 가게가 있을 시 보여준다
                         if !viewModel.stores.isEmpty {
                             CollectionLikedStores(collectionViewModel: viewModel)
+                                .environmentObject(storesViewModel)
                                 .background(scheme == .light ? .white : .black)
                         } else {
                             // 내가 찜한 가게가 없을 시 랜덤한 가게를 보여준다

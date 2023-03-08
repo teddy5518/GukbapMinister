@@ -84,7 +84,7 @@ struct DetailView: View {
 //
                 VStack{
                     //해당 가게 전체 사진
-                    StoreImagesTabView(manager: StoreImageManager(store: store), showDetail: $isshowingStoreImageDetail)
+                    StoreImagesTabView(showDetail: $isshowingStoreImageDetail, store: store)
                     
                     //가게 국밥종류, 별점
                     storeFoodTypeAndRate
@@ -142,14 +142,14 @@ struct DetailView: View {
         }//NavigationStack
         //가게 이미지만 보는 sheet로 이동
         .fullScreenCover(isPresented: $isshowingStoreImageDetail){
-            StoreImageDetailView(manager: StoreImageManager(store: store), isshowingStoreImageDetail: $isshowingStoreImageDetail)
+            StoreImageDetailView(isshowingStoreImageDetail: $isshowingStoreImageDetail, store: store)
         }
         //리뷰 작성하는 sheet로 이동
         .fullScreenCover(isPresented: $showingCreateRewviewSheet) {
             CreateReviewView(reviewViewModel: reviewViewModel,selectedStar: $selectedStar, showingSheet: $showingCreateRewviewSheet, store: store )
         }
         .onAppear{
-            
+            print("현재 접속 유저아이디 --> \(userViewModel.currentUser?.uid ?? "")")
             Task{
                 storesViewModel.subscribeStores()
             }
@@ -295,6 +295,9 @@ extension DetailView {
                             .padding(.bottom,10)
                     }else {
                         Text("\(userViewModel.userInfo.userNickname)님 '\(store.storeName)'의 리뷰를 남겨주세요! ")
+                            .lineLimit(1)
+                            .font(.system(size: Screen.maxWidth * 0.045))
+                            .foregroundColor(scheme == .light ? .black : .white)
                             .fontWeight(.bold)
                             .padding(.bottom,10)
                     }
@@ -313,70 +316,41 @@ extension DetailView {
             }
             
             Divider()
-            NavigationLink{
-                //   UserReviewCellDetailView()
-                
-            }label:{
                 HStack{
                     Text("방문자리뷰")
                         .foregroundColor(scheme == .light ? .black : .white)
                     Text("\(checkAllReviewCount.count)")
                         .foregroundColor(Color("AccentColor"))
                     Spacer()
-                    
-                    
+
                 }
                 .font(.title2.bold())
                 .padding(.leading,15)
                 .padding(.top)
                 
                 .background(scheme == .light ? .white : .black)
-            }
+            
         }
     }
             // MARK: 각각의 reviewViewModel forEach 돌려서 불러오기.
             var storeAllReview: some View {
-                LazyVStack{
+                VStack{
                     if !self.storeReview.isEmpty {
                         ForEach(Array(storeReview.enumerated()), id: \.offset) { index, review in
-                            
-                            
-                            //                                if self.storeReview.last?.id == review.id {
-                            //                                    GeometryReader { g in
-                            //                                        UserReviewCell(reviewViewModel: reviewViewModel, review: review, isInMypage: false)
-                            //                                            .onAppear(){
-                            //                                                self.time = Timer.publish(every: 0.1, on: .main, in: .tracking).autoconnect()
-                            //                                            }
-                            //                                            .onReceive(self.time) { (_) in
-                            //                                                print(g.frame(in:.global).maxY)
-                            //                                                print(UIScreen.main.bounds.height - 120)
-                            //                                                if g.frame(in:.global).maxY < UIScreen.main.bounds.height - 120{
-                            //
-                            //                                                    reviewViewModel.updateReviews()
-                            //                                                    print("리뷰 데이터 로딩중")
-                            //                                                    self.time.upstream.connect().cancel()
-                            //                                                }
-                            //                                            }
-                            //                                    }
-                            //                                }
-                            //                                else{
-                            //                                    UserReviewCell(reviewViewModel: reviewViewModel, review: review, isInMypage: false)
-                            //                                }
-                            
-                            
+       
                             UserReviewCell(reviewViewModel: reviewViewModel, review: review, isInMypage: false)
                                 .onAppear(){
-                                    print("\(index)번째 페이지")
-                                    print("카운트 -1 :\(storeReview.count - 1)")
-                                    if (index == storeReview.count) || (index < storeReview.count) {
-                                        if index == storeReview.count - 1{
-                                            if ((self.storeReview.last?.id) != nil) == true {
-                                                
+//                                    print("\(review.reviewText)")
+//                                    print("불러온 페이지 개수\(storeReview.count)")
+                                if ((self.storeReview.last?.id) != nil) == true{
+
+                                    if index == storeReview.count - 1{
+                                                reviewViewModel.updateReviews()
+                                                print("리뷰 데이터 로딩중")
                                             }
-                                            reviewViewModel.updateReviews()
-                                            print("리뷰 데이터 로딩중")
+
                                         }
-                                    }
+
                                 }
                             
                         }
@@ -396,27 +370,8 @@ extension DetailView {
                                 .foregroundColor(.secondary)
                         }
                     }
-                    //                                                GeometryReader {reader -> Color in
-                    //
-                    //
-                    //                                                        let minY = reader.frame(in: .global).minY
-                    //                                                        let height = UIScreen.main.bounds.height * 0.7
-                    //                                                        if reviewViewModel.reviews2.isEmpty && ( minY < height) {
-                    //                                                            print("마지막\(minY)")
-                    //                                                        }
-                    //                                                        if minY < height {
-                    //                                                            print("화면 70%\(minY)")
-                    //                                                            reviewViewModel.fetchReviews()
-                    //                                                        }
-                    //
-                    //
-                    //                                                    return Color.clear
-                    //
-                    //                                                }
+
                 }
-                
-                
-                
             }
         }
 

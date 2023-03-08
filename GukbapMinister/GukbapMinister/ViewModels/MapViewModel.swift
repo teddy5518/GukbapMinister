@@ -21,24 +21,25 @@ class MapViewModel : ObservableObject {
     @Published var storeLocationAnnotations: [StoreAnnotation] = []
     // 마커 클릭시 선택된 특정 Store
     @Published var selectedStore: Store? = nil
-    @Published var selectedStoreAnnotation : StoreAnnotation = .init(storeId: "Did you know?", title: "Seokjun", subtitle: "is", foodType: ["순대국밥"], coordinate: .init(latitude: 37.506276, longitude: 127.048977)) {
+    @Published var selectedStoreAnnotation: StoreAnnotation = .init(storeId: "Did you know?", title: "Seokjun", subtitle: "is", foodType: ["순대국밥"], coordinate: .init(latitude: 37.506276, longitude: 127.048977)) {
         willSet(newVal) {
             selectedStore = storeLocations.first { store in
                 store.id == newVal.storeId
             }
+            print(selectedStore?.storeName ?? "")
         }
     }
     // 국밥카테고리
     @Published var filteredGukbaps: [Gukbaps] = []
     
     
-    init(storeLocations: [Store]) {
+    init(storeLocations: [Store] = []) {
         self.storeLocations = storeLocations
     }
     
     
     func setStoreLocationAnnotations(_ storeLocations: [Store]) {
-        self.storeLocationAnnotations = storeLocations.map { store in
+        storeLocationAnnotations = storeLocations.map { store in
             StoreAnnotation(  storeId: store.id ?? "Not Found",
                               title: store.storeName,
                               subtitle: store.storeAddress,

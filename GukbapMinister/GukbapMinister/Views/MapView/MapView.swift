@@ -6,10 +6,10 @@ import CoreLocationUI
 struct MapView: View {
     @Environment(\.colorScheme) var scheme
     
-    @StateObject var mapViewModel = MapViewModel(storeLocations: [])
+    @StateObject var mapViewModel = MapViewModel()
     @StateObject var locationManager = LocationManager()
     
-    @EnvironmentObject var userViewModel : UserViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var storesViewModel: StoresViewModel
     
     // 필터 버튼을 눌렀을 때 동작
@@ -43,22 +43,11 @@ struct MapView: View {
                         .offset(x: width * 0.5 - 47)
                     
                     VStack {
-                        if isShowingSelectedStore {
-                            Button {
-                                isShowingSelectedStore.toggle()
-                            } label: {
-                                Spacer()
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            }
-                        } else {
-                            Spacer()
-                        }
+                        Spacer()
                         
-                        StoreModalView(store: mapViewModel.selectedStore ?? .test)
+                        StoreModalView(store: mapViewModel.selectedStore)
                             .padding(25)
                             .offset(y: isShowingSelectedStore ? 0 : 400)
-                        // animation issue로 인한 주석 처리
-                        // .animation(.easeInOut, value: isShowingSelectedStore)
                             .transition(.slide)
                     }
                 }
@@ -67,7 +56,9 @@ struct MapView: View {
         .onAppear {
             Task {
                 DispatchQueue.main.asyncAfter(deadline:.now() + 0.5) {
-                    mapViewModel.storeLocations = storesViewModel.stores
+                    if mapViewModel.storeLocations.isEmpty {
+                        mapViewModel.storeLocations += storesViewModel.stores
+                    }
                 }
             }
         }

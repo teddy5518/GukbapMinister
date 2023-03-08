@@ -66,11 +66,12 @@ struct ListCell : View {
             } label: {
                 HStack{
                     HStack(alignment: .top) {
-                        StoreImageThumbnail(manager: StoreImageManager(store: store),width: 90, height: 90, cornerRadius: 6)
+                        StoreImageThumbnail(store: store, size: 90, cornerRadius: 6)
                         
                         VStack(alignment: .leading, spacing: 1) {
                             HStack{
                                 Text(store.storeName)
+                                    .foregroundColor(scheme == .light ? .black : .white)
                                     .font(.body)
                                     .bold()
                                     .padding(4)
@@ -80,6 +81,7 @@ struct ListCell : View {
                             
                             HStack(alignment: .center){
                                 Text("깍두기 점수")
+                                    .foregroundColor(scheme == .light ? .black : .white)
                                     .bold()
                                     .font(.caption2)
                                 

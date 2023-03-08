@@ -83,11 +83,11 @@ class ReviewViewModel: ObservableObject {
     //MARK: 다음 데이터 업데이트
     func updateReviews(){
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.database.collection("Review")
                 .order(by: "createdAt", descending: true)
                 .start(afterDocument: self.lastDoc)
-                .limit(to: 4)
+                .limit(to: 5)
                 .getDocuments{(snap, err ) in
                     if err != nil{
                         print((err?.localizedDescription)!)
@@ -97,6 +97,7 @@ class ReviewViewModel: ObservableObject {
                  //   self.reviews2.removeLast()
 
                     if !snap!.documents.isEmpty{
+                        
                         for document in snap!.documents {
 
                             let id: String = document.documentID
@@ -146,7 +147,6 @@ class ReviewViewModel: ObservableObject {
         
         database.collection("Review")
             .order(by: "createdAt", descending: true)
-            .limit(to:5)
             .getDocuments { (snap, err) in
                 
                 if err != nil{
@@ -218,7 +218,7 @@ class ReviewViewModel: ObservableObject {
             await updateStoreRating(updatingReview: review, isDeleting: false)
             
             fetchReviews()
-
+            fetchAllReviews()
         } catch {
             print(error.localizedDescription)
         
@@ -249,7 +249,7 @@ class ReviewViewModel: ObservableObject {
             await updateStoreRating(updatingReview: review, isDeleting: true)
             
             fetchReviews()
-
+            fetchAllReviews()
         } catch {
             print(error.localizedDescription)
         }

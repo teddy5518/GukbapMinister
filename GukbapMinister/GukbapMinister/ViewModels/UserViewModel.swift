@@ -27,8 +27,8 @@ import KakaoSDKUser
 // 애플로그인
 
 // MARK: - 로그인상태 열거형
-enum LoginState {
-    case googleLogin
+enum LoginState: String {
+    case googleLogin = "googleLogin"
     case kakaoLogin
     case appleLogin
     case logout
@@ -57,8 +57,8 @@ class UserViewModel: NSObject, ObservableObject {
         super.init()
         if self.isLoggedIn && currentUser != nil {
             self.fetchUserInfo(uid: self.currentUser?.uid ?? "")
+            self.loginState = LoginState(rawValue: loginPlatform) ?? .logout
         }
-
     }
     
     
@@ -68,26 +68,9 @@ class UserViewModel: NSObject, ObservableObject {
         let docRef = database.collection("User").document(uid)
         docRef.getDocument { document, error in
             if let document = document, document.exists {
-                let dataDescription = document.data()
-                
-                
-                let email: String = dataDescription?["userEmail"] as? String ?? ""
-                let nickName: String = dataDescription?["userNickname"] as? String ?? ""
-                let userGrade : String = dataDescription?["userGrade"] as? String ?? ""
-                let favoriteStoreId: [String] = dataDescription?["favoriteStoreId"] as? [String] ?? []
-                let reviewCount: Int = dataDescription?["reviewCount"] as? Int ?? 0
-                let storeReportCount: Int = dataDescription?["storeReportCount"] as? Int ?? 0
-                
-                self.userInfo.id = uid
-                self.userInfo.userEmail = email
-                self.userInfo.userNickname = nickName
-                self.userInfo.favoriteStoreId = favoriteStoreId
-                self.userInfo.userGrade = userGrade
-                self.userInfo.reviewCount = reviewCount
-                self.userInfo.storeReportCount = storeReportCount
-                
-                print("\(self.userInfo)")
-                
+                if let data = try? document.data(as: User.self) {
+                    self.userInfo = data
+                }
             } else {
                 print("Document does not exist")
             }
@@ -123,9 +106,9 @@ class UserViewModel: NSObject, ObservableObject {
         // 구글 로그인 로직 실행
         GIDSignIn.sharedInstance.signIn(
             withPresenting: rootViewController) { signInResult, error in
-                guard let result = signInResult else { return }
+                guard let signInResult = signInResult else { return }
                 
-                let user = result.user // 로그인 한 유저
+                let user = signInResult.user // 로그인 한 유저
                 let idToken = user.idToken?.tokenString // 유저 idToken
                 let accessToken = user.accessToken.tokenString // 유저 accessToken
                 
@@ -136,8 +119,9 @@ class UserViewModel: NSObject, ObservableObject {
                 Auth.auth().signIn(with: credential) { result, error in
                     // 사용자 uid
                     guard let uid = Auth.auth().currentUser?.uid else { return }
+                    guard let user = result?.user else { return }
                     // 로그인 성공시 유저정보 FireStore에 저장
-                    self.insertUserInFireStore(uid: uid, userEmail: user.profile?.email ?? "", userName: user.profile?.name ?? "")
+                    self.insertUserInFireStore(uid: uid, userEmail: user.providerData.first?.email ?? "", userName: user.providerData.first?.displayName ?? "")
                     self.fetchUserInfo(uid: uid)
                     //                    print("로그인 후 : currentUser - \(self.currentUser)")
                 }
@@ -233,7 +217,7 @@ class UserViewModel: NSObject, ObservableObject {
         case "googleLogin": // 구글로그인일때
             do {
                 UserDefaults.standard.set(false, forKey: "isLoggedIn")
-                UserDefaults.standard.set("noLoginPlatform", forKey: "loginPlatform")
+                UserDefaults.standard.set("logout", forKey: "loginPlatform")
                 try Auth.auth().signOut()
                 self.loginState = .logout // 로그아웃 상태로 전환
                 print("\(#function) - 구글 로그아웃 성공")
@@ -277,8 +261,21 @@ class UserViewModel: NSObject, ObservableObject {
                     }
                 }
             }
-            // case "appleLogin": // 애플로그인일때
-        default: return
+             case "appleLogin": // 애플로그인일때
+            do {
+                UserDefaults.standard.set(false, forKey: "isLoggedIn")
+                UserDefaults.standard.set("noLoginPlatform", forKey: "loginPlatform")
+                try Auth.auth().signOut()
+                self.loginState = .logout // 로그아웃 상태로 전환
+                print("\(#function) - 애플 로그아웃 성공")
+                print("\(self.isLoggedIn)")
+                
+                //                print("로그아웃 후 : currentUser - \(String(describing: self.currentUser))")
+            } catch let signOutError as NSError {
+                print("Error signing out: %@", signOutError)
+            }
+            
+            default: return
         }
     }
 }
@@ -347,7 +344,7 @@ extension UserViewModel: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         
         print("여기 호출됩니다!")
-        
+        //애플
       if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
         guard let nonce = currentNonce else {
           fatalError("Invalid state: A login callback was received, but no login request was sent.")
@@ -373,10 +370,16 @@ extension UserViewModel: ASAuthorizationControllerDelegate {
                 return
             }
             
+            var fullName: String?
+            if let familyName = appleIDCredential.fullName?.familyName, let givenName = appleIDCredential.fullName?.givenName{
+                fullName = familyName + givenName
+            }
+            
             guard let user = authResult?.user else { return }
             
+            
             // 로그인 성공시 유저정보 FireStore에 저장
-            self.insertUserInFireStore(uid: user.uid, userEmail: user.providerData.first?.email ?? "", userName: user.providerData.first?.displayName ?? "")
+            self.insertUserInFireStore(uid: user.uid, userEmail: user.providerData.first?.email ?? "", userName: fullName ?? "임시닉네임")
             self.fetchUserInfo(uid: user.uid)
             self.loginState = .appleLogin
             

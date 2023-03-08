@@ -6,75 +6,95 @@
 //
 
 import SwiftUI
+import AuthenticationServices
 
 struct LoginView: View {
+    @Environment(\.colorScheme) var scheme
     @Environment(\.window) var window: UIWindow?
     @EnvironmentObject var userViewModel: UserViewModel
     
     
     var body: some View {
-        VStack {
-            Divider()
-            Button {
-//                userViewModel.signInDidAppleAuth()
-                appleLogin()
-            } label: {
-                Text("애플로 로그인")
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 8)
-                    .background(alignment:.leading) {
-                        Image("AppleLogin")
-                            .frame(width: 50, alignment: .center)
-                    }
-//                    .border(0.5, width: .black)
-            }
-            .background(.black)
-            .cornerRadius(10)
-            .padding([.leading,.trailing],5)
+        ZStack {
+            Color("MainColorLight")
+                .edgesIgnoringSafeArea(.all)
             
-            Button {
-                userViewModel.googleLogin()
-            } label: {
-                Text("구글로 로그인")
-                    .fontWeight(.semibold)
-                    .foregroundColor(.black)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 8)
-                    .background(alignment:.leading) {
-                        Image("GoogleLogin")
-                            .frame(width: 50, alignment: .center)
+            AnimationLoginView()
+            
+            VStack {
+                VStack(spacing: 0) {
+                    Text("국밥부장관")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                    Image("AppIconNoText")
+                        .resizable()
+                        .frame(width: 150, height: 150)
+                }
+                VStack {
+                    Button {
+                        appleLogin()
+                    } label: {
+                        Text("애플 로그인")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 8)
+                            .background(alignment:.leading) {
+                                Image("AppleLogin")
+                                    .frame(width: 50, height: 70, alignment: .center)
+                            }
                     }
+                    .background(.black)
+                    .cornerRadius(12)
+                    .padding([.leading,.trailing],5)
                     
-            }
-            .background(.white)
-            .cornerRadius(10)
-//            .border(0.5, width: .black)
-//            .padding([.leading,.trailing],5)
-            
-            
-            Button {
-                userViewModel.kakaoLogin()
-            } label: {
-                Text("카카오 로그인")
-                    .fontWeight(.semibold)
-                    .foregroundColor(.black)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 17)
-                    .background(alignment:.leading) {
-                        Image("KakaoLogin")
-                            .frame(width: 80, alignment: .center)
+                    Button {
+                        userViewModel.googleLogin()
+                    } label: {
+                        Text("구글 로그인")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 8)
+                            .background(alignment:.leading) {
+                                Image("GoogleLogin")
+                                    .resizable()
+                                    .frame(width: 30, height: 30, alignment: .center)
+                                    .padding(.leading, 10)
+                            }
+                        
                     }
+                    .background(.white)
+                    .cornerRadius(12)
+                    .padding([.leading,.trailing],5)
+                    
+                    Button {
+                        userViewModel.kakaoLogin()
+                    } label: {
+                        Text("카카오 로그인")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 8)
+                            .background(alignment:.leading) {
+                                Image("KakaoLogin")
+                                    .resizable()
+                                    .frame(width: 25, height: 25, alignment: .center)
+                                    .padding(.leading, 12)
+                            }
+                    }
+                    .background(Color("KakaoColor"))
+                    .cornerRadius(12)
+                    .padding([.leading,.trailing],5)
+                    
+                }
+                .frame(width: 330)
+                .padding(.top, 100)
+                
+                
             }
-//            .frame(width: 300, height: 40)
-            .background(Color("KakaoColor"))
-            .cornerRadius(10)
-            .padding([.leading,.trailing],5)
-            
-            
-            
-
+            .zIndex(1)
         }
     }
     

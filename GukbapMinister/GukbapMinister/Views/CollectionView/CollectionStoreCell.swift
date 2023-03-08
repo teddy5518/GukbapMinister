@@ -10,9 +10,12 @@ import Kingfisher
 
 struct CollectionStoreCell: View {
     @Environment(\.colorScheme) var scheme
+    @EnvironmentObject var storesViewModel: StoresViewModel
     @StateObject var viewModel = DetailViewModel(store: .test)
     
-    
+    var store: Store {
+        storesViewModel.stores.first { $0.storeName == viewModel.store.storeName } ?? .test
+    }
     var rowOne: [GridItem] = Array(repeating: .init(.fixed(50)), count: 1)
     
     @State private var isLoading = true
@@ -24,7 +27,8 @@ struct CollectionStoreCell: View {
                 DetailView(detailViewModel: DetailViewModel(store: viewModel.store))
             } label: {
                 HStack(alignment: .top) {
-                    StoreImageThumbnail(manager: StoreImageManager(store: viewModel.store), width: 120, height: 120, cornerRadius: 6, mode: .tab)
+                    StoreImageThumbnail(store: store, size: 120, cornerRadius: 6)
+
                     VStack(alignment: .leading, spacing: 0) {
                         HStack{
                             Text(viewModel.store.storeName)

@@ -28,6 +28,8 @@ struct ReportView: View {
         "기타(아래 내용 작성)",
     ]
     var body: some View {
+        let customColor = scheme == .light ? Color("AccentColor") : Color.secondary
+      
         NavigationStack{
             ScrollView{
                 VStack(alignment: .leading){
@@ -56,8 +58,7 @@ struct ReportView: View {
                     
                     VStack(alignment: .leading, spacing: 30){
                         ForEach(Array(Content.enumerated()), id: \.offset) { count, index in
-                            //
-                            //                ForEach(Content, id:\.self){ index in
+                        
                             Button(action:{
                                 self.selectedReportButton = index
                             }){
@@ -67,24 +68,20 @@ struct ReportView: View {
                                     Spacer()
                                     ZStack{
                                         Circle()
-                                            .fill(self.selectedReportButton == index ? Color("AccentColor") : Color.black.opacity(0.2))
+                                            .fill(self.selectedReportButton == index ? Color("AccentColor") : Color.secondary.opacity(0.2))
                                             .frame(width: 18,height: 18)
                                             .background(scheme == .light ? .white : .black)
                                         
                                         if self.selectedReportButton == index {
-                                            if count == 6 {
-                                                
-                                            }
-                                            else {
+                                         
                                                 Image(systemName: "checkmark.circle.fill")
                                                                               .font(.system(size:18))
                                                                               .foregroundColor(Color.blue)
                                                                               .background(scheme == .light ? .white : .black)
-                                            }
+                                            
                                         }
                                     }
                                 }
-                                .foregroundColor(.black)
                             }
 //                            .background(scheme == .light ? .white : .black)
                         }
@@ -122,20 +119,18 @@ struct ReportView: View {
                     }){
                         Text("신고하기")
                             .font(.subheadline)
-                            .foregroundColor(scheme == .light ? .black : .white)
+                            .foregroundColor(scheme == .light ? .black : .black)
                             .padding()
                             .frame(maxWidth: Screen.maxWidth)
                             .bold()
                     }
                     .background(
-                        self.selectedReportButton == "" || memo.isEmpty ?
+                        self.selectedReportButton == ""  ?
                         
                         Color("lightGray") :  Color("AccentColor") )
                     
-                    //                    .clipShape(RoundedRectangle(cornerRadius: 5))
                     .clipShape(Capsule())
-                    .disabled(self.selectedReportButton == "" || memo.isEmpty ? true : false)
-                 //   .padding(EdgeInsets(top: 5, leading: 20, bottom: 0, trailing: 20))
+                    .disabled(self.selectedReportButton == "")
                     
                 }}
             .navigationTitle("리뷰 신고하기")
@@ -159,18 +154,19 @@ struct ReportView: View {
                         .popup(isPresented: $reportEnter) {
                             HStack {
                                 Image(systemName: "checkmark")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(scheme == .light ? .white : .black)
                                 Text("신고가 완료되었습니다.")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(scheme == .light ? .white : .black)
                                     .font(.footnote)
                                     .bold()
                             }
                             .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
-                            .background(Color("AccentColor"))
+                            .background(customColor)
                             .cornerRadius(100)
                         } customize: {
                             $0
-                                .autohideIn(2)
+                                .autohideIn(1.3)
+                                .animation(.spring())
                                 .type(.floater())
                                 .position(.top)
                         } // popup
