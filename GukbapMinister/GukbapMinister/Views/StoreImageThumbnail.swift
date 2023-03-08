@@ -108,9 +108,7 @@ struct StoreImageThumbnail: View {
             .aspectRatio(contentMode: .fill)
             .frame(width: size, height: size)
             .cornerRadius(cornerRadius)
-            
     }
-    
     
 }
 
