@@ -23,6 +23,11 @@
 	</array>
 	<key>GIDClientID</key>
 	<string>${GIDClientID}</string>
+	<key>Information Property List</key>
+	<dict>
+		<key>Localization native development region</key>
+		<string>Korea</string>
+	</dict>
 	<key>KAKAO_NATIVE_APP_KEY</key>
 	<string>${KAKAO_NATIVE_APP_KEY}</string>
 	<key>LSApplicationQueriesSchemes</key>
