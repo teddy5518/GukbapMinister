@@ -295,6 +295,8 @@ extension DetailView {
                             .padding(.bottom,10)
                     }else {
                         Text("\(userViewModel.userInfo.userNickname)님 '\(store.storeName)'의 리뷰를 남겨주세요! ")
+                            .lineLimit(1)
+                            .font(.system(size: Screen.maxWidth * 0.045))
                             .foregroundColor(scheme == .light ? .black : .white)
                             .fontWeight(.bold)
                             .padding(.bottom,10)
@@ -332,22 +334,23 @@ extension DetailView {
     }
             // MARK: 각각의 reviewViewModel forEach 돌려서 불러오기.
             var storeAllReview: some View {
-                LazyVStack{
+                VStack{
                     if !self.storeReview.isEmpty {
                         ForEach(Array(storeReview.enumerated()), id: \.offset) { index, review in
        
                             UserReviewCell(reviewViewModel: reviewViewModel, review: review, isInMypage: false)
                                 .onAppear(){
-                                   
-                                    if (index == storeReview.count) || (index < storeReview.count) {
-                                        if index == storeReview.count - 1{
-                                            if ((self.storeReview.last?.id) != nil) == true {
-                                                
+//                                    print("\(review.reviewText)")
+//                                    print("불러온 페이지 개수\(storeReview.count)")
+                                if ((self.storeReview.last?.id) != nil) == true{
+
+                                    if index == storeReview.count - 1{
+                                                reviewViewModel.updateReviews()
+                                                print("리뷰 데이터 로딩중")
                                             }
-                                            reviewViewModel.updateReviews()
-                                            print("리뷰 데이터 로딩중")
+
                                         }
-                                    }
+
                                 }
                             
                         }

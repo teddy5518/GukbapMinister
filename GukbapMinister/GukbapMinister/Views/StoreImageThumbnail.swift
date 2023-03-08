@@ -100,7 +100,7 @@ struct StoreImageThumbnail: View {
                         .cornerRadius(cornerRadius)
                 }
             }
-            .setProcessor(DownsamplingImageProcessor(size: CGSize(width: size * 1.8, height: size * 1.8)))//이미지 사이즈의 1.8배정도로 다운샘플링
+            .setProcessor(DownsamplingImageProcessor(size: CGSize(width: size * 2.0, height: size * 2.0)))//이미지 사이즈의 1.8배정도로 다운샘플링 -> 너무 흐려서 1.5로 수정함 
             .loadDiskFileSynchronously()
             .cacheMemoryOnly()
             .fade(duration: 1)

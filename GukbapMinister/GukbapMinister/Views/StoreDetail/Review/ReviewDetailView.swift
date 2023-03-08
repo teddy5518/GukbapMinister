@@ -37,8 +37,11 @@ struct ReviewDetailView: View {
                                         .placeholder{
                                             ProgressView()
                                         }
+                                        .cacheMemoryOnly()
+                                        .fade(duration: 0.25)
                                         .resizable()
                                         .scaledToFit()
+                                    
                             
                                 }
                             
