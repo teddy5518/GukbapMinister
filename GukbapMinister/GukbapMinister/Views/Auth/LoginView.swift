@@ -35,7 +35,7 @@ struct LoginView: View {
                     Button {
                         appleLogin()
                     } label: {
-                        Text("애플 로그인")
+                        Text("Apple로 로그인")
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
@@ -52,7 +52,7 @@ struct LoginView: View {
                     Button {
                         userViewModel.googleLogin()
                     } label: {
-                        Text("구글 로그인")
+                        Text("Google로 로그인")
                             .fontWeight(.semibold)
                             .foregroundColor(.black)
                             .frame(maxWidth: .infinity)
@@ -72,7 +72,7 @@ struct LoginView: View {
                     Button {
                         userViewModel.kakaoLogin()
                     } label: {
-                        Text("카카오 로그인")
+                        Text("카카오로 로그인")
                             .fontWeight(.semibold)
                             .foregroundColor(.black)
                             .frame(maxWidth: .infinity)
