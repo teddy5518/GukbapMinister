@@ -9,10 +9,8 @@
 ## **Introduction** 
 <p align="center"><img src="https://cdn.discordapp.com/attachments/1063382836410847243/1077854855143624774/Ddukbaegi.boiling.gif" width=30%></p>
 
-```
 GukbapMinister is an app for people who love to find hidden gem restaurants, like local gukbap (traditional Korean rice soup) places.
 It's because there are many hidden gukbap restaurants in neighborhoods that only locals know about, making it hard to get information about them.
-```
 
 ### **Service Area**
 
