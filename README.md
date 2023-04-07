@@ -25,7 +25,7 @@ Seoul, Busan
 <div align="center">
   <table style="font-weight : bold">
       <tr align="center">
-          <td colspan="7"> Heartwarming App, Heartwarming Team Work </td>
+          <td colspan="7"> Heart-warming App, Heart-warming Team Work </td>
       </tr>
       <tr>
           <td align="center">
