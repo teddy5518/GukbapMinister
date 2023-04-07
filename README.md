@@ -108,7 +108,7 @@ Please set only the necessary targets.
 </details>
 <br>
 
-## **Main App Features**
+## **Main Features**
 
 |<img src="https://user-images.githubusercontent.com/126060711/223663635-efe96a89-bb83-46d7-953b-523d8bbc6bf9.png"></img>|<img src="https://user-images.githubusercontent.com/126060711/223663406-c400d7ff-80d1-43d1-9193-88b94f3bdcbe.png"></img>|<img src="https://user-images.githubusercontent.com/126060711/223663440-653c7566-1f9f-4e69-8861-3cd61df45a5b.png"></img>|
 |:-:|:-:|:-:|
